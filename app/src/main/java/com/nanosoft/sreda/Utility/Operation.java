@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 public class Operation {
 
 
+    private  String name;
 
 
     public static void saveString(String keyValue,String getValue){
