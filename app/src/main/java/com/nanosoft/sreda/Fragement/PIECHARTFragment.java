@@ -71,7 +71,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
         reGenerationChart_infoArrayList = new ArrayList<>();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
-        recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, true));
+        recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
         reGenSummeryReportChartAdapter = new ReGenSummeryReportChartAdapter(getContext(), reGenerationChart_infoArrayList);
         recyclerviewGeneration.setAdapter(reGenSummeryReportChartAdapter);
 
@@ -79,7 +79,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
         electricityGenerationMixChartInfoArrayList = new ArrayList<>();
         recyclerviewElectricity = (RecyclerView) view.findViewById(R.id.recyclerviewElectricity);
-        recyclerviewElectricity.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, true));
+        recyclerviewElectricity.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
         electricGenMixChartAdapter = new ElectricGenMixChartAdapter(getContext(), electricityGenerationMixChartInfoArrayList);
         recyclerviewElectricity.setAdapter(electricGenMixChartAdapter);
 
