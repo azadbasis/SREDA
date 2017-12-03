@@ -2,10 +2,13 @@ package com.nanosoft.sreda.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nanosoft.sreda.Model.ReGenerationChart_Info;
+import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
 
@@ -28,11 +31,16 @@ public class ReGenSummeryReportChartAdapter extends RecyclerView.Adapter<ReGenSu
 
     @Override
     public ReGenSummeryReportChartHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.raw_headar_regeneration_chart,null);
+
+        return new ReGenSummeryReportChartHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ReGenSummeryReportChartHolder holder, int position) {
+
+        ReGenerationChart_Info reGenerationChart_info=reGenerationChart_infoArrayList.get(position);
+
 
     }
 
@@ -43,8 +51,13 @@ public class ReGenSummeryReportChartAdapter extends RecyclerView.Adapter<ReGenSu
 
     class ReGenSummeryReportChartHolder extends RecyclerView.ViewHolder{
 
+        TextView tvTechnology,tvOnGrid,tvOffGrid,tvTotal;
         public ReGenSummeryReportChartHolder(View itemView) {
             super(itemView);
+            tvTechnology=(TextView)itemView.findViewById(R.id.tvTechnology);
+            tvOnGrid=(TextView)itemView.findViewById(R.id.tvOnGrid);
+            tvOffGrid=(TextView)itemView.findViewById(R.id.tvOffGrid);
+            tvTotal=(TextView)itemView.findViewById(R.id.tvTotal);
         }
     }
 }
