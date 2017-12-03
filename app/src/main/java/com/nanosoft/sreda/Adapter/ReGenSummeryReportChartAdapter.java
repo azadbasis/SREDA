@@ -42,6 +42,11 @@ public class ReGenSummeryReportChartAdapter extends RecyclerView.Adapter<ReGenSu
         ReGenerationChart_Info reGenerationChart_info=reGenerationChart_infoArrayList.get(position);
 
 
+        holder.tvTechnology.setText(reGenerationChart_info.getTechnology());
+        holder.tvOnGrid.setText(reGenerationChart_info.getOn_Grid()+"");
+        holder.tvOffGrid.setText(reGenerationChart_info.getOff_Grid()+"");
+        holder.tvTotal.setText(reGenerationChart_info.getTotal()+"");
+
     }
 
     @Override
