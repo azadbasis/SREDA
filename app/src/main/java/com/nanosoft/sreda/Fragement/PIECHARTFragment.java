@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,19 +23,31 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
+import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
+import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
+
+import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PIECHARTFragment extends Fragment implements OnChartValueSelectedListener {
 
-    PieChart pieChart;
+    PieChart pieChart, piechartElectricity;
     PieData data;
     ArrayList<String> xVals;
     ArrayList<Entry> yvalues;
+    ElectricityGenerationMixChart_Info electricityGenerationMixChart_info,electricityGenerationMixChart_info1,electricityGenerationMixChart_info2,electricityGenerationMixChart_info3,electricityGenerationMixChart_info4;
+    ReGenerationChart_Info reGenerationChart_info;
+    ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChartInfoArrayList;
+    RecyclerView recyclerviewElectricity;
+    ElectricGenMixChartAdapter electricGenMixChartAdapter;
+
+
     public PIECHARTFragment() {
         // Required empty public constructor
     }
@@ -49,8 +63,26 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pieChart = (PieChart)view.findViewById(R.id.piechart);
+
+        electricityGenerationMixChartInfoArrayList = new ArrayList<>();
+        recyclerviewElectricity = (RecyclerView) view.findViewById(R.id.recyclerviewElectricity);
+
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), HORIZONTAL, true);
+        recyclerviewElectricity.setLayoutManager(layoutManager);
+        // recycler_view.setMinimumWidth(200);
+        //  recycler_view.setNestedScrollingEnabled(false);
+        //recycler_view.addItemDecoration(new SimpleDividerItemDecoration(con));
+        electricGenMixChartAdapter = new ElectricGenMixChartAdapter(getContext(), electricityGenerationMixChartInfoArrayList);
+        recyclerviewElectricity.setAdapter(electricGenMixChartAdapter);
+
+
+        pieChart = (PieChart) view.findViewById(R.id.piechartRegeneration);
+        piechartElectricity = (PieChart) view.findViewById(R.id.piechartElectricity);
+
         pieChart.setUsePercentValues(true);
+        piechartElectricity.setUsePercentValues(true);
 
         // IMPORTANT: In a PieChart, no values (Entry) should have the same
         // xIndex (even if from different DataSets), since no values can be
@@ -92,14 +124,38 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         pieChart.setTransparentCircleRadius(25f);
         pieChart.setHoleRadius(25f);
 
+
+        piechartElectricity.setData(data);
+        piechartElectricity.setDescription("This is Pie Chart");
+
+        piechartElectricity.setDrawHoleEnabled(true);
+        piechartElectricity.setTransparentCircleRadius(25f);
+        piechartElectricity.setHoleRadius(25f);
+
+
         dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         data.setValueTextSize(13f);
         data.setValueTextColor(Color.DKGRAY);
         pieChart.setOnChartValueSelectedListener(this);
+        piechartElectricity.setOnChartValueSelectedListener(this);
 
         pieChart.animateXY(1400, 1400);
+        piechartElectricity.animateXY(1400, 1400);
 
+
+        electricityGenerationMixChart_info = new ElectricityGenerationMixChart_Info("azhar", 4.78, 8,12.78);
+        electricityGenerationMixChart_info1 = new ElectricityGenerationMixChart_Info("kutub", 4.58, 83,87.53);
+        electricityGenerationMixChart_info2 = new ElectricityGenerationMixChart_Info("arif", 4.48, 84,88.48);
+        electricityGenerationMixChart_info3 = new ElectricityGenerationMixChart_Info("sojib", 4.48, 85,89.48);
+        electricityGenerationMixChart_info4 = new ElectricityGenerationMixChart_Info("robin", 4.38, 87,91.38);
+
+        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info);
+        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info1);
+        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info2);
+        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info3);
+        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info4);
     }
+
 
     @Override
     public void onValueSelected(Entry e, int position, Highlight h) {
@@ -108,13 +164,14 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         h = new Highlight(50, 0);
 
         pieChart.highlightValue(h, true); // h
+        piechartElectricity.highlightValue(h, true); // h
         if (e == null)
             return;
         Log.e("VAL SELECTED",
                 "Value: " + e.getVal() + ", xIndex: " + e.getXIndex()
                         + ", DataSet index: " + data.getDataSetByIndex(position));
 
-        Dialog dialog= new Dialog(getActivity());
+        Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.pie_data_dialogue);
         TextView tvTechName = dialog.findViewById(R.id.tvTechName);
         TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
