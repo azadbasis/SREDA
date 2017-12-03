@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     TextView tvTitle;
     SharedPreferences sharedPreferences;
     Button btnReport,btnGovAgency,btnPrivateIndiVi,btnStakeHolder,btnHome,
-    btnReportReGen,btnReportTechno,btnReportYear,btnReportLarge,btnReportSmall,btnReportSearch;
+    btnReportReGen,btnReportTechno,btnReportYear,btnReportLarge,btnReportSmall,btnReportElectMix;
     LinearLayout linReport,linGovAgency,linPrivateIndiVi,linStakeHolder,linPieView;
     private FrameLayout containerView;
     String logTagString="SREDA";
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnReportYear = (Button)findViewById(R.id.btnReportYear);
         btnReportLarge = (Button)findViewById(R.id.btnReportLarge);
         btnReportSmall = (Button)findViewById(R.id.btnReportSmall);
-        btnReportSearch = (Button)findViewById(R.id.btnReportSearch);
+        btnReportElectMix = (Button)findViewById(R.id.btnReportElectMix);
 
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
