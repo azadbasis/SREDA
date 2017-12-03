@@ -130,7 +130,15 @@
                         android:text="RE Generation Summery Report"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
-
+                    <Button
+                        android:id="@+id/btnReportElectMix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingLeft="@dimen/_25sdp"
+                        android:text="Electricity Generation Mix"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
                     <Button
                         android:id="@+id/btnReportTechno"
                         android:layout_width="match_parent"
@@ -172,15 +180,7 @@
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
 
-                    <Button
-                        android:id="@+id/btnReportSearch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:paddingLeft="@dimen/_25sdp"
-                        android:text="Project Search"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black" />
+
 
 
                 </LinearLayout>
