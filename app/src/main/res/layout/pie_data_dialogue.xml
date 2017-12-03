@@ -7,10 +7,10 @@
 
     <LinearLayout
         android:layout_centerInParent="true"
-        android:layout_width="@dimen/_250sdp"
+        android:layout_width="@dimen/_180sdp"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/_80sdp"
         android:background="@drawable/border_bg"
         >
 

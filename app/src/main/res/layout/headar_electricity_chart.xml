@@ -9,38 +9,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_13sdp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Name"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@drawable/tv_bg_title"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_13sdp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Capacity (mw)"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@drawable/tv_bg_title"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg"
+        android:background="@drawable/tv_bg_title"
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="	Percentage"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
     <TextView
         android:id="@+id/textView12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg"
+        android:background="@drawable/tv_bg_title"
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="	Total"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 
 
 </LinearLayout>
