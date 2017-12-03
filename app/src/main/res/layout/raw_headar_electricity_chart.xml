@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_120sdp"
+
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_13sdp"
+        android:textColor="@color/black"
+        android:text="Name"
+        android:gravity="left"
+        android:background="@drawable/tv_bg"/>
+
+    <TextView
+        android:id="@+id/tvCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_13sdp"
+        android:textColor="@color/black"
+        android:text="Capacity (mw)"
+        android:gravity="left"
+        android:background="@drawable/tv_bg"/>
+
+    <TextView
+        android:id="@+id/tvPercentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bg"
+        android:gravity="left"
+        android:padding="@dimen/_13sdp"
+        android:text="	Percentage"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bg"
+        android:gravity="left"
+        android:padding="@dimen/_13sdp"
+        android:text="	Total"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>

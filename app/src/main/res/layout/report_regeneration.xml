@@ -58,7 +58,7 @@
             android:orientation="horizontal"
             >
 
-            <include layout="@layout/headar"/>
+            <include layout="@layout/header_regeneratin_report"/>
 
         <!--    <include
                 layout="@layout/raw_regen_report"/>-->

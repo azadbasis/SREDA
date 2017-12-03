@@ -68,13 +68,4 @@
         android:text="Completion Date"
         android:gravity="left"
         android:background="@drawable/tv_bg"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_13sdp"
-        android:textColor="@color/black"
-        android:text="Present Status"
-        android:gravity="left"
-        android:background="@drawable/tv_bg"/>
-
 </LinearLayout>
