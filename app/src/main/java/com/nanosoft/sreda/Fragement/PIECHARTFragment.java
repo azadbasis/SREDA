@@ -99,7 +99,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
         if (e == null)
             return;
-        Log.i("VAL SELECTED",
+        Log.e("VAL SELECTED",
                 "Value: " + e.getVal() + ", xIndex: " + e.getXIndex()
                         + ", DataSet index: " + dataSetIndex);
     }
