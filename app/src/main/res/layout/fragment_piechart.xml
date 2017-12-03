@@ -61,7 +61,7 @@
             android:orientation="horizontal"
             android:layout_marginBottom="@dimen/_10sdp"
             >
-            <include layout="@layout/headar_regeneration_chart"/>
+            <include layout="@layout/headar_electricity_chart"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerviewElectricity"
                 android:layout_width="match_parent"

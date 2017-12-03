@@ -32,6 +32,15 @@
         android:padding="@dimen/_13sdp"
         android:text="	Percentage"
         android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bg"
+        android:gravity="left"
+        android:padding="@dimen/_13sdp"
+        android:text="	Total"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>
