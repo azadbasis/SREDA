@@ -182,7 +182,12 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+
+    }
 
     @Override
     public void onValueSelected(Entry e, int position, Highlight h) {
