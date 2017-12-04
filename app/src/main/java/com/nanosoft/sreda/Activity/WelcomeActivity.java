@@ -16,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String persistanceUsernameString= Operation.getString("user","");
+        String persistanceUsernameString= Operation.getString("email","");
         if(persistanceUsernameString.length()>0){
             startActivity(new Intent(AppController.getAppContext(),MainActivity.class));
             finish();
