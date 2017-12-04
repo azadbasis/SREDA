@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +19,7 @@ import com.nanosoft.sreda.Receiver.NetworkConnectionReceiver;
 import com.nanosoft.sreda.Utility.AppController;
 import com.nanosoft.sreda.Utility.CustomAdapter;
 import com.nanosoft.sreda.Utility.Operation;
+import com.nanosoft.sreda.Utility.ServerResponseOperation;
 
 import java.util.List;
 
@@ -40,12 +40,14 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
     EditText usernameEditText,passwordEditText;
     SharedPreferences sharedPreferences;
 
+    public  static LoginActivity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String persistanceUsernameString=Operation.getString("user","");
+        loginActivity = this;
+        String persistanceUsernameString=Operation.getString("email","");
         if(persistanceUsernameString.length()>0){
             startActivity(new Intent(AppController.getAppContext(),MainActivity.class));
             finish();
@@ -54,56 +56,36 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
             setContentView(R.layout.login);
         }
         myLinearLayout=(LinearLayout)findViewById(R.id.activity_main);
-
         usernameEditText=(EditText) findViewById(R.id.usernameET);
         passwordEditText=(EditText) findViewById(R.id.passwordET);
-       // button=(Button) findViewById(R.id.enterButton);
-
-        Log.d("DICTIONARY", "main activity started");
-
-
-//        sharedPreferences=getSharedPreferences(SHARED_NAME_STRING, MODE_PRIVATE);
-//        String userNameString=sharedPreferences.getString(USER_NAME_STRING, "");
-//
-//        usernameEditText.setText(userNameString);
 
     }
 
     public void goSignIn(View view) {
 
+
         if (checkConnectivity()) {
 
-            try {
-
-
-                String usernameString=usernameEditText.getText().toString();
-                String passwordString=passwordEditText.getText().toString();
-                if(usernameString.length()==0){
-                    usernameEditText.setError("Insert Username");
-                }
-                if(passwordString.length()==0){
-                    passwordEditText.setError("Insert Password");
-                }
-                if(usernameString.length()>0&&passwordString.length()>0){
-                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("user", usernameString);
-                    Operation.saveString("user",usernameString);
-                    startActivity(intent);
-                    finish();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            String emailString=usernameEditText.getText().toString();
+            String passwordString=passwordEditText.getText().toString();
+            if(emailString.length()==0){
+                usernameEditText.setError("Insert Username");
+            }
+            if(passwordString.length()==0){
+                passwordEditText.setError("Insert Password");
+            }
+            if(emailString.length()>0&&passwordString.length()>0){
+                ServerResponseOperation serverResponseOperation=new ServerResponseOperation(getApplicationContext());
+                serverResponseOperation.loginWithServer(emailString,passwordString);
             }
 
         } else {
             showSnackBar();
         }
-      //  startActivity(new Intent(LoginActivity.this,PieChartActivity.class));
+
     }
 
     private void showSnackBar() {
-        //into threa
 
         Snackbar.make(myLinearLayout, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
                 .setAction(getString(R.string.btn_settings), new View.OnClickListener() {
@@ -120,6 +102,8 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
 
     @Override
     public void OnNetworkChange(boolean inConnected) {
-
+        this.isConnected = inConnected;
     }
+
+
 }

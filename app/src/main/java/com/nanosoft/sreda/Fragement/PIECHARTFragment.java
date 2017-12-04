@@ -2,7 +2,6 @@ package com.nanosoft.sreda.Fragement;
 
 
 import android.app.Dialog;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,16 +17,15 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.nanosoft.sreda.Activity.MainActivity;
 import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
 import com.nanosoft.sreda.Adapter.ReGenSummeryReportChartAdapter;
 import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
 import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
+import com.nanosoft.sreda.Utility.ShowPIECHART;
 
 import java.util.ArrayList;
 
@@ -42,6 +40,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     PieData data;
     ArrayList<String> xVals;
     ArrayList<Entry> yvalues;
+
     ElectricityGenerationMixChart_Info electricityGenerationMixChart_info, electricityGenerationMixChart_info1, electricityGenerationMixChart_info2, electricityGenerationMixChart_info3, electricityGenerationMixChart_info4;
     ReGenerationChart_Info reGenerationChart_info1,reGenerationChart_info2,reGenerationChart_info3,reGenerationChart_info4,reGenerationChart_info5;
     ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChartInfoArrayList;
@@ -50,7 +49,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     ElectricGenMixChartAdapter electricGenMixChartAdapter;
     ReGenSummeryReportChartAdapter reGenSummeryReportChartAdapter;
 
-
+    MainActivity mainActivity;
     public PIECHARTFragment() {
         // Required empty public constructor
     }
@@ -68,7 +67,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         super.onViewCreated(view, savedInstanceState);
 
 
-
+        mainActivity = (MainActivity) getActivity();
         reGenerationChart_infoArrayList = new ArrayList<>();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
@@ -87,66 +86,70 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         pieChart = (PieChart) view.findViewById(R.id.piechartRegeneration);
         piechartElectricity = (PieChart) view.findViewById(R.id.piechartElectricity);
 
-        pieChart.setUsePercentValues(true);
-        piechartElectricity.setUsePercentValues(true);
+        ShowPIECHART showPIECHART= new ShowPIECHART(getActivity(),pieChart,piechartElectricity);
 
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
-        yvalues = new ArrayList<Entry>();
+     //   showPIECHART.createPIECHART();
 
-
-        yvalues.add(new Entry(88f, 0));
-        yvalues.add(new Entry(54f, 1));
-        yvalues.add(new Entry(53.56f, 2));
-        /*yvalues.add(new Entry(8f, 0));
-        yvalues.add(new Entry(15f, 1));
-        yvalues.add(new Entry(12f, 2));
-        yvalues.add(new Entry(25f, 3));
-        yvalues.add(new Entry(23f, 4));
-        yvalues.add(new Entry(17f, 5));*/
-
-        PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
-
-        xVals = new ArrayList<String>();
-
-        xVals.add(" Biogas to Electricity");
-        xVals.add("Biomass to Electricity");
-        xVals.add("Hydro");
-
- /*       xVals.add("January");
-        xVals.add("February");
-        xVals.add("March");
-        xVals.add("April");
-        xVals.add("May");
-        xVals.add("June");*/
-
-        data = new PieData(xVals, dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        pieChart.setData(data);
-        pieChart.setDescription("This is Pie Chart");
-
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setTransparentCircleRadius(25f);
-        pieChart.setHoleRadius(25f);
-
-
-        piechartElectricity.setData(data);
-        piechartElectricity.setDescription("This is Pie Chart");
-
-        piechartElectricity.setDrawHoleEnabled(true);
-        piechartElectricity.setTransparentCircleRadius(25f);
-        piechartElectricity.setHoleRadius(25f);
-
-
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        data.setValueTextSize(13f);
-        data.setValueTextColor(Color.DKGRAY);
+//        pieChart.setUsePercentValues(true);
+//        piechartElectricity.setUsePercentValues(true);
+//
+//        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+//        // xIndex (even if from different DataSets), since no values can be
+//        // drawn above each other.
+//        yvalues = new ArrayList<Entry>();
+//
+//
+//        yvalues.add(new Entry(88f, 0));
+//        yvalues.add(new Entry(54f, 1));
+//        yvalues.add(new Entry(53.56f, 2));
+//        /*yvalues.add(new Entry(8f, 0));
+//        yvalues.add(new Entry(15f, 1));
+//        yvalues.add(new Entry(12f, 2));
+//        yvalues.add(new Entry(25f, 3));
+//        yvalues.add(new Entry(23f, 4));
+//        yvalues.add(new Entry(17f, 5));*/
+//
+//        PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
+//
+//        xVals = new ArrayList<String>();
+//
+//        xVals.add(" Biogas to Electricity");
+//        xVals.add("Biomass to Electricity");
+//        xVals.add("Hydro");
+//
+// /*       xVals.add("January");
+//        xVals.add("February");
+//        xVals.add("March");
+//        xVals.add("April");
+//        xVals.add("May");
+//        xVals.add("June");*/
+//
+//        data = new PieData(xVals, dataSet);
+//        data.setValueFormatter(new PercentFormatter());
+//        pieChart.setData(data);
+//        pieChart.setDescription("This is Pie Chart");
+//
+//        pieChart.setDrawHoleEnabled(true);
+//        pieChart.setTransparentCircleRadius(25f);
+//        pieChart.setHoleRadius(25f);
+//
+//
+//        piechartElectricity.setData(data);
+//        piechartElectricity.setDescription("This is Pie Chart");
+//
+//        piechartElectricity.setDrawHoleEnabled(true);
+//        piechartElectricity.setTransparentCircleRadius(25f);
+//        piechartElectricity.setHoleRadius(25f);
+//
+//
+//        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        data.setValueTextSize(13f);
+//        data.setValueTextColor(Color.DKGRAY);
         pieChart.setOnChartValueSelectedListener(this);
         piechartElectricity.setOnChartValueSelectedListener(this);
-
-        pieChart.animateXY(1400, 1400);
-        piechartElectricity.animateXY(1400, 1400);
+//
+//        pieChart.animateXY(1400, 1400);
+//        piechartElectricity.animateXY(1400, 1400);
 
 
         electricityGenerationMixChart_info = new ElectricityGenerationMixChart_Info("azhar", 4.78, 8, 12.78);
@@ -176,6 +179,8 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         reGenerationChart_infoArrayList.add(reGenerationChart_info5);
 
     }
+
+
 
 
     @Override

@@ -39,4 +39,7 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 }
