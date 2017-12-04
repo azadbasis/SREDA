@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -69,20 +68,6 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
-        if(Operation.listCapacityData.size()>0){
-            Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
-
-            capacityData_InfoList=Operation.listCapacityData;
-            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), capacityData_InfoList);
-            recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
-
-        }
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -205,6 +190,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     @Override
     public void onResume() {
         super.onResume();
+       
 
 
     }
