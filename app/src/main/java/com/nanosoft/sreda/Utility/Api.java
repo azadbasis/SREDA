@@ -2,10 +2,14 @@ package com.nanosoft.sreda.Utility;
 
 import com.nanosoft.sreda.Model.UserLoginResponse_Info;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by Sadi on 11/18/2017.
@@ -20,8 +24,17 @@ public interface Api {
     @FormUrlEncoded
     @POST("login")
     Call<UserLoginResponse_Info> getLoginUser(
-            @Field("email") String email,
-            @Field("password") String password
+                    @Field("email") String email,
+                    @Field("password") String password
+
+            );
+
+
+    @FormUrlEncoded
+    @GET("capacity_report")
+    Call<List<UserLoginResponse_Info>> getCapacity(
+            @Query("email") String email,
+            @Query("password") String password
 
     );
 
