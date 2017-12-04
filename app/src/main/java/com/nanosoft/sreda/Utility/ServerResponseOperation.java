@@ -86,14 +86,14 @@ public class ServerResponseOperation {
             public void onResponse(Call<CapacityReport_Info> call, Response<CapacityReport_Info> response) {
                 CapacityReport_Info responseInfo = response.body();
 
-                for(CapacityData_Info temp:responseInfo.getData()){
-                    Operation.listCapacityData.add(temp);
-                }
 
-                if(responseInfo.getStatus().equalsIgnoreCase("2000")){
+
+                if(responseInfo.getStatus()==2000){
                    // Operation.listCapacityData = responseInfo.getData();
 
-
+                    for(CapacityData_Info temp:responseInfo.getData()){
+                        Operation.listCapacityData.add(temp);
+                    }
                 }
 
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nanosoft.sreda.Model.CapacityData_Info;
-import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -45,9 +44,9 @@ public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityRep
 
 
         holder.tvTechnology.setText(capacityData_Info.getTechnology_name());
-        holder.tvOnGrid.setText(capacityData_Info.getOn_grid());
-        holder.tvOffGrid.setText(capacityData_Info.getOff_grid());
-        holder.tvTotal.setText(capacityData_Info.getTotal());
+        holder.tvOnGrid.setText(capacityData_Info.getOn_grid()+"");
+        holder.tvOffGrid.setText(capacityData_Info.getOff_grid()+"");
+        holder.tvTotal.setText(capacityData_Info.getTotal()+"");
 
     }
 

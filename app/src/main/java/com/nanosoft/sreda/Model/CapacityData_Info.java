@@ -14,18 +14,18 @@ public class CapacityData_Info {
 
     private String technology_name;
     private String position;
-    private String on_grid;
-    private String off_grid;
-    private String total;
+    private double on_grid;
+    private double off_grid;
+    private double total;
 
-    public CapacityData_Info(String technology_name, String position, String on_grid, String off_grid, String total) {
+
+    public CapacityData_Info(String technology_name, String position, double on_grid, double off_grid, double total) {
         this.technology_name = technology_name;
         this.position = position;
         this.on_grid = on_grid;
         this.off_grid = off_grid;
         this.total = total;
     }
-
 
     public String getTechnology_name() {
         return technology_name;
@@ -43,27 +43,27 @@ public class CapacityData_Info {
         this.position = position;
     }
 
-    public String getOn_grid() {
+    public double getOn_grid() {
         return on_grid;
     }
 
-    public void setOn_grid(String on_grid) {
+    public void setOn_grid(double on_grid) {
         this.on_grid = on_grid;
     }
 
-    public String getOff_grid() {
+    public double getOff_grid() {
         return off_grid;
     }
 
-    public void setOff_grid(String off_grid) {
+    public void setOff_grid(double off_grid) {
         this.off_grid = off_grid;
     }
 
-    public String getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 }

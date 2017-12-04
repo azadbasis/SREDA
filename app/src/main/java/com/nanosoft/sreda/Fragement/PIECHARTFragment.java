@@ -21,16 +21,17 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.nanosoft.sreda.Activity.MainActivity;
-import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
 import com.nanosoft.sreda.Adapter.CapacityReportChartAdapter;
+import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
+import com.nanosoft.sreda.Model.CapacityData_Info;
 import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
-import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Operation;
 import com.nanosoft.sreda.Utility.ServerResponseOperation;
 import com.nanosoft.sreda.Utility.ShowPIECHART;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 
@@ -54,6 +55,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
     private String email,password;
     MainActivity mainActivity;
+    List<CapacityData_Info> capacityData_InfoList ;
     public PIECHARTFragment() {
         // Required empty public constructor
     }
@@ -66,9 +68,26 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         return inflater.inflate(R.layout.fragment_piechart, container, false);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        if(Operation.listCapacityData.size()>0){
+            Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
+
+            capacityData_InfoList=Operation.listCapacityData;
+            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), capacityData_InfoList);
+            recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
+
+        }
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        capacityData_InfoList = new ArrayList<>();
 
         email = Operation.getString("email","");
         password = Operation.getString("password","");
@@ -79,14 +98,15 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         mainActivity = (MainActivity) getActivity();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
-
+/*
         if(Operation.listCapacityData.size()>0){
             Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
 
-            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), Operation.listCapacityData);
+            capacityData_InfoList=Operation.listCapacityData;
+            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), capacityData_InfoList);
             recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
 
-        }
+        }*/
 
 
 

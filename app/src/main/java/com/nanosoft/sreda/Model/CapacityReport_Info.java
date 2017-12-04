@@ -19,31 +19,28 @@ public class CapacityReport_Info {
             "off_grid": 10,
             "total": 110
         },*/
-    private String status;
+    private int status;
     private List<CapacityData_Info> data=new ArrayList<>();
 
-    public CapacityReport_Info(String status, ArrayList<CapacityData_Info> data) {
+
+    public CapacityReport_Info(int status, List<CapacityData_Info> data) {
         this.status = status;
         this.data = data;
     }
 
-    public CapacityReport_Info() {
-
-    }
-
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public ArrayList<CapacityData_Info> getData() {
-        return (ArrayList<CapacityData_Info>) data;
+    public List<CapacityData_Info> getData() {
+        return data;
     }
 
-    public void setData(ArrayList<CapacityData_Info> data) {
+    public void setData(List<CapacityData_Info> data) {
         this.data = data;
     }
 }
