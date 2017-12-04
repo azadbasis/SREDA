@@ -1,6 +1,7 @@
 package com.nanosoft.sreda.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nanosoft-Android on 12/4/2017.
@@ -19,11 +20,15 @@ public class CapacityReport_Info {
             "total": 110
         },*/
     private String status;
-    private ArrayList<CapacityData_Info> data=new ArrayList<>();
+    private List<CapacityData_Info> data=new ArrayList<>();
 
     public CapacityReport_Info(String status, ArrayList<CapacityData_Info> data) {
         this.status = status;
         this.data = data;
+    }
+
+    public CapacityReport_Info() {
+
     }
 
     public String getStatus() {
@@ -35,7 +40,7 @@ public class CapacityReport_Info {
     }
 
     public ArrayList<CapacityData_Info> getData() {
-        return data;
+        return (ArrayList<CapacityData_Info>) data;
     }
 
     public void setData(ArrayList<CapacityData_Info> data) {

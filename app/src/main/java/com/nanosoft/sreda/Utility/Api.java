@@ -1,5 +1,6 @@
 package com.nanosoft.sreda.Utility;
 
+import com.nanosoft.sreda.Model.CapacityReport_Info;
 import com.nanosoft.sreda.Model.UserLoginResponse_Info;
 
 import java.util.List;
@@ -30,9 +31,8 @@ public interface Api {
             );
 
 
-    @FormUrlEncoded
     @GET("capacity_report")
-    Call<List<UserLoginResponse_Info>> getCapacity(
+    Call<CapacityReport_Info> getCapacity(
             @Query("email") String email,
             @Query("password") String password
 

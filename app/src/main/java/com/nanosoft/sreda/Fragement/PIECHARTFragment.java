@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -21,10 +22,12 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.nanosoft.sreda.Activity.MainActivity;
 import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
-import com.nanosoft.sreda.Adapter.ReGenSummeryReportChartAdapter;
+import com.nanosoft.sreda.Adapter.CapacityReportChartAdapter;
 import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
 import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
+import com.nanosoft.sreda.Utility.Operation;
+import com.nanosoft.sreda.Utility.ServerResponseOperation;
 import com.nanosoft.sreda.Utility.ShowPIECHART;
 
 import java.util.ArrayList;
@@ -40,15 +43,16 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     PieData data;
     ArrayList<String> xVals;
     ArrayList<Entry> yvalues;
-
+    ServerResponseOperation serverResponseOperation;
     ElectricityGenerationMixChart_Info electricityGenerationMixChart_info, electricityGenerationMixChart_info1, electricityGenerationMixChart_info2, electricityGenerationMixChart_info3, electricityGenerationMixChart_info4;
-    ReGenerationChart_Info reGenerationChart_info1,reGenerationChart_info2,reGenerationChart_info3,reGenerationChart_info4,reGenerationChart_info5;
+    //ReGenerationChart_Info reGenerationChart_info1,reGenerationChart_info2,reGenerationChart_info3,reGenerationChart_info4,reGenerationChart_info5;
     ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChartInfoArrayList;
-    ArrayList<ReGenerationChart_Info> reGenerationChart_infoArrayList;
+    //ArrayList<ReGenerationChart_Info> reGenerationChart_infoArrayList;
     RecyclerView recyclerviewGeneration, recyclerviewElectricity;
     ElectricGenMixChartAdapter electricGenMixChartAdapter;
-    ReGenSummeryReportChartAdapter reGenSummeryReportChartAdapter;
+    CapacityReportChartAdapter capacityReportChartAdapter;
 
+    private String email,password;
     MainActivity mainActivity;
     public PIECHARTFragment() {
         // Required empty public constructor
@@ -66,13 +70,23 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        email = Operation.getString("email","");
+        password = Operation.getString("password","");
+        serverResponseOperation = new ServerResponseOperation(getContext());
+
+        serverResponseOperation.getCapacityDataFormServer(email,password);
 
         mainActivity = (MainActivity) getActivity();
-        reGenerationChart_infoArrayList = new ArrayList<>();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
-        reGenSummeryReportChartAdapter = new ReGenSummeryReportChartAdapter(getContext(), reGenerationChart_infoArrayList);
-        recyclerviewGeneration.setAdapter(reGenSummeryReportChartAdapter);
+
+        if(Operation.listCapacityData.size()>0){
+            Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
+
+            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), Operation.listCapacityData);
+            recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
+
+        }
 
 
 
@@ -164,19 +178,6 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info3);
         electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info4);
 
-
-
-        reGenerationChart_info1=new ReGenerationChart_Info("ANDROID",4.5,3.8,8.3);
-        reGenerationChart_info2=new ReGenerationChart_Info("IOS",4.51,3.18,18.3);
-        reGenerationChart_info3=new ReGenerationChart_Info("WINDOWS",24.5,23.8,28.3);
-        reGenerationChart_info4=new ReGenerationChart_Info("EXPLORER",43.5,33.8,83.3);
-        reGenerationChart_info5=new ReGenerationChart_Info("SUFFERY",44.5,43.8,48.3);
-
-        reGenerationChart_infoArrayList.add(reGenerationChart_info1);
-        reGenerationChart_infoArrayList.add(reGenerationChart_info2);
-        reGenerationChart_infoArrayList.add(reGenerationChart_info3);
-        reGenerationChart_infoArrayList.add(reGenerationChart_info4);
-        reGenerationChart_infoArrayList.add(reGenerationChart_info5);
 
     }
 

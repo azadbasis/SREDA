@@ -7,24 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nanosoft.sreda.Model.CapacityData_Info;
 import com.nanosoft.sreda.Model.ReGenerationChart_Info;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nanosoft-Android on 12/3/2017.
  */
 
-public class ReGenSummeryReportChartAdapter extends RecyclerView.Adapter<ReGenSummeryReportChartAdapter.ReGenSummeryReportChartHolder> {
+public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityReportChartAdapter.ReGenSummeryReportChartHolder> {
 
 
     Context context;
-    ArrayList<ReGenerationChart_Info> reGenerationChart_infoArrayList;
+    List<CapacityData_Info> capacityData_InfoList = new ArrayList<>();
 
-    public  ReGenSummeryReportChartAdapter(Context context, ArrayList<ReGenerationChart_Info> reGenerationChart_infoArrayList){
+    public CapacityReportChartAdapter(Context context, List<CapacityData_Info> capacityData_InfoList){
         this.context=context;
-        this.reGenerationChart_infoArrayList=reGenerationChart_infoArrayList;
+        this.capacityData_InfoList=capacityData_InfoList;
 
     }
 
@@ -39,19 +41,19 @@ public class ReGenSummeryReportChartAdapter extends RecyclerView.Adapter<ReGenSu
     @Override
     public void onBindViewHolder(ReGenSummeryReportChartHolder holder, int position) {
 
-        ReGenerationChart_Info reGenerationChart_info=reGenerationChart_infoArrayList.get(position);
+        CapacityData_Info capacityData_Info=capacityData_InfoList.get(position);
 
 
-        holder.tvTechnology.setText(reGenerationChart_info.getTechnology());
-        holder.tvOnGrid.setText(reGenerationChart_info.getOn_Grid()+"");
-        holder.tvOffGrid.setText(reGenerationChart_info.getOff_Grid()+"");
-        holder.tvTotal.setText(reGenerationChart_info.getTotal()+"");
+        holder.tvTechnology.setText(capacityData_Info.getTechnology_name());
+        holder.tvOnGrid.setText(capacityData_Info.getOn_grid());
+        holder.tvOffGrid.setText(capacityData_Info.getOff_grid());
+        holder.tvTotal.setText(capacityData_Info.getTotal());
 
     }
 
     @Override
     public int getItemCount() {
-        return reGenerationChart_infoArrayList.size();
+        return capacityData_InfoList.size();
     }
 
     class ReGenSummeryReportChartHolder extends RecyclerView.ViewHolder{
