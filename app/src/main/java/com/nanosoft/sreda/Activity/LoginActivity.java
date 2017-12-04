@@ -13,15 +13,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.nanosoft.sreda.Model.Employee;
+import com.nanosoft.sreda.Model.UserLoginResponse_Info;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Receiver.NetworkConnectionReceiver;
+import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.AppController;
 import com.nanosoft.sreda.Utility.CustomAdapter;
 import com.nanosoft.sreda.Utility.Operation;
 
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LoginActivity extends AppCompatActivity implements NetworkConnectionReceiver.ConnectivityRecieverListener {
@@ -71,35 +79,27 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
 
     public void goSignIn(View view) {
 
+       // loginWithServer("admin@mail.com","123456");
+
         if (checkConnectivity()) {
 
-            try {
+            String emailString=usernameEditText.getText().toString();
+            String passwordString=passwordEditText.getText().toString();
+            if(emailString.length()==0){
+                usernameEditText.setError("Insert Username");
+            }
+            if(passwordString.length()==0){
+                passwordEditText.setError("Insert Password");
+            }
+            if(emailString.length()>0&&passwordString.length()>0){
 
-
-                String usernameString=usernameEditText.getText().toString();
-                String passwordString=passwordEditText.getText().toString();
-                if(usernameString.length()==0){
-                    usernameEditText.setError("Insert Username");
-                }
-                if(passwordString.length()==0){
-                    passwordEditText.setError("Insert Password");
-                }
-                if(usernameString.length()>0&&passwordString.length()>0){
-                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("user", usernameString);
-                    Operation.saveString("user",usernameString);
-                    startActivity(intent);
-                    finish();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                loginWithServer(emailString,passwordString);
             }
 
         } else {
             showSnackBar();
         }
-      //  startActivity(new Intent(LoginActivity.this,PieChartActivity.class));
+
     }
 
     private void showSnackBar() {
@@ -120,6 +120,41 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
 
     @Override
     public void OnNetworkChange(boolean inConnected) {
+        this.isConnected = inConnected;
+    }
 
+    private void loginWithServer(String email, final String password) {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<UserLoginResponse_Info> call = api.getLoginUser(email,password);
+
+        call.enqueue(new Callback<UserLoginResponse_Info>() {
+            @Override
+            public void onResponse(Call<UserLoginResponse_Info> call, Response<UserLoginResponse_Info> response) {
+                UserLoginResponse_Info responseInfo = response.body();
+
+                Toast.makeText(LoginActivity.this, ""+responseInfo.getStatus(), Toast.LENGTH_SHORT).show();
+                String name=responseInfo.getData().getName();
+                String email=responseInfo.getData().getEmail();
+                String type=responseInfo.getData().getType();
+                Toast.makeText(LoginActivity.this, "name"+name, Toast.LENGTH_SHORT).show();
+//                String name = responseInfo.getData().getName();
+//                String passworduser = password;
+
+            }
+
+            @Override
+            public void onFailure(Call<UserLoginResponse_Info> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+               // busyNow.dismis();
+            }
+        });
     }
 }
