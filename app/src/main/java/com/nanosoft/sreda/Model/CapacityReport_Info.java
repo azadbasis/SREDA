@@ -23,7 +23,7 @@ public class CapacityReport_Info {
     private List<CapacityData_Info> data=new ArrayList<>();
 
 
-    
+
     public CapacityReport_Info(int status, List<CapacityData_Info> data) {
         this.status = status;
         this.data = data;

@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:layout_below="@+id/toolbar"
-            android:background="@color/black"/>
+            android:background="@color/black" />
 
         <FrameLayout
             android:id="@+id/containerView"
@@ -130,6 +130,7 @@
                         android:text="RE Generation Summery Report"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
+
                     <Button
                         android:id="@+id/btnReportElectMix"
                         android:layout_width="match_parent"
@@ -139,12 +140,13 @@
                         android:text="Electricity Generation Mix"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
+
                     <Button
                         android:id="@+id/btnReportTechno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:gravity="left"
+                        android:onClick="showReportTechName"
                         android:paddingLeft="@dimen/_25sdp"
                         android:text="Technology Wise Generation"
                         android:textAllCaps="false"
@@ -179,8 +181,6 @@
                         android:text="RE Small/Others Project Database"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
-
-
 
 
                 </LinearLayout>

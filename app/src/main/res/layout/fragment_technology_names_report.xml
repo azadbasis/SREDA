@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nanosoft.sreda.Fragement.TechNamesReportFragment">
+    <Spinner
+        android:id="@+id/techWiseSpinner"
+        android:layout_width="@dimen/_113sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_height="@dimen/_20sdp">
+
+    </Spinner>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <include layout="@layout/header_technology_wise"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerviewTechWise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+</FrameLayout>
