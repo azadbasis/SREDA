@@ -23,9 +23,11 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.nanosoft.sreda.Activity.MainActivity;
 import com.nanosoft.sreda.Adapter.CapacityReportChartAdapter;
 import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
+import com.nanosoft.sreda.Adapter.FuelGenerationChartAdapter;
 import com.nanosoft.sreda.Model.CapacityData_Info;
 import com.nanosoft.sreda.Model.CapacityReport_Info;
 import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
+import com.nanosoft.sreda.Model.FuelGenerationRepoResponse;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
@@ -54,11 +56,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     ArrayList<Entry> yvalues;
     ServerResponseOperation serverResponseOperation;
     ElectricityGenerationMixChart_Info electricityGenerationMixChart_info, electricityGenerationMixChart_info1, electricityGenerationMixChart_info2, electricityGenerationMixChart_info3, electricityGenerationMixChart_info4;
-    //ReGenerationChart_Info reGenerationChart_info1,reGenerationChart_info2,reGenerationChart_info3,reGenerationChart_info4,reGenerationChart_info5;
-    ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChartInfoArrayList;
-    //ArrayList<ReGenerationChart_Info> reGenerationChart_infoArrayList;
-    RecyclerView recyclerviewGeneration, recyclerviewElectricity;
-    ElectricGenMixChartAdapter electricGenMixChartAdapter;
+    RecyclerView recyclerviewGeneration, recyclerviewFuel;
     CapacityReportChartAdapter capacityReportChartAdapter;
 
     private String email,password;
@@ -89,11 +87,14 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
         //serverResponseOperation.getCapacityDataFormServer(email,password);
         getCapacityDataFormServer(email,password);
+        getFuelDataFormServer(email,password);
 
         mainActivity = (MainActivity) getActivity();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
 
+        recyclerviewFuel = (RecyclerView) view.findViewById(R.id.recyclerviewFuel);
+        recyclerviewFuel.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
 
             //capacityData_InfoList=Operation.listCapacityData;
 
@@ -110,17 +111,13 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
 
 
-        electricityGenerationMixChartInfoArrayList = new ArrayList<>();
-        recyclerviewElectricity = (RecyclerView) view.findViewById(R.id.recyclerviewElectricity);
-        recyclerviewElectricity.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
-        electricGenMixChartAdapter = new ElectricGenMixChartAdapter(getContext(), electricityGenerationMixChartInfoArrayList);
-        recyclerviewElectricity.setAdapter(electricGenMixChartAdapter);
+
 
 
         pieChart = (PieChart) view.findViewById(R.id.piechartRegeneration);
         piechartElectricity = (PieChart) view.findViewById(R.id.piechartElectricity);
 
-        ShowPIECHART showPIECHART= new ShowPIECHART(getActivity(),pieChart,piechartElectricity);
+
 
      //   showPIECHART.createPIECHART();
 
@@ -184,19 +181,6 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 //
 //        pieChart.animateXY(1400, 1400);
 //        piechartElectricity.animateXY(1400, 1400);
-
-
-        electricityGenerationMixChart_info = new ElectricityGenerationMixChart_Info("azhar", 4.78, 8, 12.78);
-        electricityGenerationMixChart_info1 = new ElectricityGenerationMixChart_Info("kutub", 4.58, 83, 87.53);
-        electricityGenerationMixChart_info2 = new ElectricityGenerationMixChart_Info("arif", 4.48, 84, 88.48);
-        electricityGenerationMixChart_info3 = new ElectricityGenerationMixChart_Info("sojib", 4.48, 85, 89.48);
-        electricityGenerationMixChart_info4 = new ElectricityGenerationMixChart_Info("robin", 4.38, 87, 91.38);
-
-        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info);
-        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info1);
-        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info2);
-        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info3);
-        electricityGenerationMixChartInfoArrayList.add(electricityGenerationMixChart_info4);
 
 
     }
@@ -268,27 +252,13 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
                     capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), responseInfo.getData());
                     recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
 
+                    new ShowPIECHART(getActivity(),pieChart,responseInfo.getData());
 
                     for(CapacityData_Info temp:responseInfo.getData()){
                         Operation.listCapacityData.add(temp);
                     }
                 }
 
-
-
-////                String name=responseInfo.getData().getName();
-////                String email=responseInfo.getData().getEmail();
-////                String type=responseInfo.getData().getType();
-//
-//                Intent intent=new Intent(context, MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("user", email);
-//                Operation.saveString("email",email);
-//                Operation.saveString("password",password);
-//                Operation.saveString("type",type);
-//                Operation.saveString("name",name);
-//                context.startActivity(intent);
-//                LoginActivity.loginActivity.finish();
                 Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
 
 
@@ -296,6 +266,49 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
             @Override
             public void onFailure(Call<CapacityReport_Info> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                // busyNow.dismis();
+            }
+        });
+    }
+
+
+    public void getFuelDataFormServer(String email, final String password) {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<FuelGenerationRepoResponse> call = api.getFuel(email,password);
+
+        call.enqueue(new Callback<FuelGenerationRepoResponse>() {
+            @Override
+            public void onResponse(Call<FuelGenerationRepoResponse> call, Response<FuelGenerationRepoResponse> response) {
+                FuelGenerationRepoResponse responseInfo = response.body();
+
+
+
+                if(responseInfo.getStatus()==2000){
+                    // Operation.listCapacityData = responseInfo.getData();
+
+                 FuelGenerationChartAdapter fuelGenerationChartAdapter = new FuelGenerationChartAdapter(getContext(), responseInfo.getData());
+                    recyclerviewFuel.setAdapter(fuelGenerationChartAdapter);
+                    new ShowPIECHART(getActivity(),piechartElectricity,responseInfo.getData(),"");
+
+
+                }
+
+                Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<FuelGenerationRepoResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 // busyNow.dismis();

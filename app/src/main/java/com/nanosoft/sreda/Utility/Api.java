@@ -1,6 +1,8 @@
 package com.nanosoft.sreda.Utility;
 
 import com.nanosoft.sreda.Model.CapacityReport_Info;
+import com.nanosoft.sreda.Model.FuelGenerationRepoResponse;
+import com.nanosoft.sreda.Model.FuelGenerationReportInfo;
 import com.nanosoft.sreda.Model.UserLoginResponse_Info;
 
 import java.util.List;
@@ -33,6 +35,13 @@ public interface Api {
 
     @GET("capacity_report")
     Call<CapacityReport_Info> getCapacity(
+            @Query("email") String email,
+            @Query("password") String password
+
+    );
+
+    @GET("fuel_generation_report")
+    Call<FuelGenerationRepoResponse> getFuel(
             @Query("email") String email,
             @Query("password") String password
 

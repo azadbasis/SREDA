@@ -63,7 +63,7 @@
             >
             <include layout="@layout/headar_electricity_chart"/>
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerviewElectricity"
+                android:id="@+id/recyclerviewFuel"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">

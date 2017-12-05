@@ -15,6 +15,18 @@
         android:gravity="left"
         android:background="@drawable/tv_bg"/>
 
+
+
+    <TextView
+        android:id="@+id/tvPercentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bg"
+        android:gravity="left"
+        android:padding="@dimen/_13sdp"
+        android:text="Percentage"
+        android:textColor="@color/black" />
+
     <TextView
         android:id="@+id/tvCapacity"
         android:layout_width="match_parent"
@@ -24,16 +36,6 @@
         android:text="Capacity (mw)"
         android:gravity="left"
         android:background="@drawable/tv_bg"/>
-
-    <TextView
-        android:id="@+id/tvPercentage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg"
-        android:gravity="left"
-        android:padding="@dimen/_13sdp"
-        android:text="	Percentage"
-        android:textColor="@color/black" />
     <TextView
         android:id="@+id/tvTotal"
         android:layout_width="match_parent"
@@ -42,6 +44,7 @@
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="	Total"
+        android:visibility="gone"
         android:textColor="@color/black" />
 
 
