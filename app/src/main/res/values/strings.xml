@@ -7,4 +7,18 @@
     <string name="no_internet">No Internet Connection !</string>
     <string name="internet_connected">Internet Connected !</string>
     <string name="btn_settings">SETTING!</string>
+
+
+    <string name="technology_name_prompt">Select an option</string>
+
+    <string-array name="technology_name_arrays">
+        <item>Solar</item>
+        <item>Hydro</item>
+        <item>Wind</item>
+        <item>Biomass to Electricity</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>Biogas to Electricity</item>
+
+    </string-array>
 </resources>
