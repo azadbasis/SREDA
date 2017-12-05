@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -23,14 +24,22 @@ import com.nanosoft.sreda.Activity.MainActivity;
 import com.nanosoft.sreda.Adapter.CapacityReportChartAdapter;
 import com.nanosoft.sreda.Adapter.ElectricGenMixChartAdapter;
 import com.nanosoft.sreda.Model.CapacityData_Info;
+import com.nanosoft.sreda.Model.CapacityReport_Info;
 import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
 import com.nanosoft.sreda.R;
+import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
 import com.nanosoft.sreda.Utility.ServerResponseOperation;
 import com.nanosoft.sreda.Utility.ShowPIECHART;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 
@@ -78,13 +87,19 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
         password = Operation.getString("password","");
         serverResponseOperation = new ServerResponseOperation(getContext());
 
-        serverResponseOperation.getCapacityDataFormServer(email,password);
+        //serverResponseOperation.getCapacityDataFormServer(email,password);
+        getCapacityDataFormServer(email,password);
 
         mainActivity = (MainActivity) getActivity();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
-/*
-        if(Operation.listCapacityData.size()>0){
+
+
+            //capacityData_InfoList=Operation.listCapacityData;
+
+
+
+       /* if(Operation.listCapacityData.size()>0){
             Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
 
             capacityData_InfoList=Operation.listCapacityData;
@@ -190,7 +205,7 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     @Override
     public void onResume() {
         super.onResume();
-       
+
 
 
     }
@@ -226,4 +241,66 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
     public void onNothingSelected() {
         Log.i("PieChart", "nothing selected");
     }
+
+
+
+    public void getCapacityDataFormServer(String email, final String password) {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<CapacityReport_Info> call = api.getCapacity(email,password);
+
+        call.enqueue(new Callback<CapacityReport_Info>() {
+            @Override
+            public void onResponse(Call<CapacityReport_Info> call, Response<CapacityReport_Info> response) {
+                CapacityReport_Info responseInfo = response.body();
+
+
+
+                if(responseInfo.getStatus()==2000){
+                    // Operation.listCapacityData = responseInfo.getData();
+
+                    capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), responseInfo.getData());
+                    recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
+
+
+                    for(CapacityData_Info temp:responseInfo.getData()){
+                        Operation.listCapacityData.add(temp);
+                    }
+                }
+
+
+
+////                String name=responseInfo.getData().getName();
+////                String email=responseInfo.getData().getEmail();
+////                String type=responseInfo.getData().getType();
+//
+//                Intent intent=new Intent(context, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("user", email);
+//                Operation.saveString("email",email);
+//                Operation.saveString("password",password);
+//                Operation.saveString("type",type);
+//                Operation.saveString("name",name);
+//                context.startActivity(intent);
+//                LoginActivity.loginActivity.finish();
+                Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CapacityReport_Info> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                // busyNow.dismis();
+            }
+        });
+    }
+
 }
