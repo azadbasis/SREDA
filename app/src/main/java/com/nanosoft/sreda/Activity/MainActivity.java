@@ -26,10 +26,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanosoft.sreda.Adapter.Adapter;
 import com.nanosoft.sreda.Fragement.PIECHARTFragment;
 import com.nanosoft.sreda.Fragement.RegenerationReportFragment;
+import com.nanosoft.sreda.Fragement.TechNamesReportFragment;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
 import com.nanosoft.sreda.Utility.Operation;
@@ -38,7 +40,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener  {
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     Context con;
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
@@ -49,26 +51,27 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     Runnable Update;
     Timer swipeTimer;
     private ViewPager launchViewpager;
-    public static int[] imageRSC = {R.drawable.banar,R.drawable.banar};
+    public static int[] imageRSC = {R.drawable.banar, R.drawable.banar};
 
     private Fragment backFragement;
     TextView tvTitle;
     SharedPreferences sharedPreferences;
-    Button btnReport,btnGovAgency,btnPrivateIndiVi,btnStakeHolder,btnHome,
-    btnReportReGen,btnReportTechno,btnReportYear,btnReportLarge,btnReportSmall,btnReportElectMix;
-    LinearLayout linReport,linGovAgency,linPrivateIndiVi,linStakeHolder,linPieView;
+    Button btnReport, btnGovAgency, btnPrivateIndiVi, btnStakeHolder, btnHome,
+            btnReportReGen, btnReportTechno, btnReportYear, btnReportLarge, btnReportSmall, btnReportElectMix;
+    LinearLayout linReport, linGovAgency, linPrivateIndiVi, linStakeHolder, linPieView;
     private FrameLayout containerView;
-    String logTagString="SREDA";
+    String logTagString = "SREDA";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         con = this;
         initialization();
-        setContentFragment(new PIECHARTFragment(), false,"RE Generation Summery Report");
-        tvTitle=(TextView) findViewById(R.id.tvTitle);
+        setContentFragment(new PIECHARTFragment(), false, "RE Generation Summery Report");
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
         //tvTitle.setText(getIntent().getStringExtra(LoginActivity.USER_NAME_STRING)+"'s Dictionary");
-        tvTitle.setText(Operation.getString("user","")+"'s Report And Chart");
+        tvTitle.setText(Operation.getString("user", "") + "'s Report And Chart");
 
 
     }
@@ -87,27 +90,27 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 //        mDrawerToggle.syncState();
         slideshow();
 
-        tvTitle = (TextView)findViewById(R.id.tvTitle);
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
 
         linReport = (LinearLayout) findViewById(R.id.linReport);
         linGovAgency = (LinearLayout) findViewById(R.id.linGovAgency);
         linPrivateIndiVi = (LinearLayout) findViewById(R.id.linPrivateIndiVi);
         linStakeHolder = (LinearLayout) findViewById(R.id.linStakeHolder);
-      //  linPieView = (LinearLayout) findViewById(R.id.linPieView);
+        //  linPieView = (LinearLayout) findViewById(R.id.linPieView);
         containerView = (FrameLayout) findViewById(R.id.containerView);
 
-        btnHome = (Button)findViewById(R.id.btnHome);
-        btnReport = (Button)findViewById(R.id.btnReport);
-        btnGovAgency = (Button)findViewById(R.id.btnGovAgency);
-        btnPrivateIndiVi = (Button)findViewById(R.id.btnPrivateIndiVi);
-        btnStakeHolder = (Button)findViewById(R.id.btnStakeHolder);
+        btnHome = (Button) findViewById(R.id.btnHome);
+        btnReport = (Button) findViewById(R.id.btnReport);
+        btnGovAgency = (Button) findViewById(R.id.btnGovAgency);
+        btnPrivateIndiVi = (Button) findViewById(R.id.btnPrivateIndiVi);
+        btnStakeHolder = (Button) findViewById(R.id.btnStakeHolder);
 
-        btnReportReGen = (Button)findViewById(R.id.btnReportReGen);
-        btnReportTechno = (Button)findViewById(R.id.btnReportTechno);
-        btnReportYear = (Button)findViewById(R.id.btnReportYear);
-        btnReportLarge = (Button)findViewById(R.id.btnReportLarge);
-        btnReportSmall = (Button)findViewById(R.id.btnReportSmall);
-        btnReportElectMix = (Button)findViewById(R.id.btnReportElectMix);
+        btnReportReGen = (Button) findViewById(R.id.btnReportReGen);
+        btnReportTechno = (Button) findViewById(R.id.btnReportTechno);
+        btnReportYear = (Button) findViewById(R.id.btnReportYear);
+        btnReportLarge = (Button) findViewById(R.id.btnReportLarge);
+        btnReportSmall = (Button) findViewById(R.id.btnReportSmall);
+        btnReportElectMix = (Button) findViewById(R.id.btnReportElectMix);
 
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 linPrivateIndiVi.setVisibility(View.GONE);
                 linStakeHolder.setVisibility(View.GONE);
             }
+
             public void onDrawerOpened(View drawerView) {
                 /*linReport.setVisibility(View.GONE);
                 linGovAgency.setVisibility(View.GONE);
@@ -138,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 mDrawerLayout.closeDrawers();
                 //containerView.setVisibility(View.GONE);
                 // linPieView.setVisibility(View.VISIBLE);
-                setContentFragment(new PIECHARTFragment(), false,"RE Generation Summery Report");
+                setContentFragment(new PIECHARTFragment(), false, "RE Generation Summery Report");
                 tvTitle.setText("PIE CHART");
                 linReport.setVisibility(View.GONE);
                 linGovAgency.setVisibility(View.GONE);
@@ -151,9 +155,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnReportReGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    containerView.setVisibility(View.VISIBLE);
-             //   linPieView.setVisibility(View.GONE);
-                setContentFragment(new RegenerationReportFragment(), false,"RE Generation Summery Report");
+                //    containerView.setVisibility(View.VISIBLE);
+                //   linPieView.setVisibility(View.GONE);
+                setContentFragment(new RegenerationReportFragment(), false, "RE Generation Summery Report");
                 tvTitle.setText("Report\nRE Generation");
                 mDrawerLayout.closeDrawers();
                 backFragement = new RegenerationReportFragment();
@@ -165,11 +169,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(linReport.getVisibility()==View.GONE){
+                if (linReport.getVisibility() == View.GONE) {
                     linReport.setVisibility(View.VISIBLE);
                     linGovAgency.setVisibility(View.GONE);
                     linPrivateIndiVi.setVisibility(View.GONE);
-                }else if(linReport.getVisibility()==View.VISIBLE){
+                } else if (linReport.getVisibility() == View.VISIBLE) {
                     linReport.setVisibility(View.GONE);
                 }
             }
@@ -178,12 +182,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnGovAgency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(linGovAgency.getVisibility()==View.GONE){
+                if (linGovAgency.getVisibility() == View.GONE) {
                     linGovAgency.setVisibility(View.VISIBLE);
                     linReport.setVisibility(View.GONE);
                     linPrivateIndiVi.setVisibility(View.GONE);
                     linStakeHolder.setVisibility(View.GONE);
-                }else if(linGovAgency.getVisibility()==View.VISIBLE){
+                } else if (linGovAgency.getVisibility() == View.VISIBLE) {
                     linGovAgency.setVisibility(View.GONE);
                 }
             }
@@ -192,12 +196,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnPrivateIndiVi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(linPrivateIndiVi.getVisibility()==View.GONE){
+                if (linPrivateIndiVi.getVisibility() == View.GONE) {
                     linPrivateIndiVi.setVisibility(View.VISIBLE);
                     linReport.setVisibility(View.GONE);
                     linGovAgency.setVisibility(View.GONE);
                     linStakeHolder.setVisibility(View.GONE);
-                }else if(linPrivateIndiVi.getVisibility()==View.VISIBLE){
+                } else if (linPrivateIndiVi.getVisibility() == View.VISIBLE) {
                     linPrivateIndiVi.setVisibility(View.GONE);
                 }
             }
@@ -206,13 +210,13 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnStakeHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(linStakeHolder.getVisibility()==View.GONE){
+                if (linStakeHolder.getVisibility() == View.GONE) {
                     linStakeHolder.setVisibility(View.VISIBLE);
                     linReport.setVisibility(View.GONE);
                     linGovAgency.setVisibility(View.GONE);
                     linPrivateIndiVi.setVisibility(View.GONE);
 
-                }else if(linStakeHolder.getVisibility()==View.VISIBLE){
+                } else if (linStakeHolder.getVisibility() == View.VISIBLE) {
                     linStakeHolder.setVisibility(View.GONE);
                 }
             }
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         handler = new Handler();
         createSwipeTimer();
         isTimerRunning = true;
-        activity =this;
+        activity = this;
 //        TextView textViewDescription = (TextView)getView ().findViewById(R.id.textViewDescription);
 //        textViewDescription.setText(Html.fromHtml(getString(R.string.text_cose_kimik)));
         launchViewpager = (ViewPager) findViewById(R.id.launchViewpager);
@@ -270,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 }
 
 				/*
-				 * if (currentPage == AllMenuImgInfo.getAllMenuImgInfo().size())
+                 * if (currentPage == AllMenuImgInfo.getAllMenuImgInfo().size())
 				 * { currentPage = 0; }
 				 * MainViewPager.setCurrentItem(currentPage++, true);
 				 */
@@ -291,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void setContentFragment(Fragment fragment, boolean addToBackStack,String title) {
+    public void setContentFragment(Fragment fragment, boolean addToBackStack, String title) {
         if (fragment == null) {
             return;
         }
@@ -315,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
 
     @Override
-    public void addContentFragment(Fragment fragment, boolean addToBackStack,String title) {
+    public void addContentFragment(Fragment fragment, boolean addToBackStack, String title) {
         if (fragment == null) {
             return;
         }
@@ -344,15 +348,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
 
     }
 
     public void exitFromApp() {
-        final CharSequence[] items = { "NO", "YES" };
+        final CharSequence[] items = {"NO", "YES"};
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit from app?");
         builder.setIcon(R.mipmap.ic_launcher);
@@ -384,11 +387,23 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 //            if(buttonView.getVisibility()==View.GONE){
 //                buttonView.setVisibility(View.VISIBLE);
 //            }else {
-                exitFromApp();
-           // }
+            exitFromApp();
+            // }
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
+    TechNamesReportFragment techNamesReportFragment;
+
+    public void showReportTechName(View view) {
+        mDrawerLayout.closeDrawers();
+        Toast.makeText(con, "mber  werpfpo", Toast.LENGTH_SHORT).show();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        techNamesReportFragment = new TechNamesReportFragment();
+        ft.replace(R.id.containerView, techNamesReportFragment);
+        ft.commit();
+
+    }
 }
