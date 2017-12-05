@@ -19,14 +19,17 @@
             android:id="@+id/tvTechName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="#000"
             />
 
         <TextView
             android:id="@+id/tvTechDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#000"
             />
 
     </LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_110sdp"
+    android:layout_width="@dimen/_115sdp"
 
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -13,7 +13,15 @@
         android:text="Name"
         android:gravity="left"
         android:background="@drawable/tv_bg_title"/>
-
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bg_title"
+        android:gravity="left"
+        android:padding="@dimen/_13sdp"
+        android:text="Percentage"
+        android:textColor="@color/white" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,15 +31,7 @@
         android:gravity="left"
         android:background="@drawable/tv_bg_title"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg_title"
-        android:gravity="left"
-        android:padding="@dimen/_13sdp"
-        android:text="	Percentage"
-        android:textColor="@color/white" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="match_parent"
@@ -40,6 +40,7 @@
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="	Total"
+        android:visibility="gone"
         android:textColor="@color/white" />
 
 
