@@ -57,7 +57,7 @@ public class ShowPIECHART {
 
         PieData data;
         final ArrayList<String> xVals;
-        final ArrayList<Integer> colorcode = null;
+        final ArrayList<Integer> colorcode = new ArrayList<>();
         final ArrayList<Entry> yvalues;
 
         pieChart.setUsePercentValues(true);
@@ -70,8 +70,9 @@ public class ShowPIECHART {
             float f = (float) d;
             yvalues.add(new Entry(f, i));
             xVals.add(listCapacityInfo.get(i).getTechnology_name());
-            colorcode.add(Color.parseColor(listCapacityInfo.get(i).getColor()));
-            //int parseColor =(Color.parseColor(listCapacityInfo.get(i).getColor()));
+            int parseColor =(Color.parseColor(listCapacityInfo.get(i).getColor()));
+            colorcode.add(parseColor);
+
         }
 
         PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
