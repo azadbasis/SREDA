@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -119,7 +120,8 @@ public class ShowPIECHART {
 
     public void createFuelPieChart() {
 
-        PieData data;
+        PieData data = null;
+        PieDataSet dataSet = null;
         final ArrayList<String> xVals = new ArrayList<>();
         final ArrayList<Entry> yvalues = new ArrayList<>();
         final ArrayList<Integer> colorcode = new ArrayList<>();
@@ -131,25 +133,33 @@ public class ShowPIECHART {
             float f = Float.parseFloat(d);
             yvalues.add(new Entry(f, i));
             xVals.add(listFuelInfo.get(i).getName());
+            int parseColor =(Color.parseColor(listFuelInfo.get(i).getColor()));
+            colorcode.add(parseColor);
+            dataSet = new PieDataSet(yvalues, "");
+            data = new PieData(xVals, dataSet);
         }
 
-        PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
 
-        data = new PieData(xVals, dataSet);
+
+       // data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
-
-
         piechartElectricity.setData(data);
-        //piechartElectricity.setDescription("This is Pie Chart");
+        showLegend(piechartElectricity);
+        piechartElectricity.invalidate();
+//        chart.setData(pieData);
+//        showLegend(chart); // !!! MUST BE BEFORE SET DATA !!!
+//        chart.invalidate(); // refresh
+
+        piechartElectricity.setDescription("Fuel chart");
 
         piechartElectricity.setDrawHoleEnabled(true);
         piechartElectricity.setTransparentCircleRadius(25f);
         piechartElectricity.setHoleRadius(25f);
 
 
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        dataSet.setColors(colorcode);
         data.setValueTextSize(8f);
-        data.setValueTextColor(Color.DKGRAY);
+        data.setValueTextColor(Color.WHITE);
 
         piechartElectricity.animateXY(1400, 1400);
 
@@ -174,5 +184,15 @@ public class ShowPIECHART {
             }
         });
     }
+
+
+    private void showLegend(PieChart chart) {
+        Legend l = chart.getLegend();
+        l.setWordWrapEnabled(true);
+        l.setXEntrySpace(8f);
+        l.setYEntrySpace(3f);
+        l.setYOffset(3f);
+    }
+
 
 }

@@ -20,7 +20,7 @@
         <com.github.mikephil.charting.charts.PieChart
 
             android:id="@+id/piechartRegeneration"
-            android:layout_width="@dimen/_200sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"/>
     </LinearLayout>
 
@@ -51,7 +51,7 @@
             <com.github.mikephil.charting.charts.PieChart
 
                 android:id="@+id/piechartElectricity"
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"/>
         </LinearLayout>
 
