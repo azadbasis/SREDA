@@ -4,19 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.nanosoft.sreda.R;
-
-import java.util.ArrayList;
-
-import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 
 
 /**
@@ -27,6 +22,12 @@ public class StackHolderRegistrationFragment extends Fragment {
 
     private EditText etFullName,etEmail,etAddress,etDescription,etPhone,etMobile;
     private Button btnRegister;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,14 +43,18 @@ public class StackHolderRegistrationFragment extends Fragment {
     }
 
     private void initialize(View view) {
-        etFullName = (EditText)view.findViewById(R.id.etFullName);
+        EditText editText = (EditText)view. findViewById(R.id.etPassworda);
+
+
+
+      /*  etFullName = (EditText)view.findViewById(R.id.etFullName);
         etEmail = (EditText)view.findViewById(R.id.etEmail);
         etAddress = (EditText)view.findViewById(R.id.etAddress);
         etDescription = (EditText)view.findViewById(R.id.etDescription);
         etPhone = (EditText)view.findViewById(R.id.etPhone);
         etMobile = (EditText)view.findViewById(R.id.etMobile);
         btnRegister = (Button)view.findViewById(R.id.btnRegister);
-
+*/
 
     }
 }
