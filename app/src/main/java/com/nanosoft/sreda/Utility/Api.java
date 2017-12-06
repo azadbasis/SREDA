@@ -2,10 +2,9 @@ package com.nanosoft.sreda.Utility;
 
 import com.nanosoft.sreda.Model.CapacityReport_Info;
 import com.nanosoft.sreda.Model.FuelGenerationRepoResponse;
-import com.nanosoft.sreda.Model.FuelGenerationReportInfo;
+import com.nanosoft.sreda.Model.GetTechnologyNames_Info;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
 import com.nanosoft.sreda.Model.UserLoginResponse_Info;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -47,12 +46,21 @@ public interface Api {
 
     );
 
-  /*  @FormUrlEncoded
-    @POST("/api/apps/allbusiness")
-    Call<List<BusinessInfo>> getAllBusiness(
-            @Field("session_id") String session_id,
-            @Field("latitude") String latitude,
-            @Field("longitude") String longitude
-    );*/
+
+    @GET("get_technology_names")
+    Call<GetTechnologyNames_Info> getTechnologyName(
+            @Query("email") String email,
+            @Query("password") String password
+
+    );
+
+    @GET("technology_wise_generation_report")
+    Call<Info_TechWiseGenReportResponse> getTechnologyNameReport(
+            @Query("email") String email,
+            @Query("password") String password
+
+    );
+
+
 
 }

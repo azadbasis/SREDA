@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.TechWiseGenReport_Info;
+import com.nanosoft.sreda.Model.TechWiseGenReportData_Info;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ public class TechNamesReportAdapter extends RecyclerView.Adapter<TechNamesReport
 
 
     Context context;
-    private ArrayList<TechWiseGenReport_Info> techWiseGenReport_infoArrayList;
+    private ArrayList<TechWiseGenReportData_Info> _infoTechWiseGenReportResponseArrayList;
 
-    public TechNamesReportAdapter(Context context, ArrayList<TechWiseGenReport_Info> techWiseGenReport_infoArrayList) {
+    public TechNamesReportAdapter(Context context, ArrayList<TechWiseGenReportData_Info> _infoTechWiseGenReportResponseArrayList) {
         this.context = context;
-        this.techWiseGenReport_infoArrayList = techWiseGenReport_infoArrayList;
+        this._infoTechWiseGenReportResponseArrayList = _infoTechWiseGenReportResponseArrayList;
     }
 
 
@@ -39,23 +39,23 @@ public class TechNamesReportAdapter extends RecyclerView.Adapter<TechNamesReport
     @Override
     public void onBindViewHolder(TechNamesReportHolder holder, int position) {
 
-        TechWiseGenReport_Info techWiseGenReport_info=techWiseGenReport_infoArrayList.get(position);
-        holder.tvSN.setText(position+1);
-        holder.tvTecnologyTitle.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getSub_category_title());
-        holder.tvTecnologyName.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getSub_category_title());
-        holder.tvNumSystem.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getNo_on_system());
-
-        holder.tvOnGrid.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getOn_grid()+"");
-        holder.tvOffGrid.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getOff_grid()+"");
-        holder.tvToe.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getToe()+"");
-        holder.tvTotal.setText(techWiseGenReport_info.getData().get(position).getSubCategory().get(position).getTotal()+"");
+        TechWiseGenReportData_Info _infoTechWiseGenReportResponse = _infoTechWiseGenReportResponseArrayList.get(position);
+//        holder.tvSN.setText(position+1);
+//        holder.tvTecnologyTitle.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getSub_category_title());
+//        holder.tvTecnologyName.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getSub_category_title());
+//        holder.tvNumSystem.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getNo_on_system());
+//
+//        holder.tvOnGrid.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getOn_grid()+"");
+//        holder.tvOffGrid.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getOff_grid()+"");
+//        holder.tvToe.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getToe()+"");
+//        holder.tvTotal.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getTotal()+"");
 
 
     }
 
     @Override
     public int getItemCount() {
-        return techWiseGenReport_infoArrayList.size();
+        return _infoTechWiseGenReportResponseArrayList.size();
     }
 
     public class TechNamesReportHolder extends RecyclerView.ViewHolder{

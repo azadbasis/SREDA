@@ -6,12 +6,12 @@ import java.util.ArrayList;
  * Created by Nanosoft-Android on 12/5/2017.
  */
 
-public class TechWiseGenReport_Info {
+public class Info_TechWiseGenReportResponse {
 
     private int status;
     private ArrayList<TechWiseGenReportData_Info> data;
 
-    public TechWiseGenReport_Info(int status, ArrayList<TechWiseGenReportData_Info> data) {
+    public Info_TechWiseGenReportResponse(int status, ArrayList<TechWiseGenReportData_Info> data) {
         this.status = status;
         this.data = data;
     }
