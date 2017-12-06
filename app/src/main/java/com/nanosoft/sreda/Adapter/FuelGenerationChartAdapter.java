@@ -1,13 +1,13 @@
 package com.nanosoft.sreda.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.CapacityData_Info;
 import com.nanosoft.sreda.Model.FuelGenerationReportInfo;
 import com.nanosoft.sreda.R;
 
@@ -45,6 +45,7 @@ public class FuelGenerationChartAdapter extends RecyclerView.Adapter<FuelGenerat
 
 
         holder.tvName.setText(fuelGenerationInfo.getName());
+        holder.tvName.setBackgroundColor(Color.parseColor(fuelGenerationInfo.getColor()));
        // holder.tvPercentage.setText(capacityData_Info.getOn_grid()+"");
         holder.tvCapacity.setText(fuelGenerationInfo.getInstalled_capacity());
 

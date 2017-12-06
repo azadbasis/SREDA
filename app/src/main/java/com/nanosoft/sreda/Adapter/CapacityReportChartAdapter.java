@@ -1,6 +1,7 @@
 package com.nanosoft.sreda.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityRep
 
 
         holder.tvTechnology.setText(capacityData_Info.getTechnology_name());
+        holder.tvTechnology.setBackgroundColor(Color.parseColor(capacityData_Info.getColor()));
+
         holder.tvOnGrid.setText(capacityData_Info.getOn_grid()+"");
         holder.tvOffGrid.setText(capacityData_Info.getOff_grid()+"");
         holder.tvTotal.setText(capacityData_Info.getTotal()+"");

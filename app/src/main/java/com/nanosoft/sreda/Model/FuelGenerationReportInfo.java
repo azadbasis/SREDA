@@ -13,7 +13,7 @@ public class FuelGenerationReportInfo {
 //            "status": "1",
 //            "is_checked": "1"
 
-    String id,name,installed_capacity,fuel_order,status,is_checked;
+    String id,name,installed_capacity,fuel_order,status,is_checked,color;
 
     public FuelGenerationReportInfo() {
     }
@@ -25,6 +25,14 @@ public class FuelGenerationReportInfo {
         this.fuel_order = fuel_order;
         this.status = status;
         this.is_checked = is_checked;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getId() {
