@@ -339,6 +339,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:paddingLeft="@dimen/_25sdp"
+                        android:onClick="applyForStackholderRegistration"
                         android:text="Application For Stakeholder Registration"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />

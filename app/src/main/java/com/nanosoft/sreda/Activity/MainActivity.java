@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.nanosoft.sreda.Adapter.Adapter;
 import com.nanosoft.sreda.Fragement.PIECHARTFragment;
 import com.nanosoft.sreda.Fragement.RegenerationReportFragment;
+import com.nanosoft.sreda.Fragement.StackHolderRegistrationFragment;
 import com.nanosoft.sreda.Fragement.TechNamesReportFragment;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
@@ -405,5 +406,16 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         ft.replace(R.id.containerView, techNamesReportFragment);
         ft.commit();
 
+    }
+StackHolderRegistrationFragment stackHolderRegistrationFragment;
+    public void applyForStackholderRegistration(View view) {
+
+        mDrawerLayout.closeDrawers();
+        Toast.makeText(con, "mber  werpfpo", Toast.LENGTH_SHORT).show();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        stackHolderRegistrationFragment = new StackHolderRegistrationFragment();
+        ft.replace(R.id.containerView, stackHolderRegistrationFragment);
+        ft.commit();
     }
 }
