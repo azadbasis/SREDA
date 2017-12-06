@@ -22,7 +22,7 @@ import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 /**
  * Created by User on 7/20/2016.
  */
-public class StackHolderRegistration extends Fragment {
+public class StackHolderRegistrationFragment extends Fragment {
     Context con;
 
     private EditText etFullName,etEmail,etAddress,etDescription,etPhone,etMobile;
