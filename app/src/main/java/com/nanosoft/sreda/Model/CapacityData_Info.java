@@ -14,10 +14,18 @@ public class CapacityData_Info {
 
     private String technology_name;
     private String position;
+    private String color;
     private double on_grid;
     private double off_grid;
     private double total;
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public CapacityData_Info(String technology_name, String position, double on_grid, double off_grid, double total) {
         this.technology_name = technology_name;

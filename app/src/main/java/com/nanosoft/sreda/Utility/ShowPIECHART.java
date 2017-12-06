@@ -57,7 +57,9 @@ public class ShowPIECHART {
 
         PieData data;
         final ArrayList<String> xVals;
+        final ArrayList<Integer> colorcode = null;
         final ArrayList<Entry> yvalues;
+
         pieChart.setUsePercentValues(true);
 
         xVals = new ArrayList<String>();
@@ -68,6 +70,8 @@ public class ShowPIECHART {
             float f = (float) d;
             yvalues.add(new Entry(f, i));
             xVals.add(listCapacityInfo.get(i).getTechnology_name());
+            colorcode.add(Color.parseColor(listCapacityInfo.get(i).getColor()));
+            //int parseColor =(Color.parseColor(listCapacityInfo.get(i).getColor()));
         }
 
         PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
@@ -82,7 +86,8 @@ public class ShowPIECHART {
         pieChart.setHoleRadius(25f);
 
 
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        dataSet.setColors(colorcode);
         data.setValueTextSize(8f);
         data.setValueTextColor(Color.DKGRAY);
 
