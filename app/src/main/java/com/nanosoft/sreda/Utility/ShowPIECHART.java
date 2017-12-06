@@ -122,6 +122,7 @@ public class ShowPIECHART {
         PieData data;
         final ArrayList<String> xVals = new ArrayList<>();
         final ArrayList<Entry> yvalues = new ArrayList<>();
+        final ArrayList<Integer> colorcode = new ArrayList<>();
         piechartElectricity.setUsePercentValues(true);
 
 
