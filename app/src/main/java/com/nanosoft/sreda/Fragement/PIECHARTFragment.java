@@ -48,7 +48,7 @@ import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PIECHARTFragment extends Fragment implements OnChartValueSelectedListener {
+public class PIECHARTFragment extends Fragment {
 
     PieChart pieChart, piechartElectricity;
     PieData data;
@@ -176,8 +176,8 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 //        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
 //        data.setValueTextSize(13f);
 //        data.setValueTextColor(Color.DKGRAY);
-        pieChart.setOnChartValueSelectedListener(this);
-        piechartElectricity.setOnChartValueSelectedListener(this);
+//        pieChart.setOnChartValueSelectedListener(this);
+//        piechartElectricity.setOnChartValueSelectedListener(this);
 //
 //        pieChart.animateXY(1400, 1400);
 //        piechartElectricity.animateXY(1400, 1400);
@@ -194,37 +194,37 @@ public class PIECHARTFragment extends Fragment implements OnChartValueSelectedLi
 
     }
 
-    @Override
-    public void onValueSelected(Entry e, int position, Highlight h) {
-
-        // highlight the entry and x-position 50 in the first (0) DataSet
-        h = new Highlight(50, 0);
-
-        pieChart.highlightValue(h, true); // h
-        piechartElectricity.highlightValue(h, true); // h
-        if (e == null)
-            return;
-        Log.e("VAL SELECTED",
-                "Value: " + e.getVal() + ", xIndex: " + e.getXIndex()
-                        + ", DataSet index: " + data.getDataSetByIndex(position));
-
-        Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.pie_data_dialogue);
-        TextView tvTechName = dialog.findViewById(R.id.tvTechName);
-        TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
-        tvTechName.setText(xVals.get(e.getXIndex()).toString());
-        tvTechDetail.setText(yvalues.get(e.getXIndex()).toString());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.show();
-
-    }
-
-    @Override
-    public void onNothingSelected() {
-        Log.i("PieChart", "nothing selected");
-    }
+//    @Override
+//    public void onValueSelected(Entry e, int position, Highlight h) {
+//
+//        // highlight the entry and x-position 50 in the first (0) DataSet
+//        h = new Highlight(50, 0);
+//
+//        pieChart.highlightValue(h, true); // h
+//        piechartElectricity.highlightValue(h, true); // h
+//        if (e == null)
+//            return;
+//        Log.e("VAL SELECTED",
+//                "Value: " + e.getVal() + ", xIndex: " + e.getXIndex()
+//                        + ", DataSet index: " + data.getDataSetByIndex(position));
+//
+//        Dialog dialog = new Dialog(getActivity());
+//        dialog.setContentView(R.layout.pie_data_dialogue);
+//        TextView tvTechName = dialog.findViewById(R.id.tvTechName);
+//        TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
+//        tvTechName.setText(xVals.get(e.getXIndex()).toString());
+//        tvTechDetail.setText(yvalues.get(e.getXIndex()).toString());
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.setCanceledOnTouchOutside(true);
+//        dialog.setCancelable(true);
+//        dialog.show();
+//
+//    }
+//
+//    @Override
+//    public void onNothingSelected() {
+//        Log.i("PieChart", "nothing selected");
+//    }
 
 
 
