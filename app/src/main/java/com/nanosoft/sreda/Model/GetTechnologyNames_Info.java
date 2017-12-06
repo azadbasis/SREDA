@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class GetTechnologyNames_Info {
 
     private int status;
-    private ArrayList<GetTechnologyNamesData_Info> getTechnologyNamesData_infoArrayList;
+    private ArrayList<GetTechnologyNamesData_Info> data;
 
 
-    public GetTechnologyNames_Info(int status, ArrayList<GetTechnologyNamesData_Info> getTechnologyNamesData_infoArrayList) {
+    public GetTechnologyNames_Info(int status, ArrayList<GetTechnologyNamesData_Info> data) {
         this.status = status;
-        this.getTechnologyNamesData_infoArrayList = getTechnologyNamesData_infoArrayList;
+        this.data = data;
     }
 
     public int getStatus() {
@@ -25,11 +25,11 @@ public class GetTechnologyNames_Info {
         this.status = status;
     }
 
-    public ArrayList<GetTechnologyNamesData_Info> getGetTechnologyNamesData_infoArrayList() {
-        return getTechnologyNamesData_infoArrayList;
+    public ArrayList<GetTechnologyNamesData_Info> getData() {
+        return data;
     }
 
-    public void setGetTechnologyNamesData_infoArrayList(ArrayList<GetTechnologyNamesData_Info> getTechnologyNamesData_infoArrayList) {
-        this.getTechnologyNamesData_infoArrayList = getTechnologyNamesData_infoArrayList;
+    public void setData(ArrayList<GetTechnologyNamesData_Info> data) {
+        this.data = data;
     }
 }
