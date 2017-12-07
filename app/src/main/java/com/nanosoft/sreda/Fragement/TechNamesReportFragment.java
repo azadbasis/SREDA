@@ -4,6 +4,8 @@ package com.nanosoft.sreda.Fragement;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,6 +34,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
+import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,9 +56,9 @@ public class TechNamesReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_technology_names_report, container, false);
+        return inflater.inflate(R.layout.tchno_parent, container, false);
     }
-String email,password;
+        String email,password;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -64,10 +67,16 @@ String email,password;
         recyclerviewTechWise=(RecyclerView)view.findViewById(R.id.recyclerviewTechWise);
         techWiseSpinner=(Spinner)view.findViewById(R.id.techWiseSpinner);
 
-        recyclerviewTechWise.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), VERTICAL, false);
+        recyclerviewTechWise.setLayoutManager(layoutManager);
 
-//        techNamesReportAdapter=new TechNamesReportAdapter(getContext(), _infoTechWiseGenReportResponseArrayList);
-//        recyclerviewTechWise.setAdapter(techNamesReportAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(),
+                layoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
+
+        recyclerviewTechWise.addItemDecoration(dividerItemDecoration);
 
         email = Operation.getString("email","");
         password = Operation.getString("password","");

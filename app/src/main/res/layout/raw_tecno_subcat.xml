@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvTechnoSubName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Technology Name"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tvNumOfSystem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Number of system"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvOnGride"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="On Grid"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvOffGride"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Off Grid"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvToe"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="toe"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tvTotalTec"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Total"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center|left"
+    android:layout_marginRight="@dimen/_3sdp"
+    android:background="@drawable/tv_bg"
+    >
+
+
+    <TextView
+        android:id="@+id/tvTechnologyName"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="match_parent"
+        android:background="@drawable/tv_bg"
+        android:gravity="center"
+        android:padding="@dimen/_2sdp"
+        android:text="Technology Name"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Technology Name"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Number of system"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="On Grid"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Off Grid"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="toe"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/tv_bg"
+            android:gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Total"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewTechWiseSub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+
+        />
+
+</LinearLayout>
