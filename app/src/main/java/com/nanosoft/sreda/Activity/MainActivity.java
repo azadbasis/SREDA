@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     LinearLayout linReport, linGovAgency, linPrivateIndiVi, linStakeHolder, linPieView;
     private FrameLayout containerView;
     String logTagString = "SREDA";
+    StackHolderRegistrationFragment stackHolderRegistrationFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -407,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         ft.commit();
 
     }
-StackHolderRegistrationFragment stackHolderRegistrationFragment;
+
     public void applyForStackholderRegistration(View view) {
 
         mDrawerLayout.closeDrawers();
@@ -418,4 +419,6 @@ StackHolderRegistrationFragment stackHolderRegistrationFragment;
         ft.replace(R.id.containerView, stackHolderRegistrationFragment);
         ft.commit();
     }
+
+
 }

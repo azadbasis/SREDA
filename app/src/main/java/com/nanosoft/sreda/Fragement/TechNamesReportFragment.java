@@ -163,7 +163,7 @@ public class TechNamesReportFragment extends Fragment {
                 if(responseInfo.getStatus()==2000){
 
                     ArrayList<TechWiseGenReportData_Info> catagories = new ArrayList<>();
-                    Toast.makeText(getActivity(), "Tecnology"+responseInfo.getStatus(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Technology"+responseInfo.getStatus(), Toast.LENGTH_SHORT).show();
 
                     for(int i= 0;i<responseInfo.getData().size();i++){
                         catagories.add(responseInfo.getData().get(i));

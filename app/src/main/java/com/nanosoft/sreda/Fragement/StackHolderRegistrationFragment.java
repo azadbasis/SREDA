@@ -19,7 +19,7 @@ import com.nanosoft.sreda.R;
  */
 public class StackHolderRegistrationFragment extends Fragment {
     Context con;
-
+    public EditText editText;
     private EditText etFullName,etEmail,etAddress,etDescription,etPhone,etMobile;
     private Button btnRegister;
 
@@ -32,18 +32,21 @@ public class StackHolderRegistrationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.stack_holder_registration, container, false);
+
+        View view=inflater.inflate(R.layout.stack_holder_registration, container, false);
+        editText = (EditText)view. findViewById(R.id.etPassworda);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initialize(view);
+       // initialize(view);
     }
 
     private void initialize(View view) {
-        EditText editText = (EditText)view. findViewById(R.id.etPassworda);
+
 
 
 
