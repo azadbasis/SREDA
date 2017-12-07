@@ -6,13 +6,13 @@ import java.util.ArrayList;
  * Created by Nanosoft-Android on 12/5/2017.
  */
 
-public class GetTechnologyNames_Info {
+public class Info_GetTechnologyNames {
 
     private int status;
-    private ArrayList<GetTechnologyNamesData_Info> data;
+    private ArrayList<Info_GetTechnologyNamesData> data;
 
 
-    public GetTechnologyNames_Info(int status, ArrayList<GetTechnologyNamesData_Info> data) {
+    public Info_GetTechnologyNames(int status, ArrayList<Info_GetTechnologyNamesData> data) {
         this.status = status;
         this.data = data;
     }
@@ -25,11 +25,11 @@ public class GetTechnologyNames_Info {
         this.status = status;
     }
 
-    public ArrayList<GetTechnologyNamesData_Info> getData() {
+    public ArrayList<Info_GetTechnologyNamesData> getData() {
         return data;
     }
 
-    public void setData(ArrayList<GetTechnologyNamesData_Info> data) {
+    public void setData(ArrayList<Info_GetTechnologyNamesData> data) {
         this.data = data;
     }
 }

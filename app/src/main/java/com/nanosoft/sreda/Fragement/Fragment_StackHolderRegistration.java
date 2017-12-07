@@ -17,7 +17,7 @@ import com.nanosoft.sreda.R;
 /**
  * Created by User on 7/20/2016.
  */
-public class StackHolderRegistrationFragment extends Fragment {
+public class Fragment_StackHolderRegistration extends Fragment {
     Context con;
     public EditText editText;
     private EditText etFullName,etEmail,etAddress,etDescription,etPhone,etMobile;

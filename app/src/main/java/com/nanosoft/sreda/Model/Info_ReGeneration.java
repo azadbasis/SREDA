@@ -5,14 +5,14 @@ package com.nanosoft.sreda.Model;
  * Created by NanoSoft on 10/15/2017.
  */
 
-public class ReGeneration_Info {
+public class Info_ReGeneration {
     private String projectName, technologyType, capacity, location, finance, completionDate, presentStatus;
     private int sl_No;
 
-    public ReGeneration_Info() {
+    public Info_ReGeneration() {
     }
 
-    public ReGeneration_Info(int sl_No,String projectName, String technologyType, String capacity, String location, String finance, String completionDate, String presentStatus) {
+    public Info_ReGeneration(int sl_No, String projectName, String technologyType, String capacity, String location, String finance, String completionDate, String presentStatus) {
 
         setSl_No(sl_No);
         setProjectName(projectName);

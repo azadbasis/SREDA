@@ -7,15 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.nanosoft.sreda.Model.TechWiseGenReportData_Info;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
 
 import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
-import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
  * Created by Nanosoft-Android on 12/5/2017.
@@ -25,9 +23,9 @@ public class TechNamesReportAdapter extends RecyclerView.Adapter<TechNamesReport
 
 
     Context context;
-    private ArrayList<TechWiseGenReportData_Info> _infoTechWiseGenReportResponseArrayList;
+    private ArrayList<Info_TechWiseGenReportData> _infoTechWiseGenReportResponseArrayList;
 
-    public TechNamesReportAdapter(Context context, ArrayList<TechWiseGenReportData_Info> _infoTechWiseGenReportResponseArrayList) {
+    public TechNamesReportAdapter(Context context, ArrayList<Info_TechWiseGenReportData> _infoTechWiseGenReportResponseArrayList) {
         this.context = context;
         this._infoTechWiseGenReportResponseArrayList = _infoTechWiseGenReportResponseArrayList;
     }
@@ -44,7 +42,7 @@ public class TechNamesReportAdapter extends RecyclerView.Adapter<TechNamesReport
     @Override
     public void onBindViewHolder(TechNamesReportHolder holder, int position) {
 
-        TechWiseGenReportData_Info _infoTechWiseGenReportResponse = _infoTechWiseGenReportResponseArrayList.get(position);
+        Info_TechWiseGenReportData _infoTechWiseGenReportResponse = _infoTechWiseGenReportResponseArrayList.get(position);
 
         String nam = _infoTechWiseGenReportResponse.getTechnology_name();
 //        String [] name= new String[nam.length()];

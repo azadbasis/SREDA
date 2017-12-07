@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nanosoft.sreda.Fragement.TechNamesReportFragment">
+    tools:context="com.nanosoft.sreda.Fragement.Fragment_TechNamesReport">
 
     <Spinner
         android:id="@+id/techWiseSpinner"

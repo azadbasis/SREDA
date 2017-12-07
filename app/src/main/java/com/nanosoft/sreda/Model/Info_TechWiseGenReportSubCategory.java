@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/5/2017.
  */
 
-public class TechWiseGenReportSubCategory_Info {
+public class Info_TechWiseGenReportSubCategory {
 
 
     /* "sub_category_title": "Solar Roof Top",
@@ -24,7 +24,7 @@ public class TechWiseGenReportSubCategory_Info {
     private double total;
     private int no_on_system;
 
-    public TechWiseGenReportSubCategory_Info(String sub_category_title, String sub_category_position, double on_grid, double off_grid, double toe, double total, int no_on_system) {
+    public Info_TechWiseGenReportSubCategory(String sub_category_title, String sub_category_position, double on_grid, double off_grid, double toe, double total, int no_on_system) {
         this.sub_category_title = sub_category_title;
         this.sub_category_position = sub_category_position;
         this.on_grid = on_grid;

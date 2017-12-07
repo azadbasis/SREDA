@@ -10,7 +10,7 @@ import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.ReGeneration_Info;
+import com.nanosoft.sreda.Model.Info_ReGeneration;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
     TextView tvGrandTotal;
 
 
-    private ArrayList<ReGeneration_Info> reGenerationInfoArrayList= new ArrayList<>();
-    public ArrayList<ReGeneration_Info> filtered_reReGeneration_infos = new ArrayList<>();
+    private ArrayList<Info_ReGeneration> reGenerationInfoArrayList= new ArrayList<>();
+    public ArrayList<Info_ReGeneration> filtered_re_infoReGenerations = new ArrayList<>();
     ItemFilter mFilters = new ItemFilter();
 
     @Override
@@ -53,11 +53,11 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
 
 
 
-    public ReGenerationAdapter(ArrayList<ReGeneration_Info> orderHistoryDatas, int rowLayout, Context context) {
+    public ReGenerationAdapter(ArrayList<Info_ReGeneration> orderHistoryDatas, int rowLayout, Context context) {
 
         this.context = context;
         this.reGenerationInfoArrayList = orderHistoryDatas;
-        this.filtered_reReGeneration_infos = orderHistoryDatas;
+        this.filtered_re_infoReGenerations = orderHistoryDatas;
         this.rowLayout = rowLayout;
     }
 
@@ -72,7 +72,7 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
 
-        final ReGeneration_Info orderHistoryData =  filtered_reReGeneration_infos.get(position);
+        final Info_ReGeneration orderHistoryData =  filtered_re_infoReGenerations.get(position);
 
 
 /*if(position==0){
@@ -112,7 +112,7 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
 
     @Override
     public int getItemCount() {
-        return filtered_reReGeneration_infos.size();
+        return filtered_re_infoReGenerations.size();
 //        return reGenerationInfoArrayList.size();
     }
 
@@ -122,8 +122,8 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
     }
 
 
-    public void filterList(ArrayList<ReGeneration_Info> filterdNames) {
-        this.filtered_reReGeneration_infos = filterdNames;
+    public void filterList(ArrayList<Info_ReGeneration> filterdNames) {
+        this.filtered_re_infoReGenerations = filterdNames;
         notifyDataSetChanged();
     }
 
@@ -134,8 +134,8 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
         protected FilterResults performFiltering(CharSequence charSequence) {
             String query = charSequence.toString().toLowerCase();
             FilterResults results = new FilterResults();
-            final ArrayList<ReGeneration_Info> list = reGenerationInfoArrayList;
-            final ArrayList<ReGeneration_Info> result_list = new ArrayList<>(list.size());
+            final ArrayList<Info_ReGeneration> list = reGenerationInfoArrayList;
+            final ArrayList<Info_ReGeneration> result_list = new ArrayList<>(list.size());
             for (int i = 0; i < list.size(); i++){
                 //int title = list.get(i).getProjectName();
                 /*if(i==0){
@@ -158,7 +158,7 @@ public class ReGenerationAdapter extends RecyclerView.Adapter<ReGenerationAdapte
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-            filtered_reReGeneration_infos = (ArrayList<ReGeneration_Info>) filterResults.values;
+            filtered_re_infoReGenerations = (ArrayList<Info_ReGeneration>) filterResults.values;
             notifyDataSetChanged();
 
         }

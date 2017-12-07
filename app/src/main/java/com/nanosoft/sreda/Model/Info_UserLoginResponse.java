@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/4/2017.
  */
 
-public class UserLoginResponse_Info {
+public class Info_UserLoginResponse {
 
     /*"status": 2000,
     "message": "Successfully Logged In",
@@ -16,28 +16,28 @@ public class UserLoginResponse_Info {
 
     private String status;
     private String message;
-    private UserLoginData_Info data;
+    private Info_UserLoginData data;
 
-    public UserLoginResponse_Info(String status, String message, UserLoginData_Info data) {
+    public Info_UserLoginResponse(String status, String message, Info_UserLoginData data) {
         this.status = status;
         this.message = message;
         this.data = data;
     }
 
-    public UserLoginData_Info getData() {
+    public Info_UserLoginData getData() {
         return data;
     }
 
-    public void setData(UserLoginData_Info data) {
+    public void setData(Info_UserLoginData data) {
         this.data = data;
     }
 
-    //    public void setUserLoginData_Info(UserLoginData_Info data) {
+    //    public void setUserLoginData_Info(Info_UserLoginData data) {
 //        this.data = data;
 //
 //    }
 //
-//    public UserLoginData_Info getUserLoginData_Info() {
+//    public Info_UserLoginData getUserLoginData_Info() {
 //        return data;
 //    }
 

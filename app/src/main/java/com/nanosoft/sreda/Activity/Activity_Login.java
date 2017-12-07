@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.nanosoft.sreda.Model.Employee;
+import com.nanosoft.sreda.Model.Info_Employee;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Receiver.NetworkConnectionReceiver;
 import com.nanosoft.sreda.Utility.AppController;
@@ -24,10 +24,10 @@ import com.nanosoft.sreda.Utility.ServerResponseOperation;
 import java.util.List;
 
 
-public class LoginActivity extends AppCompatActivity implements NetworkConnectionReceiver.ConnectivityRecieverListener {
+public class Activity_Login extends AppCompatActivity implements NetworkConnectionReceiver.ConnectivityRecieverListener {
 
 
-    List<Employee> employeeList;
+    List<Info_Employee> infoEmployeeList;
     RecyclerView recyclerView;
     Boolean isConnected;
     LinearLayout myLinearLayout;
@@ -40,16 +40,16 @@ public class LoginActivity extends AppCompatActivity implements NetworkConnectio
     EditText usernameEditText,passwordEditText;
     SharedPreferences sharedPreferences;
 
-    public  static LoginActivity loginActivity;
+    public  static Activity_Login activityLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loginActivity = this;
+        activityLogin = this;
         String persistanceUsernameString=Operation.getString("email","");
         if(persistanceUsernameString.length()>0){
-            startActivity(new Intent(AppController.getAppContext(),MainActivity.class));
+            startActivity(new Intent(AppController.getAppContext(),Activity_Main.class));
             finish();
         }else{
 

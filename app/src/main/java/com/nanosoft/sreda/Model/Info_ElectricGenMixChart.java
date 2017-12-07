@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/3/2017.
  */
 
-public class ElectricityGenerationMixChart_Info {
+public class Info_ElectricGenMixChart {
 
     private String name;
     private double capacity;
@@ -12,7 +12,7 @@ public class ElectricityGenerationMixChart_Info {
     private double total;
 
 
-    public ElectricityGenerationMixChart_Info(String name, double capacity, double percentage, double total) {
+    public Info_ElectricGenMixChart(String name, double capacity, double percentage, double total) {
 
         setName(name);
         setCapacity(capacity);

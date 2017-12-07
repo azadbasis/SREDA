@@ -1,30 +1,30 @@
 package com.nanosoft.sreda.Model;
 
 /**
- * Created by Nanosoft-Android on 12/3/2017.
+ * Created by Nanosoft-Android on 11/21/2017.
  */
 
-public class ReGenerationChart_Info {
+public class Info_TechWiseGeneration {
 
-    private String technology;
+    private int sl_No;
     private double on_Grid;
     private double off_Grid;
     private double total;
 
-
-    public ReGenerationChart_Info(String technology, double on_Grid, double off_Grid, double total) {
-        setTechnology(technology);
+    public Info_TechWiseGeneration(int sl_No, double on_Grid, double off_Grid, double total) {
+        setSl_No(sl_No);
         setOn_Grid(on_Grid);
         setOff_Grid(off_Grid);
         setTotal(total);
     }
 
-    public String getTechnology() {
-        return technology;
+
+    public int getSl_No() {
+        return sl_No;
     }
 
-    public void setTechnology(String technology) {
-        this.technology = technology;
+    public void setSl_No(int sl_No) {
+        this.sl_No = sl_No;
     }
 
     public double getOn_Grid() {

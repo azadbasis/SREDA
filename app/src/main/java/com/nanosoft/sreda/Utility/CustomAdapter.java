@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.Employee;
+import com.nanosoft.sreda.Model.Info_Employee;
 import com.nanosoft.sreda.R;
 
 import java.util.List;
@@ -18,11 +18,11 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    List<Employee> employeeList;
+    List<Info_Employee> infoEmployeeList;
     Context context;
 
-    public CustomAdapter(List<Employee> employeeList, Context context) {
-        this.employeeList = employeeList;
+    public CustomAdapter(List<Info_Employee> infoEmployeeList, Context context) {
+        this.infoEmployeeList = infoEmployeeList;
         this.context = context;
     }
 
@@ -36,16 +36,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Employee employee = employeeList.get(position);
-        holder.emailTv.setText(employee.email);
-        holder.nameTv.setText(employee.name);
-        holder.bodyTv.setText(employee.body);
+        Info_Employee infoEmployee = infoEmployeeList.get(position);
+        holder.emailTv.setText(infoEmployee.email);
+        holder.nameTv.setText(infoEmployee.name);
+        holder.bodyTv.setText(infoEmployee.body);
 
     }
 
     @Override
     public int getItemCount() {
-        return employeeList.size();
+        return infoEmployeeList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

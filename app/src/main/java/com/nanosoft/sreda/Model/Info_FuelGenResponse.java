@@ -7,11 +7,11 @@ import java.util.List;
  * Created by NanoSoft on 12/5/2017.
  */
 
-public class FuelGenerationRepoResponse {
+public class Info_FuelGenResponse {
 
 
     private int status;
-    private List<FuelGenerationReportInfo> data=new ArrayList<>();
+    private List<Info_FuelGenReport> data=new ArrayList<>();
 
     public int getStatus() {
         return status;
@@ -21,11 +21,11 @@ public class FuelGenerationRepoResponse {
         this.status = status;
     }
 
-    public List<FuelGenerationReportInfo> getData() {
+    public List<Info_FuelGenReport> getData() {
         return data;
     }
 
-    public void setData(List<FuelGenerationReportInfo> data) {
+    public void setData(List<Info_FuelGenReport> data) {
         this.data = data;
     }
 }

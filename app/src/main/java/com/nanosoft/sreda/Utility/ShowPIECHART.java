@@ -17,9 +17,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.nanosoft.sreda.Model.CapacityData_Info;
-import com.nanosoft.sreda.Model.FuelGenerationReportInfo;
+import com.nanosoft.sreda.Model.Info_CapacityData;
+import com.nanosoft.sreda.Model.Info_FuelGenReport;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -35,11 +34,11 @@ public class ShowPIECHART {
     PieChart pieChart;
     PieChart piechartElectricity;
     double total = 0;
-    List<CapacityData_Info> listCapacityInfo;
-    List<FuelGenerationReportInfo> listFuelInfo;
+    List<Info_CapacityData> listCapacityInfo;
+    List<Info_FuelGenReport> listFuelInfo;
    Activity activity;
 
-    public ShowPIECHART(Context context, PieChart pieChart, List<CapacityData_Info> listCapacityInfo) {
+    public ShowPIECHART(Context context, PieChart pieChart, List<Info_CapacityData> listCapacityInfo) {
         this.context = context;
         this.pieChart = pieChart;
         this.listCapacityInfo = listCapacityInfo;
@@ -47,7 +46,7 @@ public class ShowPIECHART {
     }
 
 
-    public ShowPIECHART(Context context,PieChart piechartElectricity, List<FuelGenerationReportInfo> listFuelInfo,String noData) {
+    public ShowPIECHART(Context context, PieChart piechartElectricity, List<Info_FuelGenReport> listFuelInfo, String noData) {
         this.context = context;
         this.piechartElectricity = piechartElectricity;
         this.listFuelInfo = listFuelInfo;

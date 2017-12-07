@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.CapacityData_Info;
+import com.nanosoft.sreda.Model.Info_CapacityData;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityRep
 
 
     Context context;
-    List<CapacityData_Info> capacityData_InfoList = new ArrayList<>();
+    List<Info_CapacityData> _InfoCapacityDataList = new ArrayList<>();
 
-    public CapacityReportChartAdapter(Context context, List<CapacityData_Info> capacityData_InfoList){
+    public CapacityReportChartAdapter(Context context, List<Info_CapacityData> _InfoCapacityDataList){
         this.context=context;
-        this.capacityData_InfoList=capacityData_InfoList;
+        this._InfoCapacityDataList = _InfoCapacityDataList;
 
     }
 
@@ -41,21 +41,21 @@ public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityRep
     @Override
     public void onBindViewHolder(ReGenSummeryReportChartHolder holder, int position) {
 
-        CapacityData_Info capacityData_Info=capacityData_InfoList.get(position);
+        Info_CapacityData _InfoCapacityData = _InfoCapacityDataList.get(position);
 
 
-        holder.tvTechnology.setText(capacityData_Info.getTechnology_name());
-        holder.tvTechnology.setBackgroundColor(Color.parseColor(capacityData_Info.getColor()));
+        holder.tvTechnology.setText(_InfoCapacityData.getTechnology_name());
+        holder.tvTechnology.setBackgroundColor(Color.parseColor(_InfoCapacityData.getColor()));
 
-        holder.tvOnGrid.setText(capacityData_Info.getOn_grid()+"");
-        holder.tvOffGrid.setText(capacityData_Info.getOff_grid()+"");
-        holder.tvTotal.setText(capacityData_Info.getTotal()+"");
+        holder.tvOnGrid.setText(_InfoCapacityData.getOn_grid()+"");
+        holder.tvOffGrid.setText(_InfoCapacityData.getOff_grid()+"");
+        holder.tvTotal.setText(_InfoCapacityData.getTotal()+"");
 
     }
 
     @Override
     public int getItemCount() {
-        return capacityData_InfoList.size();
+        return _InfoCapacityDataList.size();
     }
 
     class ReGenSummeryReportChartHolder extends RecyclerView.ViewHolder{

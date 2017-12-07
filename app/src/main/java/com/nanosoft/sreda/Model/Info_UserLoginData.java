@@ -4,20 +4,20 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/4/2017.
  */
 
-public class UserLoginData_Info {
+public class Info_UserLoginData {
 
     private String name;
     private String type;
     private String email;
 
 
-    public UserLoginData_Info(String name, String type, String email) {
+    public Info_UserLoginData(String name, String type, String email) {
         this.name = name;
         this.type = type;
         this.email = email;
     }
 
-    public UserLoginData_Info() {
+    public Info_UserLoginData() {
 
     }
 

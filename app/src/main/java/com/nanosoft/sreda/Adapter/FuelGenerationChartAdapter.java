@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.FuelGenerationReportInfo;
+import com.nanosoft.sreda.Model.Info_FuelGenReport;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ public class FuelGenerationChartAdapter extends RecyclerView.Adapter<FuelGenerat
 
 
     Context context;
-    List<FuelGenerationReportInfo> fuelGenerationInfoList = new ArrayList<>();
+    List<Info_FuelGenReport> fuelGenerationInfoList = new ArrayList<>();
 
-    public FuelGenerationChartAdapter(Context context, List<FuelGenerationReportInfo> fuelGenerationInfoList){
+    public FuelGenerationChartAdapter(Context context, List<Info_FuelGenReport> fuelGenerationInfoList){
         this.context=context;
         this.fuelGenerationInfoList=fuelGenerationInfoList;
 
@@ -41,7 +41,7 @@ public class FuelGenerationChartAdapter extends RecyclerView.Adapter<FuelGenerat
     @Override
     public void onBindViewHolder(ReGenSummeryReportChartHolder holder, int position) {
 
-        FuelGenerationReportInfo fuelGenerationInfo=fuelGenerationInfoList.get(position);
+        Info_FuelGenReport fuelGenerationInfo=fuelGenerationInfoList.get(position);
 
 
         holder.tvName.setText(fuelGenerationInfo.getName());

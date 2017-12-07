@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Nanosoft-Android on 12/4/2017.
  */
 
-public class CapacityReport_Info {
+public class Info_CapacityResponse {
 
 
     /* "status": 2000,
@@ -20,11 +20,11 @@ public class CapacityReport_Info {
             "total": 110
         },*/
     private int status;
-    private List<CapacityData_Info> data=new ArrayList<>();
+    private List<Info_CapacityData> data=new ArrayList<>();
 
 
 
-    public CapacityReport_Info(int status, List<CapacityData_Info> data) {
+    public Info_CapacityResponse(int status, List<Info_CapacityData> data) {
         this.status = status;
         this.data = data;
     }
@@ -37,11 +37,11 @@ public class CapacityReport_Info {
         this.status = status;
     }
 
-    public List<CapacityData_Info> getData() {
+    public List<Info_CapacityData> getData() {
         return data;
     }
 
-    public void setData(List<CapacityData_Info> data) {
+    public void setData(List<Info_CapacityData> data) {
         this.data = data;
     }
 }

@@ -26,13 +26,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nanosoft.sreda.Adapter.Adapter;
-import com.nanosoft.sreda.Fragement.PIECHARTFragment;
-import com.nanosoft.sreda.Fragement.RegenerationReportFragment;
-import com.nanosoft.sreda.Fragement.StackHolderRegistrationFragment;
-import com.nanosoft.sreda.Fragement.TechNamesReportFragment;
+import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
+import com.nanosoft.sreda.Fragement.Fragment_RegenerationReport;
+import com.nanosoft.sreda.Fragement.Fragment_StackHolderRegistration;
+import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
 import com.nanosoft.sreda.Utility.Operation;
@@ -41,7 +40,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+public class Activity_Main extends AppCompatActivity implements OnFragmentInteractionListener {
     Context con;
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     LinearLayout linReport, linGovAgency, linPrivateIndiVi, linStakeHolder, linPieView;
     private FrameLayout containerView;
     String logTagString = "SREDA";
-    StackHolderRegistrationFragment stackHolderRegistrationFragment;
+    Fragment_StackHolderRegistration fragmentStackHolderRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         setContentView(R.layout.home);
         con = this;
         initialization();
-        setContentFragment(new PIECHARTFragment(), false, "RE Generation Summery Report");
+        setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
         tvTitle = (TextView) findViewById(R.id.tvTitle);
-        //tvTitle.setText(getIntent().getStringExtra(LoginActivity.USER_NAME_STRING)+"'s Dictionary");
+        //tvTitle.setText(getIntent().getStringExtra(Activity_Login.USER_NAME_STRING)+"'s Dictionary");
         tvTitle.setText(Operation.getString("user", "") + "'s Report And Chart");
 
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
+//        mDrawerToggle = new ActionBarDrawerToggle(Activity_Main.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
 //        mDrawerLayout.addDrawerListener(mDrawerToggle);
 //        mDrawerToggle.syncState();
         slideshow();
@@ -115,11 +114,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         btnReportElectMix = (Button) findViewById(R.id.btnReportElectMix);
 
 
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(Activity_Main.this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 //containerView.setVisibility(View.VISIBLE);
-                //setContentFragment(new PIECHARTFragment(), false,"RE Generation Summery Report");
+                //setContentFragment(new Fragment_PIECHART(), false,"RE Generation Summery Report");
 //                linPieView.setVisibility(View.VISIBLE);
                 linReport.setVisibility(View.GONE);
                 linGovAgency.setVisibility(View.GONE);
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 mDrawerLayout.closeDrawers();
                 //containerView.setVisibility(View.GONE);
                 // linPieView.setVisibility(View.VISIBLE);
-                setContentFragment(new PIECHARTFragment(), false, "RE Generation Summery Report");
+                setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
                 tvTitle.setText("PIE CHART");
                 linReport.setVisibility(View.GONE);
                 linGovAgency.setVisibility(View.GONE);
@@ -159,10 +158,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             public void onClick(View view) {
                 //    containerView.setVisibility(View.VISIBLE);
                 //   linPieView.setVisibility(View.GONE);
-                setContentFragment(new RegenerationReportFragment(), false, "RE Generation Summery Report");
+                setContentFragment(new Fragment_RegenerationReport(), false, "RE Generation Summery Report");
                 tvTitle.setText("Report\nRE Generation");
                 mDrawerLayout.closeDrawers();
-                backFragement = new RegenerationReportFragment();
+                backFragement = new Fragment_RegenerationReport();
                 //linReport.setVisibility(View.GONE);
             }
         });
@@ -396,15 +395,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return super.onKeyDown(keyCode, event);
     }
 
-    TechNamesReportFragment techNamesReportFragment;
+    Fragment_TechNamesReport fragmentTechNamesReport;
 
     public void showReportTechName(View view) {
         mDrawerLayout.closeDrawers();
-        Toast.makeText(con, "mber  werpfpo", Toast.LENGTH_SHORT).show();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        techNamesReportFragment = new TechNamesReportFragment();
-        ft.replace(R.id.containerView, techNamesReportFragment);
+        fragmentTechNamesReport = new Fragment_TechNamesReport();
+        ft.replace(R.id.containerView, fragmentTechNamesReport);
         ft.commit();
 
     }
@@ -412,11 +410,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public void applyForStackholderRegistration(View view) {
 
         mDrawerLayout.closeDrawers();
-        Toast.makeText(con, "mber  werpfpo", Toast.LENGTH_SHORT).show();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        stackHolderRegistrationFragment = new StackHolderRegistrationFragment();
-        ft.replace(R.id.containerView, stackHolderRegistrationFragment);
+        fragmentStackHolderRegistration = new Fragment_StackHolderRegistration();
+        ft.replace(R.id.containerView, fragmentStackHolderRegistration);
         ft.commit();
     }
 

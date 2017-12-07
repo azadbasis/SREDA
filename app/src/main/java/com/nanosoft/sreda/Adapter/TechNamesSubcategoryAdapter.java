@@ -7,8 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.TechWiseGenReportData_Info;
-import com.nanosoft.sreda.Model.TechWiseGenReportSubCategory_Info;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportSubCategory;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -21,9 +20,9 @@ public class TechNamesSubcategoryAdapter extends RecyclerView.Adapter<TechNamesS
 
 
     Context context;
-    private ArrayList<TechWiseGenReportSubCategory_Info> _infoTechWiseGenReportResponseArrayList;
+    private ArrayList<Info_TechWiseGenReportSubCategory> _infoTechWiseGenReportResponseArrayList;
 
-    public TechNamesSubcategoryAdapter(Context context, ArrayList<TechWiseGenReportSubCategory_Info> _infoTechWiseGenReportResponseArrayList) {
+    public TechNamesSubcategoryAdapter(Context context, ArrayList<Info_TechWiseGenReportSubCategory> _infoTechWiseGenReportResponseArrayList) {
         this.context = context;
         this._infoTechWiseGenReportResponseArrayList = _infoTechWiseGenReportResponseArrayList;
     }
@@ -40,7 +39,7 @@ public class TechNamesSubcategoryAdapter extends RecyclerView.Adapter<TechNamesS
     @Override
     public void onBindViewHolder(TechNamesReportHolder holder, int position) {
 
-        TechWiseGenReportSubCategory_Info technosubinfo = _infoTechWiseGenReportResponseArrayList.get(position);
+        Info_TechWiseGenReportSubCategory technosubinfo = _infoTechWiseGenReportResponseArrayList.get(position);
         holder.tvTechnoSubName.setText(technosubinfo.getSub_category_title());
         holder.tvNumOfSystem.setText(String.valueOf(technosubinfo.getNo_on_system()));
         holder.tvOnGride.setText(String.valueOf(technosubinfo.getOn_grid()));

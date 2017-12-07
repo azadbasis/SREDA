@@ -16,10 +16,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.nanosoft.sreda.Adapter.TechNamesReportAdapter;
-import com.nanosoft.sreda.Model.GetTechnologyNamesData_Info;
-import com.nanosoft.sreda.Model.GetTechnologyNames_Info;
+import com.nanosoft.sreda.Model.Info_GetTechnologyNamesData;
+import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
-import com.nanosoft.sreda.Model.TechWiseGenReportData_Info;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
@@ -33,17 +33,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TechNamesReportFragment extends Fragment {
+public class Fragment_TechNamesReport extends Fragment {
 
 
     Spinner techWiseSpinner;
-    public TechNamesReportFragment() {
+    public Fragment_TechNamesReport() {
         // Required empty public constructor
     }
     private RecyclerView recyclerviewTechWise;
@@ -98,23 +97,23 @@ public class TechNamesReportFragment extends Fragment {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<GetTechnologyNames_Info> call = api.getTechnologyName(email,password);
+        Call<Info_GetTechnologyNames> call = api.getTechnologyName(email,password);
 
-        call.enqueue(new Callback<GetTechnologyNames_Info>() {
+        call.enqueue(new Callback<Info_GetTechnologyNames>() {
             @Override
-            public void onResponse(Call<GetTechnologyNames_Info> call, Response<GetTechnologyNames_Info> response) {
-                GetTechnologyNames_Info responseInfo = response.body();
+            public void onResponse(Call<Info_GetTechnologyNames> call, Response<Info_GetTechnologyNames> response) {
+                Info_GetTechnologyNames responseInfo = response.body();
 
 
 
                 if(responseInfo.getStatus()==2000){
 
-                    Toast.makeText(getActivity(), "Tecnology"+responseInfo.getStatus(), Toast.LENGTH_SHORT).show();
+
 
                     // Spinner Drop down elements
                     List<String> categories = new ArrayList<String>();
                     categories.add(0,"Select an Option");
-                    for(GetTechnologyNamesData_Info temp:responseInfo.getData()){
+                    for(Info_GetTechnologyNamesData temp:responseInfo.getData()){
                       categories.add(temp.getName());
                     }
                     // Creating adapter for spinner
@@ -129,13 +128,13 @@ public class TechNamesReportFragment extends Fragment {
 
                 }
 
-                Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
+
 
 
             }
 
             @Override
-            public void onFailure(Call<GetTechnologyNames_Info> call, Throwable t) {
+            public void onFailure(Call<Info_GetTechnologyNames> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 // busyNow.dismis();
@@ -162,8 +161,7 @@ public class TechNamesReportFragment extends Fragment {
 
                 if(responseInfo.getStatus()==2000){
 
-                    ArrayList<TechWiseGenReportData_Info> catagories = new ArrayList<>();
-                    Toast.makeText(getActivity(), "Technology"+responseInfo.getStatus(), Toast.LENGTH_SHORT).show();
+                    ArrayList<Info_TechWiseGenReportData> catagories = new ArrayList<>();
 
                     for(int i= 0;i<responseInfo.getData().size();i++){
                         catagories.add(responseInfo.getData().get(i));

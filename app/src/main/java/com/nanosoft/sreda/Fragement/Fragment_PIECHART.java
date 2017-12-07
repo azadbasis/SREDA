@@ -15,13 +15,13 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
-import com.nanosoft.sreda.Activity.MainActivity;
+import com.nanosoft.sreda.Activity.Activity_Main;
 import com.nanosoft.sreda.Adapter.CapacityReportChartAdapter;
 import com.nanosoft.sreda.Adapter.FuelGenerationChartAdapter;
-import com.nanosoft.sreda.Model.CapacityData_Info;
-import com.nanosoft.sreda.Model.CapacityReport_Info;
-import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
-import com.nanosoft.sreda.Model.FuelGenerationRepoResponse;
+import com.nanosoft.sreda.Model.Info_CapacityData;
+import com.nanosoft.sreda.Model.Info_CapacityResponse;
+import com.nanosoft.sreda.Model.Info_ElectricGenMixChart;
+import com.nanosoft.sreda.Model.Info_FuelGenResponse;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
@@ -42,21 +42,21 @@ import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PIECHARTFragment extends Fragment {
+public class Fragment_PIECHART extends Fragment {
 
     PieChart pieChart, piechartElectricity;
     PieData data;
     ArrayList<String> xVals;
     ArrayList<Entry> yvalues;
     ServerResponseOperation serverResponseOperation;
-    ElectricityGenerationMixChart_Info electricityGenerationMixChart_info, electricityGenerationMixChart_info1, electricityGenerationMixChart_info2, electricityGenerationMixChart_info3, electricityGenerationMixChart_info4;
+    Info_ElectricGenMixChart _infoElectricGenMixChart, _infoElectricGenMixChart1, _infoElectricGenMixChart2, _infoElectricGenMixChart3, _infoElectricGenMixChart4;
     RecyclerView recyclerviewGeneration, recyclerviewFuel;
     CapacityReportChartAdapter capacityReportChartAdapter;
 
     private String email,password;
-    MainActivity mainActivity;
-    List<CapacityData_Info> capacityData_InfoList ;
-    public PIECHARTFragment() {
+    Activity_Main activityMain;
+    List<Info_CapacityData> _InfoCapacityDataList;
+    public Fragment_PIECHART() {
         // Required empty public constructor
     }
 
@@ -74,7 +74,7 @@ public class PIECHARTFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        capacityData_InfoList = new ArrayList<>();
+        _InfoCapacityDataList = new ArrayList<>();
 
 
         email = Operation.getString("email","");
@@ -85,22 +85,22 @@ public class PIECHARTFragment extends Fragment {
         getCapacityDataFormServer(email,password);
         getFuelDataFormServer(email,password);
 
-        mainActivity = (MainActivity) getActivity();
+        activityMain = (Activity_Main) getActivity();
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
 
         recyclerviewFuel = (RecyclerView) view.findViewById(R.id.recyclerviewFuel);
         recyclerviewFuel.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
 
-            //capacityData_InfoList=Operation.listCapacityData;
+            //_InfoCapacityDataList=Operation.listCapacityData;
 
 
 
        /* if(Operation.listCapacityData.size()>0){
             Toast.makeText(getActivity(), ""+Operation.listCapacityData.get(0).getTechnology_name(), Toast.LENGTH_SHORT).show();
 
-            capacityData_InfoList=Operation.listCapacityData;
-            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), capacityData_InfoList);
+            _InfoCapacityDataList=Operation.listCapacityData;
+            capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), _InfoCapacityDataList);
             recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
 
         }*/
@@ -233,12 +233,12 @@ public class PIECHARTFragment extends Fragment {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<CapacityReport_Info> call = api.getCapacity(email,password);
+        Call<Info_CapacityResponse> call = api.getCapacity(email,password);
 
-        call.enqueue(new Callback<CapacityReport_Info>() {
+        call.enqueue(new Callback<Info_CapacityResponse>() {
             @Override
-            public void onResponse(Call<CapacityReport_Info> call, Response<CapacityReport_Info> response) {
-                CapacityReport_Info responseInfo = response.body();
+            public void onResponse(Call<Info_CapacityResponse> call, Response<Info_CapacityResponse> response) {
+                Info_CapacityResponse responseInfo = response.body();
 
 
 
@@ -250,18 +250,18 @@ public class PIECHARTFragment extends Fragment {
 
                     new ShowPIECHART(getActivity(),pieChart,responseInfo.getData());
 
-                    for(CapacityData_Info temp:responseInfo.getData()){
+                    for(Info_CapacityData temp:responseInfo.getData()){
                         Operation.listCapacityData.add(temp);
                     }
                 }
 
-                Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
+
 
 
             }
 
             @Override
-            public void onFailure(Call<CapacityReport_Info> call, Throwable t) {
+            public void onFailure(Call<Info_CapacityResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 // busyNow.dismis();
@@ -279,12 +279,12 @@ public class PIECHARTFragment extends Fragment {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<FuelGenerationRepoResponse> call = api.getFuel(email,password);
+        Call<Info_FuelGenResponse> call = api.getFuel(email,password);
 
-        call.enqueue(new Callback<FuelGenerationRepoResponse>() {
+        call.enqueue(new Callback<Info_FuelGenResponse>() {
             @Override
-            public void onResponse(Call<FuelGenerationRepoResponse> call, Response<FuelGenerationRepoResponse> response) {
-                FuelGenerationRepoResponse responseInfo = response.body();
+            public void onResponse(Call<Info_FuelGenResponse> call, Response<Info_FuelGenResponse> response) {
+                Info_FuelGenResponse responseInfo = response.body();
 
 
 
@@ -298,13 +298,12 @@ public class PIECHARTFragment extends Fragment {
 
                 }
 
-                Toast.makeText(getActivity(), ""+responseInfo.getData().size(), Toast.LENGTH_SHORT).show();
 
 
             }
 
             @Override
-            public void onFailure(Call<FuelGenerationRepoResponse> call, Throwable t) {
+            public void onFailure(Call<Info_FuelGenResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 // busyNow.dismis();

@@ -17,7 +17,7 @@ import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
 
-public class PieChartActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+public class Activity_PieChart extends AppCompatActivity implements OnChartValueSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

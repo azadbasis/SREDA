@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/4/2017.
  */
 
-public class CapacityData_Info {
+public class Info_CapacityData {
 
     /* "technology_name": "Solar",
             "position": "1",
@@ -27,7 +27,7 @@ public class CapacityData_Info {
         this.color = color;
     }
 
-    public CapacityData_Info(String technology_name, String position, double on_grid, double off_grid, double total) {
+    public Info_CapacityData(String technology_name, String position, double on_grid, double off_grid, double total) {
         this.technology_name = technology_name;
         this.position = position;
         this.on_grid = on_grid;

@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by Nanosoft-Android on 12/5/2017.
  */
 
-public class GetTechnologyNamesData_Info {
+public class Info_GetTechnologyNamesData {
 
     /* {
             "id": "7",
@@ -16,7 +16,7 @@ public class GetTechnologyNamesData_Info {
     private String name;
 
 
-    public GetTechnologyNamesData_Info(int id, String name) {
+    public Info_GetTechnologyNamesData(int id, String name) {
         this.id = id;
         this.name = name;
     }

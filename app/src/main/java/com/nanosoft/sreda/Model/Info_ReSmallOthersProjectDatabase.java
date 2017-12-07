@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Nanosoft-Android on 11/21/2017.
  */
 
-public class ReSmallOthersProjectDatabase_Info {
+public class Info_ReSmallOthersProjectDatabase {
 
     private int sl_No;
     private int NIRES_NO;
@@ -18,7 +18,7 @@ public class ReSmallOthersProjectDatabase_Info {
     private double TOE;
 
 
-    public ReSmallOthersProjectDatabase_Info(int sl_No, int NIRES_NO, String agency, Date date, String system_Name, int number, double capacity, double TOE) {
+    public Info_ReSmallOthersProjectDatabase(int sl_No, int NIRES_NO, String agency, Date date, String system_Name, int number, double capacity, double TOE) {
         setSl_No(sl_No);
         setNIRES_NO(NIRES_NO);
         setAgency(agency);

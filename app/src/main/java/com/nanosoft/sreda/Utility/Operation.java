@@ -3,8 +3,7 @@ package com.nanosoft.sreda.Utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.nanosoft.sreda.Model.CapacityData_Info;
-import com.nanosoft.sreda.Model.CapacityReport_Info;
+import com.nanosoft.sreda.Model.Info_CapacityData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 public class Operation {
 
 
-    public static List<CapacityData_Info> listCapacityData = new ArrayList<>();
+    public static List<Info_CapacityData> listCapacityData = new ArrayList<>();
 
     public static void saveString(String keyValue, String getValue){
 

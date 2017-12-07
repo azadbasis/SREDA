@@ -4,7 +4,7 @@ package com.nanosoft.sreda.Model;
  * Created by NanoSoft on 12/5/2017.
  */
 
-public class FuelGenerationReportInfo {
+public class Info_FuelGenReport {
 
 //    "id": "1",
 //            "name": "Coal",
@@ -15,10 +15,10 @@ public class FuelGenerationReportInfo {
 
     String id,name,installed_capacity,fuel_order,status,is_checked,color;
 
-    public FuelGenerationReportInfo() {
+    public Info_FuelGenReport() {
     }
 
-    public FuelGenerationReportInfo(String id, String name, String installed_capacity, String fuel_order, String status, String is_checked) {
+    public Info_FuelGenReport(String id, String name, String installed_capacity, String fuel_order, String status, String is_checked) {
         this.id = id;
         this.name = name;
         this.installed_capacity = installed_capacity;

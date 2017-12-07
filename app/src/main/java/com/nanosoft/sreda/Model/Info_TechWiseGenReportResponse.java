@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class Info_TechWiseGenReportResponse {
 
     private int status;
-    private ArrayList<TechWiseGenReportData_Info> data;
+    private ArrayList<Info_TechWiseGenReportData> data;
 
-    public Info_TechWiseGenReportResponse(int status, ArrayList<TechWiseGenReportData_Info> data) {
+    public Info_TechWiseGenReportResponse(int status, ArrayList<Info_TechWiseGenReportData> data) {
         this.status = status;
         this.data = data;
     }
@@ -24,11 +24,11 @@ public class Info_TechWiseGenReportResponse {
         this.status = status;
     }
 
-    public ArrayList<TechWiseGenReportData_Info> getData() {
+    public ArrayList<Info_TechWiseGenReportData> getData() {
         return data;
     }
 
-    public void setData(ArrayList<TechWiseGenReportData_Info> data) {
+    public void setData(ArrayList<Info_TechWiseGenReportData> data) {
         this.data = data;
     }
 }

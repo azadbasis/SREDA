@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Nanosoft-Android on 11/19/2017.
  */
 
-public class Employee implements Parcelable {
+public class Info_Employee implements Parcelable {
 
     public int postId;
     public int id;
@@ -16,9 +16,9 @@ public class Employee implements Parcelable {
     public String body;
 
 
-    public Employee(){}
+    public Info_Employee(){}
 
-    protected Employee(Parcel in) {
+    protected Info_Employee(Parcel in) {
         postId = in.readInt();
         id = in.readInt();
         name = in.readString();
@@ -26,15 +26,15 @@ public class Employee implements Parcelable {
         body = in.readString();
     }
 
-    public static final Creator<Employee> CREATOR = new Creator<Employee>() {
+    public static final Creator<Info_Employee> CREATOR = new Creator<Info_Employee>() {
         @Override
-        public Employee createFromParcel(Parcel in) {
-            return new Employee(in);
+        public Info_Employee createFromParcel(Parcel in) {
+            return new Info_Employee(in);
         }
 
         @Override
-        public Employee[] newArray(int size) {
-            return new Employee[size];
+        public Info_Employee[] newArray(int size) {
+            return new Info_Employee[size];
         }
     };
 

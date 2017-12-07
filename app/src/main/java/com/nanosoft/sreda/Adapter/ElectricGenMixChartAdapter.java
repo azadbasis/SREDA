@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanosoft.sreda.Model.ElectricityGenerationMixChart_Info;
+import com.nanosoft.sreda.Model.Info_ElectricGenMixChart;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class ElectricGenMixChartAdapter extends RecyclerView.Adapter<ElectricGenMixChartAdapter.ElectricGenMixChartViewHolder> {
 
 
-    public ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChart_infos;
+    public ArrayList<Info_ElectricGenMixChart> _infoElectricGenMixCharts;
     Context context;
 
-    public ElectricGenMixChartAdapter(Context context, ArrayList<ElectricityGenerationMixChart_Info> electricityGenerationMixChart_infos) {
+    public ElectricGenMixChartAdapter(Context context, ArrayList<Info_ElectricGenMixChart> _infoElectricGenMixCharts) {
         this.context = context;
-        this.electricityGenerationMixChart_infos = electricityGenerationMixChart_infos;
+        this._infoElectricGenMixCharts = _infoElectricGenMixCharts;
     }
 
     @Override
@@ -37,17 +37,17 @@ public class ElectricGenMixChartAdapter extends RecyclerView.Adapter<ElectricGen
     @Override
     public void onBindViewHolder(ElectricGenMixChartViewHolder holder, int position) {
 
-        ElectricityGenerationMixChart_Info electricityGenerationMixChart_info = electricityGenerationMixChart_infos.get(position);
-        holder.tvName.setText(electricityGenerationMixChart_info.getName());
-        holder.tvCapacity.setText(electricityGenerationMixChart_info.getCapacity() + "");
-        holder.tvPercentage.setText(electricityGenerationMixChart_info.getPercentage() + "");
-        holder.tvTotal.setText(electricityGenerationMixChart_info.getTotal() + "");
+        Info_ElectricGenMixChart _infoElectricGenMixChart = _infoElectricGenMixCharts.get(position);
+        holder.tvName.setText(_infoElectricGenMixChart.getName());
+        holder.tvCapacity.setText(_infoElectricGenMixChart.getCapacity() + "");
+        holder.tvPercentage.setText(_infoElectricGenMixChart.getPercentage() + "");
+        holder.tvTotal.setText(_infoElectricGenMixChart.getTotal() + "");
 
     }
 
     @Override
     public int getItemCount() {
-        return electricityGenerationMixChart_infos.size();
+        return _infoElectricGenMixCharts.size();
     }
 
     class ElectricGenMixChartViewHolder extends RecyclerView.ViewHolder {

@@ -1,10 +1,10 @@
 package com.nanosoft.sreda.Utility;
 
-import com.nanosoft.sreda.Model.CapacityReport_Info;
-import com.nanosoft.sreda.Model.FuelGenerationRepoResponse;
-import com.nanosoft.sreda.Model.GetTechnologyNames_Info;
+import com.nanosoft.sreda.Model.Info_CapacityResponse;
+import com.nanosoft.sreda.Model.Info_FuelGenResponse;
+import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
-import com.nanosoft.sreda.Model.UserLoginResponse_Info;
+import com.nanosoft.sreda.Model.Info_UserLoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -25,7 +25,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("login")
-    Call<UserLoginResponse_Info> getLoginUser(
+    Call<Info_UserLoginResponse> getLoginUser(
                     @Field("email") String email,
                     @Field("password") String password
 
@@ -33,14 +33,14 @@ public interface Api {
 
 
     @GET("capacity_report")
-    Call<CapacityReport_Info> getCapacity(
+    Call<Info_CapacityResponse> getCapacity(
             @Query("email") String email,
             @Query("password") String password
 
     );
 
     @GET("fuel_generation_report")
-    Call<FuelGenerationRepoResponse> getFuel(
+    Call<Info_FuelGenResponse> getFuel(
             @Query("email") String email,
             @Query("password") String password
 
@@ -48,7 +48,7 @@ public interface Api {
 
 
     @GET("get_technology_names")
-    Call<GetTechnologyNames_Info> getTechnologyName(
+    Call<Info_GetTechnologyNames> getTechnologyName(
             @Query("email") String email,
             @Query("password") String password
 
