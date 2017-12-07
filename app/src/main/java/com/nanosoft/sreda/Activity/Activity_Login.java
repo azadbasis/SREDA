@@ -1,54 +1,40 @@
 package com.nanosoft.sreda.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.nanosoft.sreda.Model.Info_Employee;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Receiver.NetworkConnectionReceiver;
 import com.nanosoft.sreda.Utility.AppController;
-import com.nanosoft.sreda.Utility.CustomAdapter;
 import com.nanosoft.sreda.Utility.Operation;
 import com.nanosoft.sreda.Utility.ServerResponseOperation;
-
-import java.util.List;
 
 
 public class Activity_Login extends AppCompatActivity implements NetworkConnectionReceiver.ConnectivityRecieverListener {
 
 
-    List<Info_Employee> infoEmployeeList;
-    RecyclerView recyclerView;
+
+
     Boolean isConnected;
     LinearLayout myLinearLayout;
     public static final String NA = "NA";
-    CustomAdapter customAdapter;
-
-    final static String SHARED_NAME_STRING="sharedp";
-    final static String USER_NAME_STRING="user";
-    Button button;
     EditText usernameEditText,passwordEditText;
-    SharedPreferences sharedPreferences;
 
     public  static Activity_Login activityLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activityLogin = this;
-        String persistanceUsernameString=Operation.getString("email","");
-        if(persistanceUsernameString.length()>0){
+        String persistenceUsernameString=Operation.getString("email","");
+        if(persistenceUsernameString.length()>0){
             startActivity(new Intent(AppController.getAppContext(),Activity_Main.class));
             finish();
         }else{

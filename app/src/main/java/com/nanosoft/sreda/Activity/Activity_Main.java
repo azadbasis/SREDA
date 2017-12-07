@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,7 +29,6 @@ import android.widget.TextView;
 import com.nanosoft.sreda.Adapter.Adapter;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
 import com.nanosoft.sreda.Fragement.Fragment_RegenerationReport;
-import com.nanosoft.sreda.Fragement.Fragment_StackHolderRegistration;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
@@ -55,13 +53,12 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
 
     private Fragment backFragement;
     TextView tvTitle;
-    SharedPreferences sharedPreferences;
     Button btnReport, btnGovAgency, btnPrivateIndiVi, btnStakeHolder, btnHome,
             btnReportReGen, btnReportTechno, btnReportYear, btnReportLarge, btnReportSmall, btnReportElectMix;
     LinearLayout linReport, linGovAgency, linPrivateIndiVi, linStakeHolder, linPieView;
     private FrameLayout containerView;
     String logTagString = "SREDA";
-    Fragment_StackHolderRegistration fragmentStackHolderRegistration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -407,15 +404,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
 
     }
 
-    public void applyForStackholderRegistration(View view) {
-
-        mDrawerLayout.closeDrawers();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        fragmentStackHolderRegistration = new Fragment_StackHolderRegistration();
-        ft.replace(R.id.containerView, fragmentStackHolderRegistration);
-        ft.commit();
-    }
 
 
 }
