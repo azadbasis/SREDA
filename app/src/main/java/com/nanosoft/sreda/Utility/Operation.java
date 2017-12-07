@@ -16,6 +16,7 @@ public class Operation {
 
 
     public static List<Info_CapacityData> listCapacityData = new ArrayList<>();
+    public static int numsys;
 
     public static void saveString(String keyValue, String getValue){
 

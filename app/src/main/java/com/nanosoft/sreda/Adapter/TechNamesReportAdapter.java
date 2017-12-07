@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
 import com.nanosoft.sreda.R;
+import com.nanosoft.sreda.Utility.Operation;
 
 import java.util.ArrayList;
 
@@ -62,21 +64,11 @@ public class TechNamesReportAdapter extends RecyclerView.Adapter<TechNamesReport
        }
 
 
-        //holder.recyclerviewTechWiseSub
-//        holder.tvTecnologyTitle.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getSub_category_title());
-//        holder.tvTecnologyName.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getSub_category_title());
-//        holder.tvNumSystem.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getNo_on_system());
-//
-//        holder.tvOnGrid.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getOn_grid()+"");
-//        holder.tvOffGrid.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getOff_grid()+"");
-//        holder.tvToe.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getToe()+"");
-//        holder.tvTotal.setText(_infoTechWiseGenReportResponse.getData().get(position).getSubCategory().get(position).getTotal()+"");
-
-
     }
 
     @Override
     public int getItemCount() {
+
         return _infoTechWiseGenReportResponseArrayList.size();
     }
 

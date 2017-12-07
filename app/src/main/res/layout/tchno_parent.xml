@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="@dimen/_3sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
         android:orientation="horizontal">
 
     <Spinner
@@ -23,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Grand Total:"
+            android:text="Total:"
             android:gravity="left"
           />
         <HorizontalScrollView
             android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/_3sdp"
             android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,37 +39,51 @@
             >
 
             <TextView
+                android:id="@+id/tvNumSys"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Number of system\n10"
+                android:padding="@dimen/_8sdp"
+                android:text=""
                 android:gravity="center"
                 android:background="@drawable/tv_bg"
                 />
 
             <TextView
+                android:id="@+id/tvtOnGrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Number of system\n10"
+                android:padding="@dimen/_8sdp"
                 android:gravity="center"
                 android:background="@drawable/tv_bg"
                 />
 
             <TextView
+                android:id="@+id/tvOffGrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Number of system\n10"
+                android:padding="@dimen/_8sdp"
                 android:gravity="center"
                 android:background="@drawable/tv_bg"
                 />
 
             <TextView
+                android:id="@+id/tvToe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Number of system\n10"
+                android:padding="@dimen/_8sdp"
+                android:gravity="center"
+                android:background="@drawable/tv_bg"
+                />
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:padding="@dimen/_8sdp"
                 android:gravity="center"
                 android:background="@drawable/tv_bg"
                 />
