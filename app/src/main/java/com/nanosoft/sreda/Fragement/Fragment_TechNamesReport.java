@@ -206,7 +206,6 @@ public class Fragment_TechNamesReport extends Fragment {
                     techNamesReportAdapter=new TechNamesReportAdapter(getContext(), catagories);
                     recyclerviewTechWise.setAdapter(techNamesReportAdapter);
 
-
                 }
 
 
