@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
 import com.nanosoft.sreda.Model.Info_CapacityData;
 import com.nanosoft.sreda.R;
 
@@ -20,13 +21,14 @@ import java.util.List;
 
 public class CapacityReportChartAdapter extends RecyclerView.Adapter<CapacityReportChartAdapter.ReGenSummeryReportChartHolder> {
 
-
+    PieChart pieChart;
     Context context;
     List<Info_CapacityData> _InfoCapacityDataList = new ArrayList<>();
 
-    public CapacityReportChartAdapter(Context context, List<Info_CapacityData> _InfoCapacityDataList){
+    public CapacityReportChartAdapter(Context context, List<Info_CapacityData> _InfoCapacityDataList,PieChart pieChart){
         this.context=context;
         this._InfoCapacityDataList = _InfoCapacityDataList;
+        this.pieChart = pieChart;
 
     }
 

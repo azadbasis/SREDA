@@ -245,7 +245,7 @@ public class Fragment_PIECHART extends Fragment {
                 if(responseInfo.getStatus()==2000){
                     // Operation.listCapacityData = responseInfo.getData();
 
-                    capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), responseInfo.getData());
+                    capacityReportChartAdapter = new CapacityReportChartAdapter(getContext(), responseInfo.getData(),pieChart);
                     recyclerviewGeneration.setAdapter(capacityReportChartAdapter);
 
                     new ShowPIECHART(getActivity(),pieChart,responseInfo.getData());

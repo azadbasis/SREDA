@@ -21,6 +21,7 @@ import com.nanosoft.sreda.Model.Info_CapacityData;
 import com.nanosoft.sreda.Model.Info_FuelGenReport;
 import com.nanosoft.sreda.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class ShowPIECHART {
     Context context;
     PieChart pieChart;
     PieChart piechartElectricity;
-    double total = 0;
+    double totalCapacit = 0;
+    double totalyElectricity= 0;
     List<Info_CapacityData> listCapacityInfo;
     List<Info_FuelGenReport> listFuelInfo;
    Activity activity;
@@ -74,6 +76,7 @@ public class ShowPIECHART {
             xVals.add(listCapacityInfo.get(i).getTechnology_name());
             int parseColor =(Color.parseColor(listCapacityInfo.get(i).getColor()));
             colorcode.add(parseColor);
+            totalCapacit += Double.parseDouble(String.valueOf(listCapacityInfo.get(i).getTotal()));
 
         }
 
@@ -103,8 +106,16 @@ public class ShowPIECHART {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.pie_data_dialogue);
                 LinearLayout linPieDialogue = (LinearLayout)dialog.findViewById(R.id.linPieDialogue);
+
+                Double percent = (Double.parseDouble(String.valueOf(listCapacityInfo.get(e.getXIndex()).getTotal()))*100)/totalCapacit;
+                DecimalFormat precision = new DecimalFormat("0.00");
+
                 TextView tvTechName = dialog.findViewById(R.id.tvTechName);
                 TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
+                TextView tvPercentage = dialog.findViewById(R.id.tvPercentage);
+
+//                tvPercentage.setText(" ("+Math.round(Float.parseFloat(precision.format(percent)))+"%"+")");
+                tvPercentage.setText(" ("+precision.format(percent)+"%"+")");
                 tvTechName.setText(xVals.get(e.getXIndex()).toString());
                 tvTechDetail.setText(listCapacityInfo.get(e.getXIndex()).getTotal()+" MW");
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -141,7 +152,7 @@ public class ShowPIECHART {
 
         for (int i = 0; i < listFuelInfo.size(); i++) {
             String d = listFuelInfo.get(i).getInstalled_capacity();
-            total += Double.parseDouble(listFuelInfo.get(i).getInstalled_capacity());
+            totalyElectricity += Double.parseDouble(listFuelInfo.get(i).getInstalled_capacity());
             float f = Float.parseFloat(d);
             yvalues.add(new Entry(f, i));
             xVals.add(listFuelInfo.get(i).getName());
@@ -169,14 +180,23 @@ public class ShowPIECHART {
         piechartElectricity.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Double percent = (total/Double.parseDouble(listFuelInfo.get(e.getXIndex()).getInstalled_capacity())) * 100;
+
+                Double percent = (Double.parseDouble(listFuelInfo.get(e.getXIndex()).getInstalled_capacity())*100)/totalyElectricity;
+                DecimalFormat precision = new DecimalFormat("0.00");
+
+                //Toast.makeText(context, ""+precision.format(percent), Toast.LENGTH_SHORT).show();
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.pie_data_dialogue);
                 LinearLayout linPieDialogue = (LinearLayout)dialog.findViewById(R.id.linPieDialogue);
                 TextView tvTechName = dialog.findViewById(R.id.tvTechName);
                 TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
+                TextView tvPercentage = dialog.findViewById(R.id.tvPercentage);
+
                 tvTechName.setText(xVals.get(e.getXIndex()).toString());
                 tvTechDetail.setText(listFuelInfo.get(e.getXIndex()).getInstalled_capacity()+" MW");
+//                tvPercentage.setText(" ("+Math.round(Float.parseFloat(precision.format(percent)))+"%"+")");
+
+                tvPercentage.setText(" ("+Float.parseFloat(precision.format(percent))+"%"+")");
                // tvTechDetail.setText(listFuelInfo.get(e.getXIndex()).getInstalled_capacity()+" MW"+" ("+percent+")");
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.setCanceledOnTouchOutside(true);
@@ -189,6 +209,7 @@ public class ShowPIECHART {
                         dialog.dismiss();
                     }
                 });
+
             }
 
             @Override
@@ -197,6 +218,8 @@ public class ShowPIECHART {
             }
         });
     }
+
+
 
 
     private void showLegend(PieChart chart) {
@@ -208,6 +231,7 @@ public class ShowPIECHART {
         l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
         l.setWordWrapEnabled(true);
     }
+
 
 
 }
