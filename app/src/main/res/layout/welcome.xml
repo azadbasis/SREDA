@@ -9,18 +9,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="547.517px"
-        android:layout_height="73.917px"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:background="@drawable/title01" />
+        android:background="@drawable/redat" />
     <ImageView
+
         android:id="@+id/imageView1"
-        android:layout_width="584.195px"
-        android:layout_height="24.689px"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_20sdp"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/title02" />
+        android:background="@drawable/srerenewable" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -28,6 +29,7 @@
         android:layout_height="117px"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:onClick="startSignInActivity"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"

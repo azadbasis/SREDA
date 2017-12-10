@@ -14,11 +14,11 @@ public class Info_UserLoginResponse {
         "email": "admin@mail.com"
     }*/
 
-    private String status;
+    private int status;
     private String message;
     private Info_UserLoginData data;
 
-    public Info_UserLoginResponse(String status, String message, Info_UserLoginData data) {
+    public Info_UserLoginResponse(int status, String message, Info_UserLoginData data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -41,11 +41,12 @@ public class Info_UserLoginResponse {
 //        return data;
 //    }
 
-    public String getStatus() {
+
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

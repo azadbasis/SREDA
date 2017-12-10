@@ -41,22 +41,29 @@ public class ServerResponseOperation {
         call.enqueue(new Callback<Info_UserLoginResponse>() {
             @Override
             public void onResponse(Call<Info_UserLoginResponse> call, Response<Info_UserLoginResponse> response) {
+
+
                 Info_UserLoginResponse responseInfo = response.body();
-                String name=responseInfo.getData().getName();
-                String email=responseInfo.getData().getEmail();
-                String type=responseInfo.getData().getType();
 
-                Intent intent=new Intent(context, Activity_Main.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("user", email);
-                Operation.saveString("email",email);
-                Operation.saveString("password",password);
-                Operation.saveString("type",type);
-                Operation.saveString("name",name);
-                context.startActivity(intent);
-                Activity_Login.activityLogin.finish();
-                Toast.makeText(context, "name"+name, Toast.LENGTH_SHORT).show();
+                if(responseInfo.getStatus()==2000){
+                    String name=responseInfo.getData().getName();
+                    String email=responseInfo.getData().getEmail();
+                    String type=responseInfo.getData().getType();
 
+                    Intent intent=new Intent(context, Activity_Main.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("user", email);
+                    Operation.saveString("email",email);
+                    Operation.saveString("password",password);
+                    Operation.saveString("type",type);
+                    Operation.saveString("name",name);
+                    context.startActivity(intent);
+                    Activity_Login.activityLogin.finish();
+                   // Toast.makeText(context, "name"+name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, responseInfo.getMessage(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context, responseInfo.getMessage(), Toast.LENGTH_SHORT).show();
+                }
 
             }
 
