@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nanosoft.sreda.Adapter.TechNamesReportAdapter;
@@ -20,10 +21,12 @@ import com.nanosoft.sreda.Model.Info_GetTechnologyNamesData;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportSubCategory;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +52,7 @@ public class Fragment_TechNamesReport extends Fragment {
     private TechNamesReportAdapter techNamesReportAdapter;
     private Info_TechWiseGenReportResponse _infoTechWiseGenReportResponse;
     private ArrayList<Info_TechWiseGenReportResponse> _infoTechWiseGenReportResponseArrayList;
-
+    private TextView tvNumSys,tvtOnGrid,tvOffGrid,tvToe,tvTotal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,8 +87,18 @@ public class Fragment_TechNamesReport extends Fragment {
         //serverResponseOperation.getCapacityDataFormServer(email,password);
         getTechnologyNameFromServer(email,password);
         getTechnologyNameReportFromServer(email,password);
+
+        initUi();
     }
 
+    private void initUi() {
+
+        tvNumSys = (TextView)getView().findViewById(R.id.tvNumSys);
+        tvOffGrid = (TextView)getView().findViewById(R.id.tvOffGrid);
+        tvToe = (TextView)getView().findViewById(R.id.tvToe);
+        tvTotal = (TextView)getView().findViewById(R.id.tvTotal);
+        tvtOnGrid = (TextView)getView().findViewById(R.id.tvtOnGrid);
+    }
 
 
     public void getTechnologyNameFromServer(String email, final String password) {
@@ -162,14 +175,36 @@ public class Fragment_TechNamesReport extends Fragment {
                 if(responseInfo.getStatus()==2000){
 
                     ArrayList<Info_TechWiseGenReportData> catagories = new ArrayList<>();
+                    //ArrayList<Info_TechWiseGenReportSubCategory> sub_categories = new ArrayList<>();
 
+
+                    int numsys = 0;
+                    double ongrid = 0;
+                    double offgrid = 0;
+                    double toe = 0;
+                    double total = 0;
                     for(int i= 0;i<responseInfo.getData().size();i++){
                         catagories.add(responseInfo.getData().get(i));
+
+                        for(int j= 0;j<catagories.get(i).getSub_category().size();j++){
+                            numsys+= catagories.get(i).getSub_category().get(j).getNo_on_system();
+                            ongrid+=catagories.get(i).getSub_category().get(j).getOn_grid();
+                            offgrid+=catagories.get(i).getSub_category().get(j).getOff_grid();
+                            toe+=catagories.get(i).getSub_category().get(j).getToe();
+                            total+=catagories.get(i).getSub_category().get(j).getTotal();
+                        }
                     }
+                    DecimalFormat precision = new DecimalFormat("0.00");
+                    tvNumSys.setText("Number of system\n"+numsys);
+                    tvtOnGrid.setText("On Grid\n"+precision.format(ongrid)+" MW");
+                    tvOffGrid.setText("OffGrid\n"+precision.format(offgrid)+" MW");
+                    tvToe.setText("Toe\n"+precision.format(toe)+" MW");
+                    tvTotal.setText("Total\n"+precision.format(total)+" MW");
+
+                    //Toast.makeText(getActivity(), "sys: "+numsys, Toast.LENGTH_SHORT).show();
 
                     techNamesReportAdapter=new TechNamesReportAdapter(getContext(), catagories);
                     recyclerviewTechWise.setAdapter(techNamesReportAdapter);
-
 
                 }
 

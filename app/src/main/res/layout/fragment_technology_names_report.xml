@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.nanosoft.sreda.Fragement.Fragment_TechNamesReport">
 
+
     <Spinner
         android:id="@+id/techWiseSpinner"
         android:layout_width="@dimen/_113sdp"
