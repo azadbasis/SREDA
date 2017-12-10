@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_145sdp"
-
+    android:background="@color/white"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -10,9 +10,10 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/_13sdp"
         android:textColor="@color/black"
+        android:background="@color/report_tech_name"
         android:text="SN"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+      />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,14 +21,15 @@
         android:padding="@dimen/_13sdp"
         android:textColor="@color/black"
         android:text="Technology Title"
+        android:background="@color/report_tech_name"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+       />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg"
+        android:background="@color/report_tech_name"
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="Technology Name"
@@ -37,7 +39,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tv_bg"
+        android:background="@color/report_tech_name"
         android:gravity="left"
         android:padding="@dimen/_13sdp"
         android:text="	Number of system"
@@ -50,7 +52,8 @@
         android:textColor="@color/black"
         android:text="On Grid"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@color/report_tech_name"
+       />
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +62,7 @@
         android:textColor="@color/black"
         android:text="Off Grid"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@color/report_tech_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +70,7 @@
         android:textColor="@color/black"
         android:text="toe"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@color/report_tech_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,5 +78,5 @@
         android:textColor="@color/black"
         android:text="Total"
         android:gravity="left"
-        android:background="@drawable/tv_bg"/>
+        android:background="@color/report_tech_name"/>
 </LinearLayout>
