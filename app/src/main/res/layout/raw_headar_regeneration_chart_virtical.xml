@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:id="@+id/tvTechnology"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="@dimen/_2sdp"
+        android:textColor="@color/black"
+        android:text=""
+        android:gravity="center"
+        android:layout_marginRight="@dimen/_1sdp"
+        android:background="@drawable/tv_bg"/>
+
+    <TextView
+        android:id="@+id/tvOnGrid"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="@dimen/_2sdp"
+        android:textColor="@color/black"
+        android:text=""
+        android:gravity="center"
+        android:layout_marginRight="@dimen/_1sdp"
+        android:background="@drawable/tv_bg"/>
+
+    <TextView
+
+        android:id="@+id/tvOffGrid"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="@dimen/_1sdp"
+        android:background="@drawable/tv_bg"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="@dimen/_2sdp"
+        android:background="@drawable/tv_bg"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black" />
+
+    </LinearLayout>
+</LinearLayout>

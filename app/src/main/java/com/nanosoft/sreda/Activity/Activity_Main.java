@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import com.nanosoft.sreda.Adapter.Adapter;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
+import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Capacity;
+import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Electricity;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
@@ -149,18 +151,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
             }
         });
 
-        btnReportReGen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //    containerView.setVisibility(View.VISIBLE);
-                //   linPieView.setVisibility(View.GONE);
-//                setContentFragment(new Fragment_RegenerationReport(), false, "RE Generation Summery Report");
-//                tvTitle.setText("Report\nRE Generation");
-//                mDrawerLayout.closeDrawers();
-//                backFragement = new Fragment_RegenerationReport();
-                //linReport.setVisibility(View.GONE);
-            }
-        });
 
 
         btnReport.setOnClickListener(new View.OnClickListener() {
@@ -391,9 +381,10 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
         return super.onKeyDown(keyCode, event);
     }
 
-    Fragment_TechNamesReport fragmentTechNamesReport;
+
 
     public void showReportTechName(View view) {
+        Fragment_TechNamesReport fragmentTechNamesReport;
         mDrawerLayout.closeDrawers();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -404,5 +395,29 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
     }
 
 
+
+    public void showReportReGen(View view) {
+        Fragment_PIECHART_Capacity fragmentPiechartVertical;
+        mDrawerLayout.closeDrawers();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fragmentPiechartVertical = new Fragment_PIECHART_Capacity();
+        ft.replace(R.id.containerView, fragmentPiechartVertical);
+        ft.commit();
+
+    }
+
+
+
+    public void showReportElectMix(View view) {
+        Fragment_PIECHART_Electricity fragment_PIECHART_Electricity;
+        mDrawerLayout.closeDrawers();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fragment_PIECHART_Electricity = new Fragment_PIECHART_Electricity();
+        ft.replace(R.id.containerView, fragment_PIECHART_Electricity);
+        ft.commit();
+
+    }
 
 }
