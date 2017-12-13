@@ -20,7 +20,8 @@ import retrofit2.http.Query;
 public interface Api {
 
     //String BASE_URL = "http://offerian.com/";
-    String BASE_URL = "http://192.168.0.119/renewableenergy/api/";
+    //String BASE_URL = "http://192.168.0.119/renewableenergy/api/";
+    String BASE_URL = "http://redb.sreda.gov.bd/api/";
 
 
     @FormUrlEncoded

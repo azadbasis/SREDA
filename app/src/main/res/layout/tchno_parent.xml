@@ -87,6 +87,7 @@
                 android:padding="@dimen/_5sdp"
                 android:gravity="center"
                 android:background="@drawable/tv_bg"
+
                 />
             <TextView
                 android:id="@+id/tvTotal"

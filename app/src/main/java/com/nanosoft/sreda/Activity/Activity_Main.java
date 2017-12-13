@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import com.nanosoft.sreda.Adapter.Adapter;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
-import com.nanosoft.sreda.Fragement.Fragment_RegenerationReport;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
@@ -155,10 +154,10 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
             public void onClick(View view) {
                 //    containerView.setVisibility(View.VISIBLE);
                 //   linPieView.setVisibility(View.GONE);
-                setContentFragment(new Fragment_RegenerationReport(), false, "RE Generation Summery Report");
-                tvTitle.setText("Report\nRE Generation");
-                mDrawerLayout.closeDrawers();
-                backFragement = new Fragment_RegenerationReport();
+//                setContentFragment(new Fragment_RegenerationReport(), false, "RE Generation Summery Report");
+//                tvTitle.setText("Report\nRE Generation");
+//                mDrawerLayout.closeDrawers();
+//                backFragement = new Fragment_RegenerationReport();
                 //linReport.setVisibility(View.GONE);
             }
         });
