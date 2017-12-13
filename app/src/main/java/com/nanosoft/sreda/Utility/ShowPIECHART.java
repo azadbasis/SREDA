@@ -82,7 +82,8 @@ public class ShowPIECHART {
 
 
         Legend legend = pieChart.getLegend();
-        legend.setCustom(colorcode,xVals);
+        legend.setEnabled(false);
+        //legend.setCustom(colorcode,xVals);
 
         PieDataSet dataSet = new PieDataSet(yvalues, "");
         data = new PieData(xVals, dataSet);
@@ -95,7 +96,7 @@ public class ShowPIECHART {
 
         //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         dataSet.setColors(colorcode);
-        data.setValueTextSize(8f);
+        data.setValueTextSize(14f);
         data.setValueTextColor(Color.WHITE);
 
         pieChart.animateXY(1400, 1400);
@@ -162,7 +163,8 @@ public class ShowPIECHART {
         }
 
         Legend legend = piechartElectricity.getLegend();
-        legend.setCustom(colorcode,xVals);
+        legend.setEnabled(false);
+//        legend.setCustom(colorcode,xVals);
         dataSet = new PieDataSet(yvalues, "");
         data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
@@ -174,7 +176,7 @@ public class ShowPIECHART {
         piechartElectricity.setTransparentCircleRadius(25f);
         piechartElectricity.setHoleRadius(25f);
         dataSet.setColors(colorcode);
-        data.setValueTextSize(8f);
+        data.setValueTextSize(14f);
         data.setValueTextColor(Color.WHITE);
         piechartElectricity.animateXY(1400, 1400);
         piechartElectricity.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {

@@ -123,16 +123,6 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <Button
-                        android:id="@+id/btnReportReGen"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:paddingLeft="@dimen/_25sdp"
-                        android:text="RE Generation Summery Report"
-                        android:onClick="showReportReGen"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/btnReportElectMix"
@@ -144,7 +134,16 @@
                         android:onClick="showReportElectMix"
                         android:textAllCaps="false"
                         android:textColor="@color/black" />
-
+                    <Button
+                        android:id="@+id/btnReportReGen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingLeft="@dimen/_25sdp"
+                        android:text="RE Generation Summery Report"
+                        android:onClick="showReportReGen"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
                     <Button
                         android:id="@+id/btnReportTechno"
                         android:layout_width="match_parent"

@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -32,14 +31,13 @@ import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Capacity;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Electricity;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.R;
-import com.nanosoft.sreda.Utility.OnFragmentInteractionListener;
 import com.nanosoft.sreda.Utility.Operation;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Activity_Main extends AppCompatActivity implements OnFragmentInteractionListener {
+public class Activity_Main extends AppCompatActivity {
     Context con;
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
@@ -51,8 +49,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
     Timer swipeTimer;
     private ViewPager launchViewpager;
     public static int[] imageRSC = {R.drawable.banar, R.drawable.banar};
-
-    private Fragment backFragement;
     TextView tvTitle;
     Button btnReport, btnGovAgency, btnPrivateIndiVi, btnStakeHolder, btnHome,
             btnReportReGen, btnReportTechno, btnReportYear, btnReportLarge, btnReportSmall, btnReportElectMix;
@@ -67,7 +63,8 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
         setContentView(R.layout.home);
         con = this;
         initialization();
-        setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
+        //  setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
+        showDefaultFragment();
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         //tvTitle.setText(getIntent().getStringExtra(Activity_Login.USER_NAME_STRING)+"'s Dictionary");
         tvTitle.setText(Operation.getString("user", "") + "'s Report And Chart");
@@ -141,7 +138,13 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
                 mDrawerLayout.closeDrawers();
                 //containerView.setVisibility(View.GONE);
                 // linPieView.setVisibility(View.VISIBLE);
-                setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
+                //setContentFragment(new Fragment_PIECHART(), false, "RE Generation Summery Report");
+
+                mDrawerLayout.closeDrawers();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.containerView, new Fragment_PIECHART());
+                ft.commit();
+
                 tvTitle.setText("PIE CHART");
                 linReport.setVisibility(View.GONE);
                 linGovAgency.setVisibility(View.GONE);
@@ -150,7 +153,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
 
             }
         });
-
 
 
         btnReport.setOnClickListener(new View.OnClickListener() {
@@ -281,53 +283,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
 
     }
 
-    @Override
-    public void setContentFragment(Fragment fragment, boolean addToBackStack, String title) {
-        if (fragment == null) {
-            return;
-        }
-
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = fragmentManager.findFragmentById(R.id.containerView);
-
-        if (currentFragment != null && fragment.getClass().isAssignableFrom(currentFragment.getClass())) {
-            return;
-        }
-
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.containerView, fragment, fragment.getClass().getName());
-        if (addToBackStack) {
-            fragmentTransaction.addToBackStack(fragment.getClass().getName());
-        }
-        fragmentTransaction.commit();
-        fragmentManager.executePendingTransactions();
-
-    }
-
-
-    @Override
-    public void addContentFragment(Fragment fragment, boolean addToBackStack, String title) {
-        if (fragment == null) {
-            return;
-        }
-
-
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = fragmentManager.findFragmentById(R.id.containerView);
-
-        if (currentFragment != null && fragment.getClass().isAssignableFrom(currentFragment.getClass())) {
-            return;
-        }
-
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.containerView, fragment, fragment.getClass().getName());
-        if (addToBackStack) {
-            fragmentTransaction.addToBackStack(fragment.getClass().getName());
-        }
-        fragmentTransaction.commit();
-        fragmentManager.executePendingTransactions();
-
-    }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -382,7 +337,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
     }
 
 
-
     public void showReportTechName(View view) {
         Fragment_TechNamesReport fragmentTechNamesReport;
         mDrawerLayout.closeDrawers();
@@ -393,7 +347,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
         ft.commit();
 
     }
-
 
 
     public void showReportReGen(View view) {
@@ -408,7 +361,6 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
     }
 
 
-
     public void showReportElectMix(View view) {
         Fragment_PIECHART_Electricity fragment_PIECHART_Electricity;
         mDrawerLayout.closeDrawers();
@@ -419,5 +371,17 @@ public class Activity_Main extends AppCompatActivity implements OnFragmentIntera
         ft.commit();
 
     }
+
+
+    public void showDefaultFragment() {
+        Fragment_PIECHART fragment_piechart = new Fragment_PIECHART();
+        mDrawerLayout.closeDrawers();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.containerView, fragment_piechart);
+        ft.commit();
+
+    }
+
+    ;
 
 }

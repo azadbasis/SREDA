@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.nanosoft.sreda.Activity.Activity_Main;
 import com.nanosoft.sreda.Adapter.CapacityReportChartAdapterVertical;
+import com.nanosoft.sreda.Adapter.CapacitynLegendAdapter;
 import com.nanosoft.sreda.Adapter.FuelGenerationChartAdapter;
 import com.nanosoft.sreda.Model.Info_CapacityData;
 import com.nanosoft.sreda.Model.Info_CapacityResponse;
@@ -37,6 +38,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
@@ -50,7 +52,7 @@ public class Fragment_PIECHART_Capacity extends Fragment {
     ArrayList<Entry> yvalues;
     ServerResponseOperation serverResponseOperation;
     Info_ElectricGenMixChart _infoElectricGenMixChart, _infoElectricGenMixChart1, _infoElectricGenMixChart2, _infoElectricGenMixChart3, _infoElectricGenMixChart4;
-    RecyclerView recyclerviewGeneration, recyclerviewFuel;
+    RecyclerView recyclerviewGeneration, recyclerviewFuel,recylerCapacityLegend;
     CapacityReportChartAdapterVertical capacityReportChartAdapterVertical;
 
     private String email,password;
@@ -86,6 +88,10 @@ public class Fragment_PIECHART_Capacity extends Fragment {
         getFuelDataFormServer(email,password);
 
         activityMain = (Activity_Main) getActivity();
+
+        recylerCapacityLegend = (RecyclerView) view.findViewById(R.id.recylerCapacityLegend);
+        recylerCapacityLegend.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
+
         recyclerviewGeneration = (RecyclerView) view.findViewById(R.id.recyclerviewGeneration);
         recyclerviewGeneration.setLayoutManager(new LinearLayoutManager(getActivity(), VERTICAL, false));
 
@@ -241,18 +247,23 @@ public class Fragment_PIECHART_Capacity extends Fragment {
                 Info_CapacityResponse responseInfo = response.body();
 
 
+                if(responseInfo!=null){
+                    if(responseInfo.getStatus()==2000){
+                        // Operation.listCapacityData = responseInfo.getData();
 
-                if(responseInfo.getStatus()==2000){
-                    // Operation.listCapacityData = responseInfo.getData();
+                        capacityReportChartAdapterVertical = new CapacityReportChartAdapterVertical(getContext(), responseInfo.getData(),pieChart);
+                        recyclerviewGeneration.setAdapter(capacityReportChartAdapterVertical);
 
-                    capacityReportChartAdapterVertical = new CapacityReportChartAdapterVertical(getContext(), responseInfo.getData(),pieChart);
-                    recyclerviewGeneration.setAdapter(capacityReportChartAdapterVertical);
 
-                    new ShowPIECHART(getActivity(),pieChart,responseInfo.getData());
+                        recylerCapacityLegend.setAdapter(new CapacitynLegendAdapter(getActivity(),responseInfo.getData()));
 
-                    for(Info_CapacityData temp:responseInfo.getData()){
-                        Operation.listCapacityData.add(temp);
+                        new ShowPIECHART(getActivity(),pieChart,responseInfo.getData());
+
+                        for(Info_CapacityData temp:responseInfo.getData()){
+                            Operation.listCapacityData.add(temp);
+                        }
                     }
+
                 }
 
 
@@ -286,18 +297,17 @@ public class Fragment_PIECHART_Capacity extends Fragment {
             public void onResponse(Call<Info_FuelGenResponse> call, Response<Info_FuelGenResponse> response) {
                 Info_FuelGenResponse responseInfo = response.body();
 
+                if(responseInfo!=null){
+                    if(responseInfo.getStatus()==2000){
+                        // Operation.listCapacityData = responseInfo.getData();
+
+                        FuelGenerationChartAdapter fuelGenerationChartAdapter = new FuelGenerationChartAdapter(getContext(), responseInfo.getData());
+                        recyclerviewFuel.setAdapter(fuelGenerationChartAdapter);
+                        new ShowPIECHART(getActivity(),piechartElectricity,responseInfo.getData(),"");
 
 
-                if(responseInfo.getStatus()==2000){
-                    // Operation.listCapacityData = responseInfo.getData();
-
-                 FuelGenerationChartAdapter fuelGenerationChartAdapter = new FuelGenerationChartAdapter(getContext(), responseInfo.getData());
-                    recyclerviewFuel.setAdapter(fuelGenerationChartAdapter);
-                    new ShowPIECHART(getActivity(),piechartElectricity,responseInfo.getData(),"");
-
-
+                    }
                 }
-
 
 
             }
