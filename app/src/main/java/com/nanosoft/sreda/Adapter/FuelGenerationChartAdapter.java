@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.nanosoft.sreda.Model.Info_FuelGenReport;
 import com.nanosoft.sreda.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +44,18 @@ public class FuelGenerationChartAdapter extends RecyclerView.Adapter<FuelGenerat
 
         Info_FuelGenReport fuelGenerationInfo=fuelGenerationInfoList.get(position);
 
+        double totalCapacit = 0;
+        for(int i = 0; i<fuelGenerationInfoList.size();i++){
+            totalCapacit+=Double.parseDouble(fuelGenerationInfoList.get(i).getInstalled_capacity());
+        }
 
         holder.tvName.setText(fuelGenerationInfo.getName());
         holder.tvName.setBackgroundColor(Color.parseColor(fuelGenerationInfo.getColor()));
-       // holder.tvPercentage.setText(capacityData_Info.getOn_grid()+"");
+
+        Double percent = (Double.parseDouble(fuelGenerationInfo.getInstalled_capacity())*100)/totalCapacit;
+        DecimalFormat precision = new DecimalFormat("0.00");
+
+        holder.tvPercentage.setText(precision.format(percent)+"%");
         holder.tvCapacity.setText(fuelGenerationInfo.getInstalled_capacity());
 
     }
