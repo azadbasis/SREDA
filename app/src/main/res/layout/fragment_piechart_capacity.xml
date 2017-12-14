@@ -100,9 +100,66 @@
        <android.support.v7.widget.RecyclerView
            android:id="@+id/recyclerviewGeneration"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+           android:layout_height="@dimen/_150sdp">
 
        </android.support.v7.widget.RecyclerView>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_40sdp"
+           android:orientation="horizontal">
+
+           <TextView
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="@dimen/_2sdp"
+               android:textColor="@color/black"
+               android:text="Total:"
+               android:gravity="center|right"
+               android:background="@drawable/tv_bg"
+               android:layout_marginRight="@dimen/_1sdp"
+               />
+
+           <TextView
+               android:id="@+id/tvOnGridTotal"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="@dimen/_2sdp"
+               android:textColor="@color/black"
+               android:text="On-Grid\n(mw)"
+               android:gravity="center"
+               android:background="@drawable/tv_bg"
+               android:layout_marginRight="@dimen/_1sdp"
+               />
+
+           <TextView
+               android:id="@+id/tvOffGridTotal"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="@dimen/_2sdp"
+               android:layout_marginRight="@dimen/_1sdp"
+               android:background="@drawable/tv_bg"
+               android:gravity="center"
+               android:text="Off-Grid (mw)"
+               android:textColor="@color/black"
+
+               />
+
+           <TextView
+               android:id="@+id/tvAllTotal"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="@dimen/_2sdp"
+               android:background="@drawable/tv_bg"
+               android:gravity="center"
+               android:text="Total\n(mw))"
+               android:textColor="@color/black" />
+
+       </LinearLayout>
 
    </LinearLayout>
 

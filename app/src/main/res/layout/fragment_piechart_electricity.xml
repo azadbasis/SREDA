@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible"
-            android:layout_marginBottom="@dimen/_10sdp"
+
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,21 +165,45 @@
                     android:gravity="center"
                     android:background="@drawable/tv_bg_title"/>
 
-
-
-
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerviewFuel"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/_150sdp">
 
             </android.support.v7.widget.RecyclerView>
 
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:layout_marginRight="@dimen/_1sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/black"
+                    android:text="Total:"
+                    android:gravity="center|right"
+                    android:background="@drawable/tv_bg"/>
+                <TextView
+                    android:id="@+id/tvCapacityTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_1sdp"
+                    android:background="@drawable/tv_bg"
+                    android:gravity="center|right"
+                    android:padding="@dimen/_2sdp"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
