@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    >
+        <TextView
+            android:id="@+id/tvSerial"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:background="@drawable/tv_bg"
+            android:text="SN"
+            android:gravity="center"
+            />
+
+    <TextView
+        android:id="@+id/tvTecTitle"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:background="@drawable/tv_bg"
+        android:text="SN"
+        android:gravity="center"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewTechWiseSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

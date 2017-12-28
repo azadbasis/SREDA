@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -30,6 +31,7 @@ import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Capacity;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Electricity;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
+import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport_horizintal;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Operation;
 
@@ -338,11 +340,12 @@ public class Activity_Main extends AppCompatActivity {
 
 
     public void showReportTechName(View view) {
-        Fragment_TechNamesReport fragmentTechNamesReport;
+        //Fragment_TechNamesReport fragmentTechNamesReport;
+        Fragment_TechNamesReport_horizintal fragmentTechNamesReport;
         mDrawerLayout.closeDrawers();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        fragmentTechNamesReport = new Fragment_TechNamesReport();
+        fragmentTechNamesReport = new Fragment_TechNamesReport_horizintal();
         ft.replace(R.id.containerView, fragmentTechNamesReport);
         ft.commit();
 

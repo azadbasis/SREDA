@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="@dimen/_50sdp"
+               android:orientation="horizontal"
+               android:background="@drawable/tv_bg"
+               >
+
+               <TextView
+                   android:layout_width="@dimen/_50sdp"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/black"
+                   android:background="@drawable/tv_tch_headerbg"
+                   android:text="SN"
+                   android:gravity="center"
+                   />
+
+               <LinearLayout
+                   android:layout_width="@dimen/_150sdp"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:background="@drawable/tv_tch_headerbg"                   android:layout_gravity="center"
+                   >
+
+                   <Spinner
+                       android:id="@+id/techWiseSpinner"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+
+                       />
+               </LinearLayout>
+
+
+               <TextView
+                   android:id="@+id/textView2"
+                   android:layout_width="@dimen/_150sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:background="@drawable/tv_tch_headerbg"                   android:text="Technology Name"
+                   android:textColor="@color/black" />
+
+               <TextView
+                   android:id="@+id/textView"
+                   android:layout_width="@dimen/_150sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:background="@drawable/tv_tch_headerbg"                   android:text="Number of system"
+                   android:textColor="@color/black" />
+
+               <TextView
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:textColor="@color/black"
+                   android:text="On Grid"
+                   android:background="@drawable/tv_tch_headerbg"
+                   />
+
+               <TextView
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:textColor="@color/black"
+                   android:text="Off Grid"
+                   android:background="@drawable/tv_tch_headerbg"
+                   />
+               <TextView
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:textColor="@color/black"
+                   android:text="toe"
+                   android:background="@drawable/tv_tch_headerbg"
+                   />
+               <TextView
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:textColor="@color/black"
+                   android:text="Total"
+                   android:background="@drawable/tv_tch_headerbg"
+                   />
+
+           </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerviewTechHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.github.mikephil.charting.charts.PieChart
+
+                android:id="@+id/pieChartTechno"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylerTechnoLegend"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:scrollbarSize="@dimen/_3sdp"
+                android:scrollbarThumbHorizontal="@drawable/scrollbar"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

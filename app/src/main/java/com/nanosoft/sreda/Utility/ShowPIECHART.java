@@ -17,8 +17,10 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nanosoft.sreda.Model.Info_CapacityData;
 import com.nanosoft.sreda.Model.Info_FuelGenReport;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportSubCategory;
 import com.nanosoft.sreda.R;
 
 import java.text.DecimalFormat;
@@ -36,9 +38,19 @@ public class ShowPIECHART {
     PieChart piechartElectricity;
     double totalCapacit = 0;
     double totalyElectricity= 0;
-    List<Info_CapacityData> listCapacityInfo;
-    List<Info_FuelGenReport> listFuelInfo;
+    List<Info_CapacityData> listCapacityInfo = new ArrayList<>();
+    List<Info_FuelGenReport> listFuelInfo= new ArrayList<>();
+    List<Info_TechWiseGenReportSubCategory> listTechnoInfo= new ArrayList<>();
    Activity activity;
+
+
+    public ShowPIECHART(Context context, PieChart pieChart, List<Info_TechWiseGenReportSubCategory> listTechnoInfo,String noData,String Data) {
+        this.context = context;
+        this.pieChart = pieChart;
+        this.listTechnoInfo = listTechnoInfo;
+        createPIECHARTTechno();
+    }
+
 
     public ShowPIECHART(Context context, PieChart pieChart, List<Info_CapacityData> listCapacityInfo) {
         this.context = context;
@@ -55,6 +67,92 @@ public class ShowPIECHART {
 
         createFuelPieChart();
     }
+
+
+    public void createPIECHARTTechno() {
+
+        PieData data;
+        final ArrayList<String> xVals;
+        //final ArrayList<Integer> colorcode = new ArrayList<>();
+        final ArrayList<Entry> yvalues;
+
+        pieChart.setUsePercentValues(true);
+
+        xVals = new ArrayList<String>();
+        yvalues = new ArrayList<Entry>();
+
+        for (int i = 0; i < listTechnoInfo.size(); i++) {
+            double d = listTechnoInfo.get(i).getTotal();
+            float f = (float) d;
+            yvalues.add(new Entry(f, i));
+
+            xVals.add(listTechnoInfo.get(i).getSub_category_title());
+//            int parseColor =(Color.parseColor(listCapacityInfo.get(i).getColor()));
+//            colorcode.add(parseColor);
+            totalCapacit += Double.parseDouble(String.valueOf(listTechnoInfo.get(i).getTotal()));
+
+        }
+
+
+        Legend legend = pieChart.getLegend();
+        legend.setEnabled(false);
+        //legend.setCustom(colorcode,xVals);
+
+        PieDataSet dataSet = new PieDataSet(yvalues, "");
+        data = new PieData(xVals, dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        pieChart.setData(data);
+        pieChart.setDescription("Capacity Pie Chart");
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setTransparentCircleRadius(25f);
+        pieChart.setHoleRadius(25f);
+
+        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        //dataSet.setColors(colorcode);
+        data.setValueTextSize(14f);
+        data.setValueTextColor(Color.WHITE);
+
+        pieChart.animateXY(1400, 1400);
+
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.pie_data_dialogue);
+                LinearLayout linPieDialogue = (LinearLayout)dialog.findViewById(R.id.linPieDialogue);
+
+                Double percent = (Double.parseDouble(String.valueOf(listTechnoInfo.get(e.getXIndex()).getTotal()))*100)/totalCapacit;
+                DecimalFormat precision = new DecimalFormat("0.00");
+
+                TextView tvTechName = dialog.findViewById(R.id.tvTechName);
+                TextView tvTechDetail = dialog.findViewById(R.id.tvTechDetail);
+                TextView tvPercentage = dialog.findViewById(R.id.tvPercentage);
+
+//                tvPercentage.setText(" ("+Math.round(Float.parseFloat(precision.format(percent)))+"%"+")");
+                tvPercentage.setText(" ("+precision.format(percent)+"%"+")");
+                tvTechName.setText(xVals.get(e.getXIndex()).toString());
+                tvTechDetail.setText(listTechnoInfo.get(e.getXIndex()).getTotal()+" MW");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setCancelable(true);
+                dialog.show();
+
+                linPieDialogue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+    }
+
+
 
     public void createPIECHARTCapacity() {
 
@@ -223,16 +321,6 @@ public class ShowPIECHART {
 
 
 
-
-    private void showLegend(PieChart chart) {
-        Legend l = chart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
-        l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-        l.setWordWrapEnabled(true);
-    }
 
 
 

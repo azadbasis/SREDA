@@ -1,6 +1,7 @@
 package com.nanosoft.sreda.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nanosoft-Android on 12/5/2017.
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Info_TechWiseGenReportResponse {
 
     private int status;
-    private ArrayList<Info_TechWiseGenReportData> data;
+    private List<Info_TechWiseGenReportData> data = new ArrayList<>();
 
     public Info_TechWiseGenReportResponse(int status, ArrayList<Info_TechWiseGenReportData> data) {
         this.status = status;
@@ -24,8 +25,12 @@ public class Info_TechWiseGenReportResponse {
         this.status = status;
     }
 
-    public ArrayList<Info_TechWiseGenReportData> getData() {
+    public List<Info_TechWiseGenReportData> getData() {
         return data;
+    }
+
+    public void setData(List<Info_TechWiseGenReportData> data) {
+        this.data = data;
     }
 
     public void setData(ArrayList<Info_TechWiseGenReportData> data) {

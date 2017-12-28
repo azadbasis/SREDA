@@ -17,14 +17,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.PieChart;
 import com.nanosoft.sreda.Adapter.TechNamesReportAdapter;
+import com.nanosoft.sreda.Adapter.TechNamesReportAdapterHorizontal;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNamesData;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportSubCategory;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
+import com.nanosoft.sreda.Utility.ShowPIECHART;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,33 +40,35 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_TechNamesReport extends Fragment {
+public class Fragment_TechNamesReport_horizintal extends Fragment {
 
 
     Spinner techWiseSpinner;
-    public Fragment_TechNamesReport() {
+    private PieChart pieChartTechno;
+    public Fragment_TechNamesReport_horizintal() {
         // Required empty public constructor
     }
-    private RecyclerView recyclerviewTechWise;
-    private TechNamesReportAdapter techNamesReportAdapter;
+    private RecyclerView recyclerviewTechHorizontal,recylerTechnoLegend;
+    private TechNamesReportAdapterHorizontal techNamesReportAdapter;
     private Info_TechWiseGenReportResponse Info_TechWiseGenReportResponse;
     //ArrayList<Info_TechWiseGenReportData> catagories = new ArrayList<>();
    // private ArrayList<Info_TechWiseGenReportData> infoTecReportList;
     private ArrayList<Info_TechWiseGenReportData> filterTecReporList;
-    private TextView tvNumSys,tvtOnGrid,tvOffGrid,tvToe,tvTotal;
+    //private TextView tvNumSys,tvtOnGrid,tvOffGrid,tvToe,tvTotal;
     private String email,password;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.tchno_parent, container, false);
+        return inflater.inflate(R.layout.tecnology_report_horizontal, container, false);
     }
-
+    List<Info_TechWiseGenReportSubCategory> listTechnoInfo= new ArrayList<>();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -72,27 +78,25 @@ public class Fragment_TechNamesReport extends Fragment {
 
     private void initUi() {
 
-        tvNumSys = (TextView)getView().findViewById(R.id.tvNumSys);
-        tvOffGrid = (TextView)getView().findViewById(R.id.tvOffGrid);
-        tvToe = (TextView)getView().findViewById(R.id.tvToe);
-        tvTotal = (TextView)getView().findViewById(R.id.tvTotal);
-        tvtOnGrid = (TextView)getView().findViewById(R.id.tvtOnGrid);
-
-        //infoTecReportList =new ArrayList<>();
         filterTecReporList =new ArrayList<>();
-        recyclerviewTechWise=(RecyclerView)getView().findViewById(R.id.recyclerviewTechWise);
+
+        pieChartTechno = (PieChart)getView().findViewById(R.id.pieChartTechno);
+        recyclerviewTechHorizontal=(RecyclerView)getView().findViewById(R.id.recyclerviewTechHorizontal);
+        recylerTechnoLegend=(RecyclerView)getView().findViewById(R.id.recylerTechnoLegend);
+        recylerTechnoLegend.setLayoutManager(new LinearLayoutManager(getActivity(), HORIZONTAL, false));
+
         techWiseSpinner=(Spinner)getView().findViewById(R.id.techWiseSpinner);
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), VERTICAL, false);
-        recyclerviewTechWise.setLayoutManager(layoutManager);
+        recyclerviewTechHorizontal.setLayoutManager(layoutManager);
 
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(),
                 layoutManager.getOrientation());
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_line));
 
-        recyclerviewTechWise.addItemDecoration(dividerItemDecoration);
+        recyclerviewTechHorizontal.addItemDecoration(dividerItemDecoration);
 
         email = Operation.getString("email","");
         password = Operation.getString("password","");
@@ -110,17 +114,36 @@ public class Fragment_TechNamesReport extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 filterTecReporList.clear();
+                listTechnoInfo.clear();
 
                 if (i>0) {
 
                     for (int j = 0; j < Info_TechWiseGenReportResponse.getData().size(); j++) {
                         if (Info_TechWiseGenReportResponse.getData().get(j).getTechnology_name().equalsIgnoreCase(techWiseSpinner.getSelectedItem().toString())) {
                             filterTecReporList.add(Info_TechWiseGenReportResponse.getData().get(j));
+                            for (int k = 0; k <filterTecReporList.get(j).getSub_category().size() ; k++) {
+                                listTechnoInfo.add(filterTecReporList.get(j).getSub_category().get(k));
+                            }
                         }
+
+
                     }
 
-
                     setDataFromServer(filterTecReporList);
+
+//                    for (int j = 0; j < filterTecReporList.size(); j++) {
+//                        for (int k = 0; k <filterTecReporList.get(j).getSub_category().size() ; k++) {
+//                            listTechnoInfo.add(filterTecReporList.get(j).getSub_category().get(k));
+//                        }
+//                    }
+
+                    if(listTechnoInfo.size()>0){
+                        new ShowPIECHART(getActivity(),pieChartTechno,listTechnoInfo,"","");
+                    }else {
+                        pieChartTechno.setVisibility(View.GONE);
+                        recylerTechnoLegend.setVisibility(View.GONE);
+                    }
+
 
                 }else if(i==0){
                     setDataFromServer(Info_TechWiseGenReportResponse.getData());
@@ -243,18 +266,19 @@ public class Fragment_TechNamesReport extends Fragment {
                 total+=listData.get(i).getSub_category().get(j).getTotal();
             }
         }
-        DecimalFormat precision = new DecimalFormat("0.00");
-        tvNumSys.setText("Number of system\n"+numsys);
-        tvtOnGrid.setText("On Grid\n"+precision.format(ongrid)+" MW");
-        tvOffGrid.setText("OffGrid\n"+precision.format(offgrid)+" MW");
-        tvToe.setText("Toe\n"+precision.format(toe)+" MW");
-        tvTotal.setText("Total\n"+precision.format(total)+" MW");
+//        DecimalFormat precision = new DecimalFormat("0.00");
+//        tvNumSys.setText("Number of system\n"+numsys);
+//        tvtOnGrid.setText("On Grid\n"+precision.format(ongrid)+" MW");
+//        tvOffGrid.setText("OffGrid\n"+precision.format(offgrid)+" MW");
+//        tvToe.setText("Toe\n"+precision.format(toe)+" MW");
+//        tvTotal.setText("Total\n"+precision.format(total)+" MW");
 
         //Toast.makeText(getActivity(), "sys: "+numsys, Toast.LENGTH_SHORT).show();
 
-        techNamesReportAdapter=new TechNamesReportAdapter(getContext(), listData);
-        recyclerviewTechWise.setAdapter(techNamesReportAdapter);
+        techNamesReportAdapter=new TechNamesReportAdapterHorizontal(getContext(), listData);
+        recyclerviewTechHorizontal.setAdapter(techNamesReportAdapter);
         techNamesReportAdapter.notifyDataSetChanged();
+
 
     }
 
