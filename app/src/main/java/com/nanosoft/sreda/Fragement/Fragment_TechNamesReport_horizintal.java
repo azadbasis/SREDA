@@ -121,21 +121,21 @@ public class Fragment_TechNamesReport_horizintal extends Fragment {
                     for (int j = 0; j < Info_TechWiseGenReportResponse.getData().size(); j++) {
                         if (Info_TechWiseGenReportResponse.getData().get(j).getTechnology_name().equalsIgnoreCase(techWiseSpinner.getSelectedItem().toString())) {
                             filterTecReporList.add(Info_TechWiseGenReportResponse.getData().get(j));
-                            for (int k = 0; k <filterTecReporList.get(j).getSub_category().size() ; k++) {
-                                listTechnoInfo.add(filterTecReporList.get(j).getSub_category().get(k));
-                            }
+
                         }
 
+                    }
 
+
+                    for (int j = 0; j < filterTecReporList.size(); j++) {
+                        for (int k = 0; k <filterTecReporList.get(j).getSub_category().size() ; k++) {
+                            listTechnoInfo.add(filterTecReporList.get(j).getSub_category().get(k));
+                        }
                     }
 
                     setDataFromServer(filterTecReporList);
 
-//                    for (int j = 0; j < filterTecReporList.size(); j++) {
-//                        for (int k = 0; k <filterTecReporList.get(j).getSub_category().size() ; k++) {
-//                            listTechnoInfo.add(filterTecReporList.get(j).getSub_category().get(k));
-//                        }
-//                    }
+
 
                     if(listTechnoInfo.size()>0){
                         new ShowPIECHART(getActivity(),pieChartTechno,listTechnoInfo,"","");
