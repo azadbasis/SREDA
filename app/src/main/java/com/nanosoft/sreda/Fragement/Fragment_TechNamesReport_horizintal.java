@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.nanosoft.sreda.Adapter.TechNamesReportAdapter;
 import com.nanosoft.sreda.Adapter.TechNamesReportAdapterHorizontal;
+import com.nanosoft.sreda.Adapter.TechnologyLegendAdapter;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNamesData;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportData;
@@ -60,7 +61,7 @@ public class Fragment_TechNamesReport_horizintal extends Fragment {
     //ArrayList<Info_TechWiseGenReportData> catagories = new ArrayList<>();
    // private ArrayList<Info_TechWiseGenReportData> infoTecReportList;
     private ArrayList<Info_TechWiseGenReportData> filterTecReporList;
-    //private TextView tvNumSys,tvtOnGrid,tvOffGrid,tvToe,tvTotal;
+    private TextView tvSysTotal,tvOnGridTotal,tvOffGridTotal,tvToeTotal,tvAllTotal;
     private String email,password;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +80,12 @@ public class Fragment_TechNamesReport_horizintal extends Fragment {
     private void initUi() {
 
         filterTecReporList =new ArrayList<>();
+
+        tvSysTotal = (TextView) getView().findViewById(R.id.tvSysTotal);
+        tvOnGridTotal = (TextView) getView().findViewById(R.id.tvOnGridTotal);
+        tvOffGridTotal = (TextView) getView().findViewById(R.id.tvOffGridTotal);
+        tvToeTotal = (TextView) getView().findViewById(R.id.tvToeTotal);
+        tvAllTotal = (TextView) getView().findViewById(R.id.tvAllTotal);
 
         pieChartTechno = (PieChart)getView().findViewById(R.id.pieChartTechno);
         recyclerviewTechHorizontal=(RecyclerView)getView().findViewById(R.id.recyclerviewTechHorizontal);
@@ -139,6 +146,8 @@ public class Fragment_TechNamesReport_horizintal extends Fragment {
 
                     if(listTechnoInfo.size()>0){
                         new ShowPIECHART(getActivity(),pieChartTechno,listTechnoInfo,"","");
+//                        TechnologyLegendAdapter technologyLegendAdapter = new TechnologyLegendAdapter(getActivity(),listTechnoInfo);
+//                        recylerTechnoLegend.setAdapter(technologyLegendAdapter);
                     }else {
                         pieChartTechno.setVisibility(View.GONE);
                         recylerTechnoLegend.setVisibility(View.GONE);
@@ -266,12 +275,12 @@ public class Fragment_TechNamesReport_horizintal extends Fragment {
                 total+=listData.get(i).getSub_category().get(j).getTotal();
             }
         }
-//        DecimalFormat precision = new DecimalFormat("0.00");
-//        tvNumSys.setText("Number of system\n"+numsys);
-//        tvtOnGrid.setText("On Grid\n"+precision.format(ongrid)+" MW");
-//        tvOffGrid.setText("OffGrid\n"+precision.format(offgrid)+" MW");
-//        tvToe.setText("Toe\n"+precision.format(toe)+" MW");
-//        tvTotal.setText("Total\n"+precision.format(total)+" MW");
+        DecimalFormat precision = new DecimalFormat("0.00");
+        tvSysTotal.setText(numsys+"");
+        tvOnGridTotal.setText(precision.format(ongrid)+" MW");
+        tvOffGridTotal.setText(precision.format(offgrid)+" MW");
+        tvToeTotal.setText(precision.format(toe));
+        tvAllTotal.setText(precision.format(total)+" MW");
 
         //Toast.makeText(getActivity(), "sys: "+numsys, Toast.LENGTH_SHORT).show();
 

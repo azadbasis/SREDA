@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nanosoft.sreda.Model.Info_CapacityData;
+import com.nanosoft.sreda.Model.Info_TechWiseGenReportSubCategory;
 import com.nanosoft.sreda.R;
 
 import java.util.ArrayList;
@@ -22,10 +23,10 @@ public class TechnologyLegendAdapter extends RecyclerView.Adapter<TechnologyLege
 
 
     Context context;
-    List<Info_CapacityData> _InfoCapacityDataList = new ArrayList<>();
+    List<Info_TechWiseGenReportSubCategory> _InfoCapacityDataList = new ArrayList<>();
 
 
-    public TechnologyLegendAdapter(Context context, List<Info_CapacityData> fuelGenerationInfoList){
+    public TechnologyLegendAdapter(Context context, List<Info_TechWiseGenReportSubCategory> fuelGenerationInfoList){
         this.context=context;
         this._InfoCapacityDataList=fuelGenerationInfoList;
 
@@ -42,10 +43,10 @@ public class TechnologyLegendAdapter extends RecyclerView.Adapter<TechnologyLege
     @Override
     public void onBindViewHolder(ReGenSummeryReportChartHolder holder, int position) {
 
-        Info_CapacityData fuelGenerationInfo=_InfoCapacityDataList.get(position);
+        Info_TechWiseGenReportSubCategory fuelGenerationInfo=_InfoCapacityDataList.get(position);
 
-        holder.tvLegendTitle.setText(fuelGenerationInfo.getTechnology_name());
-        holder.tvLegendColor.setBackgroundColor(Color.parseColor(fuelGenerationInfo.getColor()));
+        holder.tvLegendTitle.setText(fuelGenerationInfo.getSub_category_title());
+       // holder.tvLegendColor.setBackgroundColor(Color.parseColor(fuelGenerationInfo.getColor()));
 
     }
 

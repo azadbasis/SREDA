@@ -42,10 +42,10 @@ public class TechNamesSubcategoryAdapterHorizontal extends RecyclerView.Adapter<
         Info_TechWiseGenReportSubCategory technosubinfo = _infoTechWiseGenReportResponseArrayList.get(position);
         holder.tvTechnoSubName.setText(technosubinfo.getSub_category_title());
         holder.tvNumOfSystem.setText(String.valueOf(technosubinfo.getNo_on_system()));
-        holder.tvOnGride.setText(String.valueOf(technosubinfo.getOn_grid()));
-        holder.tvOffGride.setText(String.valueOf(technosubinfo.getOff_grid()));
+        holder.tvOnGride.setText(String.valueOf(technosubinfo.getOn_grid())+" MW");
+        holder.tvOffGride.setText(String.valueOf(technosubinfo.getOff_grid())+" MW");
         holder.tvToe.setText(String.valueOf(technosubinfo.getToe()));
-        holder.tvTotalTec.setText(String.valueOf(technosubinfo.getTotal()));
+        holder.tvTotalTec.setText(String.valueOf(technosubinfo.getTotal())+" MW");
 
     }
 
