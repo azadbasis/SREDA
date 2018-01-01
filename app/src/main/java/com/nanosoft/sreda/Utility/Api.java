@@ -3,6 +3,7 @@ package com.nanosoft.sreda.Utility;
 import com.nanosoft.sreda.Model.Info_CapacityResponse;
 import com.nanosoft.sreda.Model.Info_FuelGenResponse;
 import com.nanosoft.sreda.Model.Info_GetTechnologyNames;
+import com.nanosoft.sreda.Model.Info_Large_Database_Report;
 import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
 import com.nanosoft.sreda.Model.Info_UserLoginResponse;
 
@@ -20,8 +21,8 @@ import retrofit2.http.Query;
 public interface Api {
 
     //String BASE_URL = "http://offerian.com/";
-    //String BASE_URL = "http://192.168.0.119/renewableenergy/api/";
-    String BASE_URL = "http://redb.sreda.gov.bd/api/";
+    String BASE_URL = "http://192.168.0.119/renewableenergy/api/";
+    //String BASE_URL = "http://redb.sreda.gov.bd/api/";
 
 
     @FormUrlEncoded
@@ -57,6 +58,13 @@ public interface Api {
 
     @GET("technology_wise_generation_report")
     Call<Info_TechWiseGenReportResponse> getTechnologyNameReport(
+            @Query("email") String email,
+            @Query("password") String password
+
+    );
+
+    @GET("get_re_large_database_report")
+    Call<Info_Large_Database_Report> getLargeProjectReport(
             @Query("email") String email,
             @Query("password") String password
 

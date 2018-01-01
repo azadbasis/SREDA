@@ -34,6 +34,13 @@
                         android:text="SN"
                         android:gravity="center"
                         />
+                    <TextView
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/tv_tch_headerbg"
+                        android:text="Project Name"
+                        android:textColor="@color/black" />
 
                     <LinearLayout
                         android:layout_width="@dimen/_150sdp"
@@ -52,131 +59,96 @@
 
 
                     <TextView
-                        android:id="@+id/textView2"
                         android:layout_width="@dimen/_150sdp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="@drawable/tv_tch_headerbg"                   android:text="Technology Name"
+                        android:background="@drawable/tv_tch_headerbg"
+                        android:text="Capacity"
                         android:textColor="@color/black" />
+                    <LinearLayout
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/tv_tch_headerbg"                   android:layout_gravity="center"
+                        >
 
+                        <Spinner
+                            android:id="@+id/locationSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/tv_tch_headerbg"                   android:layout_gravity="center"
+                        >
+
+                        <Spinner
+                            android:id="@+id/financeSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                    </LinearLayout>
                     <TextView
-                        android:id="@+id/textView"
                         android:layout_width="@dimen/_150sdp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="@drawable/tv_tch_headerbg"                   android:text="Number of system"
+                        android:background="@drawable/tv_tch_headerbg"
+                        android:text="Completion Date"
                         android:textColor="@color/black" />
 
+                    <LinearLayout
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/tv_tch_headerbg"                   android:layout_gravity="center"
+                        >
+
+                        <Spinner
+                            android:id="@+id/organizationSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/tv_tch_headerbg"                   android:layout_gravity="center"
+                        >
+
+                        <Spinner
+                            android:id="@+id/presentStatusSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                    </LinearLayout>
                     <TextView
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textColor="@color/black"
-                        android:text="On Grid"
+                        android:text="Project Details"
                         android:background="@drawable/tv_tch_headerbg"
                         />
 
-                    <TextView
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Off Grid"
-                        android:background="@drawable/tv_tch_headerbg"
-                        />
-                    <TextView
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="toe"
-                        android:background="@drawable/tv_tch_headerbg"
-                        />
-                    <TextView
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Total"
-                        android:background="@drawable/tv_tch_headerbg"
-                        />
 
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerviewTechHorizontal"
+                    android:id="@+id/recyclerviewLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                 </android.support.v7.widget.RecyclerView>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_50sdp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/tv_bg"
-                    >
 
-                    <TextView
-                        android:layout_width="@dimen/_350sdp"
-                        android:layout_height="match_parent"
-                        android:textColor="@color/black"
-                        android:background="@drawable/tv_bg"
-                        android:text="Total: "
-                        android:textStyle="bold"
-                        android:gravity="center|right"
-                        />
-
-
-
-
-                    <TextView
-                        android:id="@+id/tvSysTotal"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@drawable/tv_bg"
-                        android:text="Number of system"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/tvOnGridTotal"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="On Grid"
-                        android:background="@drawable/tv_bg"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvOffGridTotal"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Off Grid"
-                        android:background="@drawable/tv_bg"
-                        />
-                    <TextView
-                        android:id="@+id/tvToeTotal"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="toe"
-                        android:background="@drawable/tv_bg"
-                        />
-                    <TextView
-                        android:id="@+id/tvAllTotal"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Total"
-                        android:background="@drawable/tv_bg"
-                        />
-
-                </LinearLayout>
             </LinearLayout>
 
         </HorizontalScrollView>

@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanosoft.sreda.Adapter.Adapter;
+import com.nanosoft.sreda.Fragement.Fragment_Large_Project;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Capacity;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Electricity;
@@ -338,7 +339,17 @@ public class Activity_Main extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    public void showLargeProject(View view) {
+        //Fragment_TechNamesReport fragmentTechNamesReport;
+        Fragment_Large_Project fragmentTechNamesReport;
+        mDrawerLayout.closeDrawers();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fragmentTechNamesReport = new Fragment_Large_Project();
+        ft.replace(R.id.containerView, fragmentTechNamesReport);
+        ft.commit();
 
+    }
     public void showReportTechName(View view) {
         //Fragment_TechNamesReport fragmentTechNamesReport;
         Fragment_TechNamesReport_horizintal fragmentTechNamesReport;
