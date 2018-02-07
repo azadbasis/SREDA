@@ -20,7 +20,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -31,7 +30,6 @@ import com.nanosoft.sreda.Fragement.Fragment_Large_Project;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Capacity;
 import com.nanosoft.sreda.Fragement.Fragment_PIECHART_Electricity;
-import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport;
 import com.nanosoft.sreda.Fragement.Fragment_TechNamesReport_horizintal;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Operation;
@@ -51,7 +49,8 @@ public class Activity_Main extends AppCompatActivity {
     Runnable Update;
     Timer swipeTimer;
     private ViewPager launchViewpager;
-    public static int[] imageRSC = {R.drawable.banar, R.drawable.banar};
+    public static int[] imageRSC = {R.drawable.slider1, R.drawable.slider2,
+            R.drawable.slider3,R.drawable.slider4,R.drawable.slider5};
     TextView tvTitle;
     Button btnReport, btnGovAgency, btnPrivateIndiVi, btnStakeHolder, btnHome,
             btnReportReGen, btnReportTechno, btnReportYear, btnReportLarge, btnReportSmall, btnReportElectMix;
@@ -72,9 +71,13 @@ public class Activity_Main extends AppCompatActivity {
         //tvTitle.setText(getIntent().getStringExtra(Activity_Login.USER_NAME_STRING)+"'s Dictionary");
         tvTitle.setText(Operation.getString("user", "") + "'s Report And Chart");
 
-
     }
-
+//    public String getWifiIPAddress() {
+//        WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+//        WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+//        int ip = wifiInfo.getIpAddress();
+//        return  Formatter.formatIpAddress(ip);
+//    }
     private void initialization() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);

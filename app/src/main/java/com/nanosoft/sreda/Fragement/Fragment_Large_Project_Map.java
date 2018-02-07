@@ -10,18 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nanosoft.sreda.Adapter.LargeProjectAdapter;
 import com.nanosoft.sreda.Model.Info_Large_Database_Report;
-import com.nanosoft.sreda.Model.Info_TechWiseGenReportResponse;
 import com.nanosoft.sreda.R;
 import com.nanosoft.sreda.Utility.Api;
 import com.nanosoft.sreda.Utility.Operation;
@@ -35,25 +30,24 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 /**
  * Created by NanoSoft on 1/1/2018.
  */
 
-public class Fragment_Large_Project extends Fragment{
+public class Fragment_Large_Project_Map extends Fragment{
 
     private List <String> listFinance = new ArrayList<>();
     private List <String> listTechno = new ArrayList<String>();
     private List <String> listLocation = new ArrayList<>();
-    private Spinner techWiseSpinner,spinnerFormYear;
+    private Spinner techWiseSpinner,locationSpinner,financialSpinner,userSpinner,presentStatusSpinner;
     private RecyclerView recyclerviewLarge;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.large_project_main, container, false);
+        return inflater.inflate(R.layout.large_db_map, container, false);
     }
 
 
@@ -80,7 +74,10 @@ public class Fragment_Large_Project extends Fragment{
     private void initUi() {
 
         techWiseSpinner = (Spinner)getView().findViewById(R.id.techWiseSpinner);
-        spinnerFormYear = (Spinner)getView().findViewById(R.id.spinnerFormYear);
+        locationSpinner = (Spinner)getView().findViewById(R.id.locationSpinner);
+        financialSpinner = (Spinner)getView().findViewById(R.id.financialSpinner);
+        userSpinner = (Spinner)getView().findViewById(R.id.userSpinner);
+        presentStatusSpinner = (Spinner)getView().findViewById(R.id.presentStatusSpinner);
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 //                android.R.layout.simple_spinner_item,listTechno);
@@ -90,7 +87,7 @@ public class Fragment_Large_Project extends Fragment{
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.financial_year_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerFormYear.setAdapter(adapter);
+        //spinnerFormYear.setAdapter(adapter);
 
         String email = Operation.getString("email","");
         String password = Operation.getString("password","");
